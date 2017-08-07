@@ -1,0 +1,1126 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Notifications Center\n"
+"POT-Creation-Date: 2017-08-04 12:41+0200\n"
+"PO-Revision-Date: 2017-08-04 16:28+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: notifications_center.php\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/default-notifications.php:31 admin/default-notifications.php:32
+msgid "Default notifications"
+msgstr "Notifications par défaut"
+
+#: admin/default-notifications.php:69 admin/settings.php:232
+#: notifications/user_password_reset.php:18
+msgid "User password reset"
+msgstr "Réinitialisation du mot de passe"
+
+#: admin/default-notifications.php:71 admin/settings.php:234
+msgid ""
+"Email sent when user asked for password reset, from the login screen. Email "
+"contains the password reset link"
+msgstr ""
+
+#: admin/default-notifications.php:74
+msgid "Wordpress core updated"
+msgstr "Noyau de WordPress mise à jour"
+
+#: admin/default-notifications.php:76
+msgid "Email send after Wordpress updated to a new version."
+msgstr ""
+
+#: admin/default-notifications.php:79
+msgid "Uvailable Wordpress update"
+msgstr ""
+
+#: admin/default-notifications.php:81 admin/settings.php:350
+msgid ""
+"Email when Wordpress can be updated to a new version, but nothing has been "
+"done at this time"
+msgstr ""
+
+#: admin/default-notifications.php:84 admin/settings.php:368
+msgid "Comment to approve"
+msgstr ""
+
+#: admin/default-notifications.php:86 admin/settings.php:370
+msgid ""
+"Email sent when a visite submitted a comment on your website and if \"A "
+"comment is held for moderation\" is checked in Wordpress settings"
+msgstr ""
+
+#: admin/default-notifications.php:89
+msgid "New Pingback"
+msgstr "Nouveau pingback"
+
+#: admin/default-notifications.php:91
+msgid ""
+"Email sent when anothir site mention one of your post and if \"Allow link "
+"notifications from other blogs (pingbacks and trackbacks) on new articles \" "
+"is checked in Wordpress settings"
+msgstr ""
+
+#: admin/default-notifications.php:106 admin/settings.php:216
+msgid "Default Notifications"
+msgstr "Notifications par défaut"
+
+#: admin/help.php:29
+msgid "Help"
+msgstr "AIde"
+
+#: admin/notification.php:62
+msgid "Specific user(s)"
+msgstr "Utilisateurs"
+
+#: admin/notification.php:63
+msgid "Specific role(s)"
+msgstr "Roles"
+
+#: admin/notification.php:64
+msgid "Specific e-mail address(es)"
+msgstr "Adresses e-mail"
+
+#: admin/notification.php:189
+msgid "Recipient type"
+msgstr "Choix du destinataire"
+
+#: admin/notification.php:200
+msgid "Add a variable"
+msgstr "Ajouter une variable"
+
+#: admin/notification.php:627 admin/settings.php:37 admin/settings.php:38
+#: admin/settings.php:115 admin/template-customizer.php:132
+msgid "Settings"
+msgstr "Réglages"
+
+#: admin/notification.php:637
+msgid "Sender & recipient"
+msgstr "Emetteur et destinataire"
+
+#: admin/notification.php:647 admin/notification.php:860 core/helpers.php:141
+msgid "Content"
+msgstr "Contenu"
+
+#: admin/notification.php:683
+msgid "When to send the notification?"
+msgstr "Quand souhaitez-vous envoyer votre notification ?"
+
+#: admin/notification.php:702
+msgid "Overrides WP"
+msgstr "Remplace WP"
+
+#: admin/notification.php:742
+msgid "Specify sender ?"
+msgstr "Spécifier l'émetteur ?"
+
+#: admin/notification.php:745
+msgid "Use a specific sender for this email instead of global settings"
+msgstr "Utiliser un émetteur spécifique à la place des réglages par défaut"
+
+#: admin/notification.php:751 admin/settings.php:49
+msgid "Sender name"
+msgstr "Nom de l'émetteur"
+
+#: admin/notification.php:752
+msgid "It may appear in the header of your email"
+msgstr "Cela devrait apparaître dans le header de votre e-mail"
+
+#: admin/notification.php:763 admin/settings.php:56
+msgid "Sender email"
+msgstr "E-mail de l'émetteur"
+
+#: admin/notification.php:764
+msgid "The notification will have been sent by this address"
+msgstr "L'email sera envoyé à partir de cette adresse"
+
+#: admin/notification.php:781
+msgid "Recipient Emails"
+msgstr "Emails des destinataires"
+
+#: admin/notification.php:782
+msgid "Recipient emails, separated by commas (\",\")"
+msgstr "Adresses email, séparées par des virgules (\",\")"
+
+#: admin/notification.php:797
+msgid "Recipient Role(s)"
+msgstr "Rôles des desinataires"
+
+#: admin/notification.php:798 notifications/comment_new.php:101
+#: notifications/empty.php:89
+msgid "The notification will be send to all users in the selected roles"
+msgstr ""
+"La notification ne sera envoyé qu'aux utilisateurs des rôles sélectionnés"
+
+#: admin/notification.php:808
+msgid "Select role(s)"
+msgstr "Sélectionner un/des rôle(s)"
+
+#: admin/notification.php:813
+msgid "User(s)"
+msgstr "Utilisateurs"
+
+#: admin/notification.php:823
+msgid "Select user(s)"
+msgstr "Sélectionner un/des utilisateurs(s)"
+
+#: admin/notification.php:850
+msgid "Object"
+msgstr "Objet"
+
+#: admin/notification.php:861
+msgid ""
+"Buid here the message you want. You can use \"Add variable\" to add some "
+"variable information."
+msgstr ""
+"Saisissez ici le message que vous souhaitez envoyer. Vous pouvez utiliser "
+"\"Ajouter une variable\" pour ajouter des données variables"
+
+#: admin/notifications.php:51
+msgid "Type"
+msgstr "Type"
+
+#: admin/notifications.php:52
+msgid "Recipients"
+msgstr "Destinataires"
+
+#: admin/notifications.php:53
+msgid "Status"
+msgstr "Statut"
+
+#: admin/notifications.php:79
+msgid "Unknown"
+msgstr "inconnu"
+
+#: admin/notifications.php:86 admin/settings.php:666
+msgid "Active"
+msgstr "Actif"
+
+#: admin/notifications.php:88
+msgid "Inactive"
+msgstr "Inactif"
+
+#: admin/notifications.php:108
+#, php-format
+msgid "All %s users"
+msgstr ""
+
+#: admin/notifications.php:130
+msgid "All types"
+msgstr "Tous les types"
+
+#: admin/settings.php:63
+msgid "How to use this sender"
+msgstr "Comment utiliser cet expéditeur"
+
+#: admin/settings.php:66
+msgid "Only for Notifications Center emails"
+msgstr "Uniquement pour les emails de Notifications Center"
+
+#: admin/settings.php:67
+msgid ""
+"For both Notifications Center emails and any other wordpress or plugin email"
+msgstr ""
+"Pour les emails de Notifications Center et tout autre email de Wordpress"
+
+#: admin/settings.php:75
+msgid "Plugin template"
+msgstr ""
+
+#: admin/settings.php:78
+msgid "Current theme template"
+msgstr ""
+
+#: admin/settings.php:82
+msgid "Template to use"
+msgstr ""
+
+#: admin/settings.php:83
+msgid "Your theme can now use a specific"
+msgstr ""
+
+#: admin/settings.php:100
+msgid "Changes succesfully saved !"
+msgstr "Les changements ont été enregistrés !"
+
+#: admin/settings.php:173
+msgid "Saving changes..."
+msgstr "Enregistrement..."
+
+#: admin/settings.php:184 admin/settings.php:523
+msgid "Save changes"
+msgstr "Enregistrer les modifications"
+
+#: admin/settings.php:212
+msgid "General"
+msgstr "Général"
+
+#: admin/settings.php:238
+#, php-format
+msgid "[%s] Password Reset"
+msgstr ""
+
+#: admin/settings.php:240
+msgid "Someone has requested a password reset for the following account:"
+msgstr ""
+
+#: admin/settings.php:241
+msgid "If this was a mistake, just ignore this email and nothing will happen."
+msgstr ""
+
+#: admin/settings.php:242
+msgid "To reset your password, visit the following address:"
+msgstr ""
+
+#: admin/settings.php:246 notifications/user_password_changed.php:18
+msgid "User password changed"
+msgstr ""
+
+#: admin/settings.php:248 admin/settings.php:260 admin/settings.php:275
+msgid "Email sent when after any user changed his password"
+msgstr ""
+
+#: admin/settings.php:253
+#, php-format
+msgid "[%s] Password Changed"
+msgstr ""
+
+#: admin/settings.php:254
+#, php-format
+msgid "Password changed for user: %s"
+msgstr ""
+
+#: admin/settings.php:258
+msgid "User registered - admin"
+msgstr ""
+
+#: admin/settings.php:265
+#, php-format
+msgid "[%s] New User Registration"
+msgstr ""
+
+#: admin/settings.php:267
+#, php-format
+msgid "New user registration on your site %s:"
+msgstr ""
+
+#: admin/settings.php:268 admin/settings.php:281
+#, php-format
+msgid "Username: %s"
+msgstr ""
+
+#: admin/settings.php:269 admin/settings.php:379
+#, php-format
+msgid "Email: %s"
+msgstr ""
+
+#: admin/settings.php:273
+msgid "User registered - user"
+msgstr ""
+
+#: admin/settings.php:279
+#, php-format
+msgid "[%s] Your username and password info"
+msgstr ""
+
+#: admin/settings.php:282
+msgid "To set your password, visit the following address:"
+msgstr ""
+
+#: admin/settings.php:288
+msgid "Wordpress update - Success"
+msgstr ""
+
+#: admin/settings.php:290
+msgid "Email sent after Wordpress succesfully updated to a new version."
+msgstr ""
+
+#: admin/settings.php:296
+#, php-format
+msgid "[%1$s] Your site has updated to WordPress %2$s"
+msgstr ""
+
+#: admin/settings.php:298
+#, php-format
+msgid ""
+"Howdy! Your site at %1$s has been updated automatically to WordPress %2$s."
+msgstr ""
+
+#: admin/settings.php:299
+#, php-format
+msgid "For more on version %s, see the About WordPress screen:"
+msgstr ""
+
+#: admin/settings.php:301 admin/settings.php:320 admin/settings.php:341
+#: admin/settings.php:361
+msgid ""
+"If you experience any issues or need support, the volunteers in the "
+"WordPress.org support forums may be able to help."
+msgstr ""
+
+#: admin/settings.php:302 admin/settings.php:321 admin/settings.php:342
+#: admin/settings.php:362
+msgid "https://wordpress.org/support/"
+msgstr ""
+
+#: admin/settings.php:303 admin/settings.php:323 admin/settings.php:344
+#: admin/settings.php:364
+msgid "The WordPress Team"
+msgstr ""
+
+#: admin/settings.php:307
+msgid "Wordpress update - Fail"
+msgstr ""
+
+#: admin/settings.php:309
+msgid "Email sent after Wordpress tried to update but failed"
+msgstr ""
+
+#: admin/settings.php:315 admin/settings.php:356
+#, php-format
+msgid "[%1$s] WordPress %2$s is available. Please update!"
+msgstr ""
+
+#: admin/settings.php:317 admin/settings.php:358
+#, php-format
+msgid "Please update your site at %1$s to WordPress %2$s."
+msgstr ""
+
+#: admin/settings.php:318
+msgid "We tried but were unable to update your site automatically."
+msgstr ""
+
+#: admin/settings.php:318 admin/settings.php:359
+msgid "Updating is easy and only takes a few moments:"
+msgstr ""
+
+#: admin/settings.php:322 admin/settings.php:343 admin/settings.php:363
+msgid ""
+"Keeping your site updated is important for security. It also makes the "
+"internet a safer place for you and your readers."
+msgstr ""
+
+#: admin/settings.php:327
+msgid "Wordpress update - Critical error"
+msgstr ""
+
+#: admin/settings.php:329
+msgid ""
+"Email sent after Wordpress tried to update but experienced a critical failure"
+msgstr ""
+
+#: admin/settings.php:335
+#, php-format
+msgid "[%1$s] URGENT: Your site may be down due to a failed update"
+msgstr ""
+
+#: admin/settings.php:337
+#, php-format
+msgid ""
+"Your site at %1$s experienced a critical failure while trying to update "
+"WordPress to version %2$s."
+msgstr ""
+
+#: admin/settings.php:338
+msgid ""
+"This means your site may be offline or broken. Don't panic; this can be "
+"fixed."
+msgstr ""
+
+#: admin/settings.php:339
+msgid ""
+"Please check out your site now. It's possible that everything is working. If "
+"it says you need to update, you should do so:"
+msgstr ""
+
+#: admin/settings.php:348
+msgid "Wordpress update available"
+msgstr ""
+
+#: admin/settings.php:374
+#, php-format
+msgid "[%1$s] Please moderate: \"%2$s\""
+msgstr ""
+
+#: admin/settings.php:376
+#, php-format
+msgid "A new comment on the post \"%s\" is waiting for your approval"
+msgstr ""
+
+#: admin/settings.php:378
+#, php-format
+msgid "Author: %1$s (IP: %2$s, %3$s)"
+msgstr ""
+
+#: admin/settings.php:380
+#, php-format
+msgid "URL: %s"
+msgstr ""
+
+#: admin/settings.php:381
+#, php-format
+msgid "Comment: %s"
+msgstr ""
+
+#: admin/settings.php:383
+#, php-format
+msgid "Approve it: %s"
+msgstr ""
+
+#: admin/settings.php:384
+#, php-format
+msgid "Trash it: %s"
+msgstr ""
+
+#: admin/settings.php:385
+#, php-format
+msgid "Spam it: %s"
+msgstr ""
+
+#: admin/settings.php:502
+msgid "Sender"
+msgstr ""
+
+#: admin/settings.php:510
+msgid "Template"
+msgstr ""
+
+#: admin/settings.php:520
+msgid "Save"
+msgstr ""
+
+#: admin/settings.php:663
+msgid "Blocked"
+msgstr ""
+
+#: admin/template-customizer.php:55 admin/templates.php:39
+#: admin/templates.php:79
+msgid "Templates"
+msgstr "Templates"
+
+#: admin/template-customizer.php:56 admin/templates.php:40
+msgid "Email template"
+msgstr "Design de l'email"
+
+#: admin/template-customizer.php:137
+msgid "Header"
+msgstr ""
+
+#: admin/template-customizer.php:142
+msgid "Body"
+msgstr ""
+
+#: admin/template-customizer.php:147
+msgid "Footer"
+msgstr "Footer"
+
+#: admin/template-customizer.php:234
+msgid "Upload a logo"
+msgstr "Charger un logo"
+
+#: admin/template-customizer.php:235
+msgid "Choose the logo you want to appear on your notifications"
+msgstr "Choisissez le logo présent sur vos notifications"
+
+#: admin/template-customizer.php:248
+msgid "Title color"
+msgstr "Couleur du titre"
+
+#: admin/template-customizer.php:261
+msgid "Button color"
+msgstr "Couleur du bouton"
+
+#: admin/template-customizer.php:273
+msgid "Content background color"
+msgstr "Couleur de fond du texte"
+
+#: admin/template-customizer.php:285
+msgid "Background color"
+msgstr "Couleur de fond"
+
+#: admin/template-customizer.php:298
+msgid "Footer message"
+msgstr "Message du footer"
+
+#: admin/template-customizer.php:299
+msgid "This short message will appear on the footer of your notifications"
+msgstr "Ce message court devrait apparaître en bas de vos notifications"
+
+#: admin/template-customizer.php:368
+msgid "Button title"
+msgstr "Titre du bouton"
+
+#: admin/templates.php:85
+msgid "PREMIUM"
+msgstr "PREMIUM"
+
+#: admin/templates.php:91
+msgid "Template details"
+msgstr "Détails du template"
+
+#: admin/templates.php:96
+msgid "Current"
+msgstr "Actuel"
+
+#: admin/templates.php:178
+msgid "Template succesfully updated"
+msgstr "Template mis à jour avec succès"
+
+#: admin/templates.php:183
+msgid "Error. Template has not been updated"
+msgstr "Erreur. Le Template n'a pu être mis à jour"
+
+#: admin/templates.php:188
+msgid "Sorry, this template is only available in the PRO version"
+msgstr "Désolé, ce Template est disponible uniquement dans la version PRO"
+
+#: admin/templates.php:212
+msgid "Current template"
+msgstr "Template actuel"
+
+#: admin/templates.php:214
+msgid "By"
+msgstr "Par"
+
+#: admin/templates.php:243
+msgid "Select"
+msgstr "Sélectionner"
+
+#: admin/templates.php:244 notifications/content_draft.php:167
+#: notifications/content_future.php:167
+msgid "Preview"
+msgstr "Prévisualiser"
+
+#: admin/templates.php:246
+msgid "Buy"
+msgstr "Acheter"
+
+#: admin/templates.php:248
+msgid "Personnalize"
+msgstr "Personnaliser"
+
+#: core/class.notification.php:161
+msgid "Click here"
+msgstr "Cliquer ici"
+
+#: core/helpers.php:140 core/masks.php:30
+msgid "System"
+msgstr "Système"
+
+#: core/helpers.php:142
+msgid "Comment"
+msgstr "Commentaire"
+
+#: core/helpers.php:143
+msgid "User"
+msgstr "Utilisateur"
+
+#: core/helpers.php:144
+msgid "Summary"
+msgstr "Sommaire"
+
+#: core/helpers.php:145
+msgid "Multisite"
+msgstr ""
+
+#: core/masks.php:27
+msgid "Basic"
+msgstr "Basique"
+
+#: core/masks.php:28
+msgid "Comment   "
+msgstr "Commentaire"
+
+#: core/masks.php:29
+msgid "Post"
+msgstr "Post"
+
+#: core/masks.php:31
+msgid "User/author"
+msgstr "Utilisateur / auteur"
+
+#: core/masks.php:94
+msgid "Site name"
+msgstr "Nom du site"
+
+#: core/masks.php:101
+msgid "Site URL"
+msgstr "URL du Site"
+
+#: core/masks.php:108
+msgid "Admin email"
+msgstr "Email de l'administrateur"
+
+#: core/masks.php:114
+msgid "Current date"
+msgstr ""
+
+#: core/masks.php:119
+msgid "Current time"
+msgstr ""
+
+#: core/masks.php:130
+msgid "Post title"
+msgstr "Titre de l’article"
+
+#: core/masks.php:137 notifications/comment_moderate.php:94
+#: notifications/comment_new.php:129 notifications/content_draft.php:111
+#: notifications/content_future.php:111 notifications/content_pending.php:111
+#: notifications/content_publish.php:111 notifications/content_trash.php:86
+#: notifications/empty.php:117
+msgid "Post author"
+msgstr "Auteur de l'article"
+
+#: core/masks.php:144
+msgid "Post author email"
+msgstr ""
+
+#: core/masks.php:151
+msgid "Post content"
+msgstr "Contenu de l'article"
+
+#: core/masks.php:158
+msgid "Post excerpt"
+msgstr "Extrait de l'article"
+
+#: core/masks.php:165
+msgid "Post date"
+msgstr "Date de l'article"
+
+#: core/masks.php:172
+msgid "Post link"
+msgstr ""
+
+#: core/masks.php:186 notifications/comment_moderate.php:93
+#: notifications/comment_reply.php:66
+msgid "Comment author"
+msgstr "Auteur du commentaire"
+
+#: core/masks.php:193
+msgid "Comment author email"
+msgstr "Email de l'auteur"
+
+#: core/masks.php:199
+msgid "Comment author URL"
+msgstr "URL de l'auteur"
+
+#: core/masks.php:205
+msgid "Comment author IP"
+msgstr ""
+
+#: core/masks.php:210
+msgid "Comment date"
+msgstr "Date du commentaire"
+
+#: core/masks.php:216
+msgid "Comment content"
+msgstr "Contenu du commentaire"
+
+#: core/masks.php:230
+msgid "User firstname"
+msgstr "Prénom de l’utilisateur"
+
+#: core/masks.php:237
+msgid "User lastname"
+msgstr "Nom de l’utilisateur"
+
+#: core/masks.php:244
+msgid "User display name"
+msgstr "Nom à afficher de l'utilisateur"
+
+#: core/masks.php:251
+msgid "User login"
+msgstr "Login de l'utilisateur"
+
+#: core/masks.php:258
+msgid "User email"
+msgstr "Email de l'utilisateur"
+
+#: notifications/comment_moderate.php:24
+msgid "Comment Moderate"
+msgstr "Commentaire à modérer"
+
+#: notifications/comment_moderate.php:64 notifications/comment_moderate.php:68
+#: notifications/comment_new.php:100 notifications/comment_new.php:104
+#: notifications/comment_reply.php:92 notifications/content_draft.php:83
+#: notifications/content_draft.php:86 notifications/content_future.php:83
+#: notifications/content_future.php:86 notifications/content_pending.php:82
+#: notifications/content_pending.php:86 notifications/content_publish.php:83
+#: notifications/content_publish.php:86 notifications/empty.php:88
+#: notifications/empty.php:92
+msgid "Add Link to the content"
+msgstr "Ajouter un lien vers le contenu"
+
+#: notifications/comment_moderate.php:115
+msgid "Comment approve link"
+msgstr "Lien d'approbation du commentaire"
+
+#: notifications/comment_moderate.php:120
+msgid "Comment trash link"
+msgstr "Lien de corbeille du commentaire"
+
+#: notifications/comment_moderate.php:125
+msgid "Comment spam link"
+msgstr "Lien de spam du commentaire"
+
+#: notifications/comment_moderate.php:189 notifications/comment_new.php:182
+#: notifications/comment_reply.php:194
+msgid "View post"
+msgstr "Voir l’article"
+
+#: notifications/comment_new.php:24
+msgid "New published comment"
+msgstr "Nouveau commentaire publié"
+
+#: notifications/comment_new.php:63 notifications/content_draft.php:55
+#: notifications/content_future.php:55 notifications/content_pending.php:55
+#: notifications/content_publish.php:55 notifications/content_trash.php:55
+#: notifications/empty.php:61
+msgid "Post type"
+msgstr "Type de post"
+
+#: notifications/comment_new.php:74 notifications/comment_new.php:78
+msgid "Send notification also for comment responses"
+msgstr "Envoyer une notification aussi pour les réponses aux  commentaires"
+
+#: notifications/comment_new.php:75
+msgid ""
+"If checked, notification will be send for comments AND responses to existing "
+"comments"
+msgstr ""
+"Si sélectionné, la notification sera envoyée pour les commentaires ET les "
+"réponses aux commentaires"
+
+#: notifications/comment_reply.php:24
+msgid "Reply to a comment"
+msgstr "Réponse à un commentaire"
+
+#: notifications/comment_reply.php:88
+msgid "Add Link to the post"
+msgstr "Ajouter un lien vers le contenu"
+
+#: notifications/comment_reply.php:113
+msgid "Reply author"
+msgstr "Auteur de la réponse"
+
+#: notifications/comment_reply.php:120
+msgid "Reply author email"
+msgstr "Email de l'auteur de la réponse"
+
+#: notifications/comment_reply.php:127
+msgid "Reply author URL"
+msgstr "URL de l'auteur de la réponse"
+
+#: notifications/comment_reply.php:134
+msgid "Reply date"
+msgstr "Date de la réponse"
+
+#: notifications/comment_reply.php:141
+msgid "Reply content"
+msgstr "Contenu de la réponse"
+
+#: notifications/content_draft.php:18
+msgid "Draft content"
+msgstr "Contenu mis en brouillon"
+
+#: notifications/content_draft.php:56 notifications/content_future.php:56
+#: notifications/content_publish.php:56 notifications/content_trash.php:56
+msgid "For which post type would you like to send the notification"
+msgstr "Pour quel type de contenu souhaitez-vous envoyer cette notification ?"
+
+#: notifications/content_draft.php:61 notifications/content_future.php:61
+#: notifications/content_publish.php:61 notifications/content_trash.php:61
+msgid "Select Post type(s)"
+msgstr "Sélectionner un/des type(s) de contenu"
+
+#: notifications/content_future.php:18
+msgid "Planified content"
+msgstr "Contenu planifié"
+
+#: notifications/content_pending.php:18
+msgid "Pending content"
+msgstr "Contenu en attente de relecture"
+
+#: notifications/content_pending.php:56 notifications/empty.php:62
+msgid "For which post type would you like"
+msgstr ""
+
+#: notifications/content_pending.php:186 notifications/content_publish.php:167
+#: notifications/empty.php:197
+msgid "Read more"
+msgstr "Lire la suite"
+
+#: notifications/content_publish.php:18
+msgid "Published content"
+msgstr "Contenu publié"
+
+#: notifications/content_trash.php:18
+msgid "Trashed content"
+msgstr "Contenu mis à la corbeille"
+
+#: notifications/core_update.php:18
+msgid "Wordpress Core Update"
+msgstr "Mise à jour de WordPress"
+
+#: notifications/core_update.php:56
+msgid "Update result"
+msgstr "Résultat de la mise à jour"
+
+#: notifications/core_update.php:59
+msgid "Wordpress succesfuly updated"
+msgstr ""
+
+#: notifications/core_update.php:60
+msgid "Fail"
+msgstr "Echec"
+
+#: notifications/core_update.php:61
+msgid "Critical"
+msgstr "Erreur critique"
+
+#: notifications/core_update.php:62
+msgid "New update available"
+msgstr ""
+
+#: notifications/core_update.php:78
+msgid "Update type"
+msgstr "Type de mise à jour"
+
+#: notifications/core_update.php:85
+msgid "Update version"
+msgstr "Version de la mise à jour"
+
+#: notifications/core_update.php:92
+msgid "Update news link"
+msgstr "Lien vers les nouveautés"
+
+#: notifications/empty.php:24
+msgid "TYPEDESCRIPTION"
+msgstr ""
+
+#: notifications/user_login.php:18
+msgid "User Log in"
+msgstr "Connexion utilisateur"
+
+#: notifications/user_login.php:54
+msgid "User who logged in"
+msgstr "Utilisateur connecté"
+
+#: notifications/user_password_changed.php:60
+#: notifications/user_password_reset.php:86
+msgid "User who requested"
+msgstr "L'utilisateur à l'origine de la demande"
+
+#: notifications/user_password_reset.php:107 notifications/user_register.php:81
+msgid "Password reset link"
+msgstr "Lien de réinitialisation de mot de passe"
+
+#: notifications/user_password_reset.php:153
+msgid "Reset password"
+msgstr "Réinitialiser le mot de passe"
+
+#: notifications/user_register.php:8
+msgid "User register"
+msgstr ""
+
+#: notifications/user_register.php:38
+msgid "User role"
+msgstr "Rôle d'utilisateur"
+
+#: notifications/user_register.php:39
+msgid "For which user role would you like to send the notification"
+msgstr "Pour quel rôle utilisateur vous souhaitez envoyer la notification"
+
+#: notifications/user_register.php:44
+msgid "Select user role(s)"
+msgstr "Sélectionnez un rôle utilisateur(s)"
+
+#: notifications/user_register.php:62
+msgid "New registered user"
+msgstr ""
+
+#: notifications_center.php:157
+msgid "Proudly powered by Wordpress"
+msgstr "Fièrement propulsé par Wordpress"
+
+#: notifications_center.php:184 notifications_center.php:186
+msgid "Notifications"
+msgstr "Notifications"
+
+#: notifications_center.php:185
+msgid "Notification"
+msgstr "Notification"
+
+#: notifications_center.php:187
+msgid "All notifications"
+msgstr "Toutes les notifications"
+
+#: notifications_center.php:188
+msgid "See notification"
+msgstr "Voir la notification"
+
+#: notifications_center.php:189 notifications_center.php:190
+msgid "New notification"
+msgstr "Nouvelle notification  "
+
+#: notifications_center.php:191
+msgid "Modify"
+msgstr "Modifier"
+
+#: notifications_center.php:192
+msgid "Update"
+msgstr "Mettre à jour"
+
+#: notifications_center.php:193
+msgid "Search"
+msgstr "Rechercher"
+
+#: notifications_center.php:194
+msgid "No notification found"
+msgstr "Aucune notification trouvée"
+
+#: notifications_center.php:195
+msgid "Not found in Trash"
+msgstr "Rien de trouvé dans la corbeille"
+
+#: notifications_center.php:199 notifications_center.php:200
+msgid "voy_notification"
+msgstr "voy_notification"
+
+#: notifications_center.php:293
+msgid "You must be logged in to preview this notification"
+msgstr "Vous devez être connecté pour pré visualiser cette notification"
+
+#. Plugin Name of the plugin/theme
+msgid "Notifications Center"
+msgstr "Notifications Center"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.notificationscenter.com/"
+msgstr "http://www.notificationscenter.com/"
+
+#. Description of the plugin/theme
+msgid ""
+"Personnalized notifications for your Wordpress website with beautiful, "
+"responsive and personnalised emails."
+msgstr ""
+"Notifications personnalisées pour votre site WordPress, grâce à des mail "
+"élégants et responsive."
+
+#. Author of the plugin/theme
+msgid "Florian Chaillou"
+msgstr "Florian Chaillou"
+
+#. Author URI of the plugin/theme
+msgid "https://www.twitter.com/FlorianChaillou"
+msgstr "https://www.twitter.com/FlorianChaillou"
+
+#~ msgid "When do you want the notification to be sent ?"
+#~ msgstr "Quand souhaitez-vous envoyer une notification ?"
+
+#~ msgid "Email sender"
+#~ msgstr "E-mail de l'émetteur"
+
+#~ msgid "Sender email address"
+#~ msgstr "Adresse mail de l’expéditeur"
+
+#~ msgid "General settings"
+#~ msgstr "Réglages généraux"
+
+#~ msgid "Email address uccessfully saved"
+#~ msgstr "Adresse e-mail enregistrée avec succès"
+
+#~ msgid " is not a correct email address"
+#~ msgstr "n'est pas une adresse e-mail correcte"
+
+#~ msgid " Email adress can not be null"
+#~ msgstr "L'addresse e-mail ne peut pas être vide"
+
+#~ msgid "Logo"
+#~ msgstr "Logo"
+
+#~ msgid "Colors"
+#~ msgstr "Couleurs"
+
+#~ msgid "Emails"
+#~ msgstr "Emails"
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#~ msgid "Tous les emails"
+#~ msgstr "Tous les e-mails"
+
+#~ msgid "Voir l'email"
+#~ msgstr "Voir l'email"
+
+#~ msgid "Nouvel email"
+#~ msgstr "Nouvel e-mail"
+
+#~ msgid "Modifier"
+#~ msgstr "Modifier"
+
+#~ msgid "Mettre à jour"
+#~ msgstr "Mettre à jour"
+
+#~ msgid "Rechercher"
+#~ msgstr "Search"
+
+#~ msgid "Aucun mail trouvé"
+#~ msgstr "Aucun courrier trouvé"
+
+#~ msgid "Success"
+#~ msgstr "Succès"
+
+#~ msgid "What's new"
+#~ msgstr "Quoi de Neuf"
+
+#~ msgid "User create"
+#~ msgstr "Création d'un utilisateur"
+
+#~ msgid "Add button with reset link"
+#~ msgstr "Ajouter un bouton avec un lien de réinitialisation"
+
+#~ msgid ""
+#~ "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum sit "
+#~ "amet pulvinar purus, non sagittis neque. Fusce vitae condimentum nunc. Ut "
+#~ "in elementum mi, ac lacinia lacus."
+#~ msgstr ""
+#~ "FR - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum "
+#~ "sit amet pulvinar purus, non sagittis neque. Fusce vitae condimentum "
+#~ "nunc. Ut in elementum mi, ac lacinia lacus."
+
+#~ msgid ""
+#~ "Get notified for whatever you want, with beautiful, responsive and "
+#~ "personnalised emails."
+#~ msgstr ""
+#~ "Soyez notifiés pour tout ce que vous souhaitez, grâce à des emails "
+#~ "élégants, responsive et personnalisables"
+
+#~ msgid "Floflo Tartiflette"
+#~ msgstr "Floflo tartiflette"
+
+#~ msgid "WP Notifications Center"
+#~ msgstr "WP Notifications center"
+
+#~ msgid "Deleted content"
+#~ msgstr "Contenu supprimé"
+
+#~ msgid "Replay author email"
+#~ msgstr "Email de l'auteur de la réponse"
+
+#~ msgid "Replay author URL"
+#~ msgstr "URL de l'auteur de la réponse"

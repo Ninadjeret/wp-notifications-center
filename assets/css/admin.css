@@ -1,0 +1,673 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17 mai 2016, 20:33:05
+    Author     : Floflo
+*/
+
+/*
+    ------------------------------------------------------------------
+    0. MiniFramework
+    ------------------------------------------------------------------
+*/
+.voy-hidden { display: none !important; }
+
+/*
+    ------------------------------------------------------------------
+    1. Settings
+    ------------------------------------------------------------------
+*/
+.voy-wrap .voy-box {
+    margin: 20px 0;
+}
+.voy-box {
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+.voy-box .header {
+    border-bottom: 1px solid #EEEEEE;
+    margin: 0;
+    padding: 10px 15px;
+    background: #FFFFFF;
+}
+.voy-box .header h2 {
+    font-size: 14px;
+    line-height: 1em;
+    margin: 0;
+    padding: 0;
+}
+.voy-box .main {
+    padding: 15px;
+}
+#voy-settings-main {
+    width: calc(100% - 300px);
+    float: left;
+}
+#voy-settings-sidebar {
+    width: 280px;
+    float: right;
+}
+#voy-settings-sidebar .voy-box .main {
+    background: #f5f5f5;
+    border-top: 1px solid #ddd;
+}
+
+/*
+    ------------------------------------------------------------------
+    2. Templates
+    ------------------------------------------------------------------
+*/
+.templates_wrapper {
+    clear: both;
+    padding: 0 0 100px;
+    margin-top:20px;
+}
+.templates_wrapper .template {
+    float: left;
+    margin: 0 4% 4% 0;
+    position: relative;
+    width: 30.6%;
+    border: 1px solid #dedede;
+    -webkit-box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.templates_wrapper .template:nth-child(3n) {
+    margin-right: 0;
+}
+.templates_wrapper .template .template-thumbnail img {
+    max-width:100%;
+    height:auto;
+    display:block;
+}
+.templates_wrapper .template .template-thumbnail {
+    -webkit-transition: opacity 0.3s ease-in-out;/* transition pour Chrome et Safari */
+    -moz-transition: opacity 0.3s ease-in-out;/* transition pour Firefox */
+    -o-transition: opacity 0.3s ease-in-out;/* transition pour Opéra */
+    transition: opacity 0.3s ease-in-out;    
+}
+.templates_wrapper .template .template-info {
+    font-size: 15px;
+    font-weight: 600;
+    height: 18px;
+    margin: 0;
+    padding: 0 15px;
+    -webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 0 rgba(0,0,0,.1);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    background: #fff;
+    background: rgba(255,255,255,.65);
+    min-height:48px;
+}
+.templates_wrapper .template .template-info .template-title {
+    padding: 15px 0;
+    display:inline-block;
+}
+.templates_wrapper .template .template-info > span.template-select {
+    float: right;
+    padding:10px 0;
+}
+.templates_wrapper .template .more-details {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity: 0;
+    position: absolute;
+    top: 35%;
+    right: 25%;
+    left: 25%;
+    background: #23282d;
+    background: rgba(0,0,0,.7);
+    color: #fff;
+    font-size: 15px;
+    text-shadow: 0 1px 0 rgba(0,0,0,.6);
+    -webkit-font-smoothing: antialiased;
+    font-weight: 600;
+    padding: 15px 12px;
+    text-align: center;
+    text-decoration: none;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-transition: opacity .1s ease-in-out;
+    transition: opacity .1s ease-in-out;
+    -webkit-transition: opacity 0.3s ease-in-out;/* transition pour Chrome et Safari */
+    -moz-transition: opacity 0.3s ease-in-out;/* transition pour Firefox */
+    -o-transition: opacity 0.3s ease-in-out;/* transition pour Opéra */
+    transition: opacity 0.3s ease-in-out;  
+}
+.templates_wrapper .template:hover .more-details {
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease-in-out;/* transition pour Chrome et Safari */
+    -moz-transition: opacity 0.3s ease-in-out;/* transition pour Firefox */
+    -o-transition: opacity 0.3s ease-in-out;/* transition pour Opéra */
+    transition: opacity 0.3s ease-in-out; 
+}
+.templates_wrapper .template:hover .template-thumbnail {
+    opacity: 0.3;
+    -webkit-transition: opacity 0.3s ease-in-out;/* transition pour Chrome et Safari */
+    -moz-transition: opacity 0.3s ease-in-out;/* transition pour Firefox */
+    -o-transition: opacity 0.3s ease-in-out;/* transition pour Opéra */
+    transition: opacity 0.3s ease-in-out;  
+}
+.ribbon {
+  position: absolute;
+  left: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+}
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#ad003f 0%, #ad003f 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; left: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #ad003f;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #ad003f;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #ad003f;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #ad003f;
+}
+
+/*
+    ------------------------------------------------------------------
+    3. Template details
+    ------------------------------------------------------------------
+*/
+#TB_load {
+    position: fixed;
+    background: url('../spinner.gif');
+    display:none;
+    height:100px;
+    width:100px;
+    z-index:103;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px; /* -height/2 0 0 -width/2 */
+}
+.template-details {
+    margin-top:20px;
+}
+.template-details .thumbnail {
+    border: 1px solid #ccc;
+    display: inline-block;
+    width:49%;
+    box-sizing: border-box;
+}
+.template-details .thumbnail img {
+    max-width: 100%;
+}
+.template-details .content {
+    display: inline-block;
+    width: 49%;
+    box-sizing: border-box;
+    padding: 0 20px;
+    vertical-align: top;  
+}
+.template-details .current-label {
+    color: rgb(255, 255, 255);
+    font-size: 11px;
+    display: inline-block;
+    -webkit-user-select: none;
+    background: rgb(50, 55, 60);
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin: 0px 0px -10px;    
+}
+.template-details .title {
+    font-family: "Open Sans",sans-serif;
+    color: #23282d;
+    font-size: 32px;
+    font-weight: 100;
+    margin: 0;
+    line-height: 1.3;    
+}
+.template-details .version {
+    color: #72777c;
+    font-size: 13px;
+    font-weight: 400;
+    float: none;
+    display: inline-block;
+    margin-left: 10px;    
+}
+.template-details .author {
+    margin: 10px 0 0px;
+    color: #72777c;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: inherit;    
+}
+.template-details .author a {
+    text-decoration: none;
+}
+.template-details .description {
+    color: #555;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 10px 0 0;
+}
+.template-details .credit {
+    color: #aaa;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 10px 0 0;
+    font-style: italic;
+}
+.template-details .cta {
+    text-align:center;
+}
+
+/*
+    ------------------------------------------------------------------
+    4. Notification
+    ------------------------------------------------------------------
+*/
+.voy-field_wrapper {
+    width: 100%;
+    border-bottom: 1px solid #e6e6e6;
+    position: relative;
+    clear: left;
+}
+.voy-field_wrapper:before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 0;
+    background: #F9F9F9;
+    border-color: #E1E1E1;
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 24%;
+}
+.voy-field_wrapper:after {
+    content: "";
+    display: block;
+    line-height: 0;
+    clear: both;
+}
+.voy-field_wrapper.invisible {
+    display: none;
+}
+.voy-loading {
+    width: 100%;
+    height:80px;
+    background: url('../img/spinner.gif') no-repeat center center;
+}
+.voy-field_label {
+    width: 24%;
+    margin: 0;
+    padding: 15px 12px;
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+}
+.voy-field_label span.label {
+    display: block;
+    font-weight: 600;
+    padding-bottom: 5px;    
+}
+.voy-field_label span.description {
+    color: #aaa;
+}
+.voy-field_input {
+    width: 76%;
+    margin: 0;
+    padding: 15px 12px;
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+}
+.voy-field_input .select2-container {
+    width:100%;
+}
+#voy_field_voynotif_content .voy-field_input #wp-content-editor-tools{
+    background: transparent;
+    padding-top: 0;
+}
+#voynotif_metabox_settings .inside,
+#voynotif_metabox_sender .inside,
+#voynotif_metabox_recipient .inside,
+#voynotif_metabox_content .inside {
+    margin:0;
+    padding:0;
+}
+
+.voy-field_input input[type=text],
+.voy-field_input select {
+    width: 100%;
+    padding: 3px 5px;
+    resize: none;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#voynotif_metabox_settings h2 span,
+#voynotif_metabox_sender h2 span,
+#voynotif_metabox_recipient h2 span,
+#voynotif_metabox_content h2 span{
+    margin-left: 20px;
+}
+#voynotif_metabox_settings h2 span:before,
+#voynotif_metabox_sender h2 span:before,
+#voynotif_metabox_recipient h2 span:before,
+#voynotif_metabox_content h2 span:before{
+    font-family: dashicons;
+    line-height: 16px;
+    font-size: 16px;
+    padding-top: 2px;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+}
+#voynotif_metabox_settings h2 span:before {
+    content: "\f111";
+}
+#voynotif_metabox_sender h2 span:before {
+    content: "\f110";
+}
+#voynotif_metabox_recipient h2 span:before {
+    content: "\f316";
+}
+#voynotif_metabox_content h2 span:before {
+    content: "\f473";
+}
+
+#voynotif_metabox_settings h2 {
+    background: #0073aa;
+    color: #fff;
+    border-bottom: 1px solid #0073aa;
+}
+#voynotif_metabox_settings .toggle-indicator:before {
+    color: #fff;
+}
+#voy_field_voynotif_type {
+    background: #0073aa;
+    padding-bottom: 25px;
+}
+#voy_field_voynotif_type:before {
+    border-width: 0;
+    background: transparent;   
+}
+#voy_field_voynotif_type .voy-field_input {
+    margin-left:12%;
+    margin-right:12%;
+}
+#voy_field_voynotif_type .voy-field_input .label {
+    display: inline-block;
+    color: #fff;
+    font-size: 16px;
+}
+#voy_field_voynotif_type .voy-field_input .description {
+    color: #ccc;
+    padding: 6px 10px;
+    display: inline-block;
+}
+.voy-arrow {
+    background: #eee;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 50%;
+    margin-left: -20px;
+    bottom: 0;
+    margin-bottom: -10px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 1px 1px 3px #888888;
+}
+.voy-type_masks_wrapper {
+    display:inline-block;
+}
+select.voy_mask_select {
+    width:inherit;
+}
+.post-type-voy_notification select#post_status option[value=pending],
+.edit-php.post-type-voy_notification .inline-edit-status option[value=pending] { 
+    display: none; 
+}
+.post-type-voy_notification .misc-pub-section.misc-pub-visibility, 
+.post-type-voy_notification .misc-pub-section.misc-pub-curtime {
+    display: none;
+}
+
+/*
+    ------------------------------------------------------------------
+    5. Notifications
+    ------------------------------------------------------------------
+*/
+.post-type-voy_notification .inline-edit-date,
+.post-type-voy_notification .inline-edit-col-left .inline-edit-group {
+    display: none;
+}
+
+/*
+    ------------------------------------------------------------------
+    6. Settings > General 
+    ------------------------------------------------------------------
+*/
+.voy-settings .voy-field_wrapper:before {
+    background: #fff;
+    border-color: #fff;
+}
+.voy-settings .voy-field_label {
+    width: 100%;
+    padding: 15px 0 0 0;
+}
+.voy-settings .voy-field_input {
+    width: 100%;
+    padding: 5px 0 15px 0;
+}
+.voy-settings .voy-field_label span.label {
+    font-size: 14px;
+    color: #23282d;
+}
+
+/*
+    ------------------------------------------------------------------
+    6. Settings > Default Notifications
+    ------------------------------------------------------------------
+*/
+.lbl {
+  position: relative;
+  display: block;
+  height: 10px;
+  width: 24px;
+  background: #898989;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.lbl:after {
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+  content: '';
+  transition: all 0.3s ease;
+}
+.lbl:active:after { 
+    transform: scale(1.15, 0.85); 
+}
+.cbx:checked ~ label { 
+    background: #00a0d2; 
+}
+.cbx:checked ~ label:after {
+  left: 12px;
+  background: #0073aa;
+}
+.cbx:disabled ~ label {
+  background: #d5d5d5;
+  pointer-events: none;
+}
+.cbx:disabled ~ label:after { 
+    background: #bcbdbc; 
+}
+tbody.voy-default-list td {
+    vertical-align: middle;
+}
+#voynotif_response_wrapper {
+    line-height: 28px;
+    color: green;
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px
+}
+.voy-default-list .voynotif-spinner {
+    display: inline-block;
+    vertical-align: bottom;    
+}
+.voynotif-default-item {
+    border-bottom: 1px solid #ddd;
+    padding: 7px 0;
+}
+.voynotif-default-item:first-child {
+    padding-top: 0;
+}
+.voynotif-default-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.voynotif-default-item .voynotif-default-check {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
+    width: 25px;
+}
+
+.voynotif-default-item .voynotif-default-content {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 10px;
+    width: calc( 100% - 230px );
+}
+.voynotif-default-item .voynotif-default-actions {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 10px;
+    width: 150px;
+    text-align: right;
+}
+.voynotif-default-item .voynotif-default-content h3,
+.voynotif-default-item .voynotif-default-content p{
+    margin: 5px 0;
+}
+.voynotif-default-item .voynotif-default-content p{
+    color: #999;
+}
+.voynotif-default-item:hover .voynotif-default-content p{
+    color: #444;
+}
+/*
+    ------------------------------------------------------------------
+    7. Responsive
+    ------------------------------------------------------------------
+*/
+@media only screen and (min-width: 1640px) {
+    .templates_wrapper .template {
+        width: 22.7%;
+        margin: 0 3% 3% 0;
+    }
+}
+@media only screen and (max-width: 1120px) {
+    .templates_wrapper .template {
+        width: 47.5%;
+        margin-right: 0;
+    }
+    .templates_wrapper .template:nth-child(odd) {
+        margin-right: 5%;
+    }
+}
+@media only screen and (max-width: 480px) {
+    .templates_wrapper .template {
+        width: 100%;
+        margin-right: 0;
+    }
+    #voy_field_voynotif_type .voy-field_input {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .voy-field_wrapper:before {
+        width: 0;
+    }
+    .voy-field_label {
+        width: 100%;
+    }
+    .voy-field_label .label {
+        font-size: 16px;
+    }
+    .voy-field_input {
+        width:100%;
+        padding-top: 0;
+    }
+    #voy-settings-main {
+        width: 100%;
+        float: none;
+    }
+    #voy-settings-sidebar {
+        width: 100%;
+        float: inherit;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+    }
+    #voy-settings-sidebar .voy-box {
+        margin-bottom: 0;
+    }
+    #voy-settings-sidebar .voy-box .header {
+        display: none;
+    }
+    .voynotif-default-item .voynotif-default-actions {
+        width: 80%;
+        margin: 0px 10% 0px 10%;
+        padding-top: 10px;
+        border-top: 1px dotted #ddd;
+        text-align: center;
+    }
+    .voynotif-default-item .voynotif-default-content {
+        width: calc(100% - 60px);
+    }
+}
