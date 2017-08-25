@@ -163,12 +163,15 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
 
             global $wp_customize;
 
-            //Template choice
-            $wp_customize->add_setting( 'voynotif_current_template', array( 
+            /**
+             * Template choise
+             * @since 1.2.0
+             */
+            $wp_customize->add_setting( 'voynotif_email_template_path', array( 
                 'type' => 'option', // Attention ! 
-                'default' => '', 
+                'default' => 'plugin', 
                 'transport' => 'refresh', ) 
-            );
+            );           
 
             //Logo
             $wp_customize->add_setting( 'voynotif_email_logo', array( 
@@ -224,8 +227,32 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
          */
         function customizer_controls() {
 
-            global $wp_customize;       
-
+            global $wp_customize; 
+            
+            /**
+             * @since 1.2.0
+             */
+            $choices = array(
+                'plugin' => __( 'Default template', 'notifications-center' ),
+            );
+            if( voynotif_has_theme_email_template() ) {
+                $choices['theme'] = __( 'Current theme template', 'notifications-center' ); 
+            }            
+            $wp_customize->add_control(
+                new WP_Customize_Control(
+                    $wp_customize,
+                    'voynotif_email_template_path_control',
+                    array(
+                        'label'          => __( 'Theme to use', 'notifications-center' ),
+                        'description' => sprintf( __( 'Your Wordpress theme can now override Notifications Center Template. <a href="%1$s">Check documentation for more info</a>', 'notifications-center' ), 'https://www.google.fr' ),
+                        'section'        => 'voynotif_settings',
+                        'settings'       => 'voynotif_email_template_path',
+                        'type'           => 'radio',
+                        'choices'        => $choices
+                    )
+                )
+            );
+            
             $wp_customize->add_control(
                 new WP_Customize_Image_Control(
                     $wp_customize,
@@ -360,7 +387,7 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
         function template_preview_html() {
 
             if ( get_query_var( $this->_trigger ) ) {
-                $template_obj = new VOYNOTIF_email_template( get_query_var( $this->_trigger ) );
+                $template_obj = new VOYNOTIF_email_template();
                 $template_obj->set_title('Lorem ipsum dolor sit amet');
                 $template_obj->set_content('<p>Hello John Doe</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut vestibulum orci, ut feugiat sapien. Aliquam nunc lectus, lobortis ac pharetra quis, bibendum non neque.</p>');
                 $template_obj->set_button_info( array(

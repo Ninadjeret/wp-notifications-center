@@ -3,7 +3,7 @@
 Plugin Name: Notifications Center
 Plugin URI: http://www.notificationscenter.com/
 Description: Personnalized notifications for your Wordpress website with beautiful, responsive and personnalised emails.
-Version: 1.1.2
+Version: 1.2.0
 Author: Florian Chaillou
 Author URI: https://www.twitter.com/FlorianChaillou 
 Text Domain: notifications-center
@@ -33,7 +33,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             //------------------------------------------------------------// 
             define('VOYNOTIF_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) );
             define('VOYNOTIF_URL', plugins_url() . '/' . basename( dirname( __FILE__ ) ) );
-            define('VOYNOTIF_VERSION', '1.1.2');
+            define('VOYNOTIF_VERSION', '1.2.0');
             define('VOYNOTIF_FIELD_PREFIXE', 'voynotif_');
             define('VOYNOTIF_PREMIUM_URL', 'http://www.notificationscenter.com');
 
@@ -75,8 +75,8 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('core/class.email_template.php');
             include_once('core/class.notification_type.php');
             include_once('core/class.field.php');
-            include_once('core/helpers.php');
-            include_once('core/masks.php');
+            include_once('core/functions.php');
+            include_once('core/class.masks.php');
             include_once('core/template.php');
             
             //------------------------------------------------------------//
@@ -288,7 +288,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             if( is_singular( 'voy_notification' ) ) {
                 if( is_user_logged_in() ) {
                     $notification = new VOYNOTIF_notification( get_the_ID() );
-                    echo $notification->template->get_html();              
+                    echo $notification->get_html();              
                 } else {
                     _e( 'You must be logged in to preview this notification', 'notifications-center' );
                 }
@@ -344,7 +344,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
         
     }
 }
-$voynotif_global_plugin = new VOYNOTIF_plugin();
+$notifications_center = new VOYNOTIF_plugin();
 
 
 

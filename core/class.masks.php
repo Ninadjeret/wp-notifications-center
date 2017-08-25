@@ -8,13 +8,16 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
          * @param type $context
          * @param type $context_info
          */
-        function __construct( $context, $context_info, $tags ) {
+        function __construct( $context, $context_info, $tags = null ) {
 
             //Build info
             $this->context = $context;
             $this->context_info = $context_info;
-            $this->tags = $tags;
-
+            
+            if( !empty( $tags) ) {
+                $this->tags = $tags;
+            }
+          
             //Add filter to register basic masks
             add_filter('voynotif/masks', array( $this, 'basic_masks' ), 5, 3 );
 
@@ -22,7 +25,6 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
             $masks = apply_filters('voynotif/masks', array(), $this->context, $this->context_info );
             $masks = apply_filters('voynotif/masks/context='.$this->context, $masks );
             $this->masks = $masks;
-
             $this->tags = array(
                 'basic' => __( 'Basic', 'notifications-center' ),
                 'comment' => __( 'Comment   ', 'notifications-center' ),
@@ -30,6 +32,7 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
                 'system' => __( 'System', 'notifications-center' ),
                 'user' => __( 'User/author', 'notifications-center' ),
             );
+            
         }
 
 

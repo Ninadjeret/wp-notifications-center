@@ -64,7 +64,7 @@ if( !class_exists( 'VOYNOTIF_field' ) ) {
             //Get description
             $description = '';
             if( !empty($this->description) ) {
-                $description = esc_html($this->description);
+                $description = $this->description;
             }
 
 

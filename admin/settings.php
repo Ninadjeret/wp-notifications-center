@@ -77,10 +77,10 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
             if( voynotif_has_theme_email_template() ) {
                 $choices['theme'] = __( 'Current theme template', 'notifications-center' ); 
             }
-            $fields['template_path'] = array(
-                'id' => 'template_path',                
+            $fields['email_template_path'] = array(
+                'id' => 'email_template_path',                
                 'label' => __( 'Template to use', 'notifications-center' ),
-                'description' => __( 'Your theme can now use a specific', 'notifications-center' ),
+                'description' => sprintf( __( 'Your Wordpress theme can now override Notifications Center Template. <a href="%1$s">Check documentation for more info</a>', 'notifications-center' ), 'https://www.google.fr' ),
                 'type' => 'select',
                 'choices' => $choices,
                 'screen' => 'general',

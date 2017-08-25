@@ -224,9 +224,9 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
              * @since 1.1.0
              */        
             if( $specify_sender ) {
-                global $voynotif_global_plugin;
-                remove_action( 'wp_mail_from_name', array( $voynotif_global_plugin, 'extend_sender_name' ) );
-                remove_action( 'wp_mail_from', array( $voynotif_global_plugin, 'extend_sender_email' ) );                
+                global $notifications_center;
+                remove_action( 'wp_mail_from_name', array( $notifications_center, 'extend_sender_name' ) );
+                remove_action( 'wp_mail_from', array( $notifications_center, 'extend_sender_email' ) );                
             }
             
             $specific_sender_email = get_post_meta( $this->id, 'voynotif_sender_email', true );
@@ -309,7 +309,7 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
          * @global type $voynotif_template
          * @return type
          */
-        private function _get_html() {
+        function get_html() {
             
             //Prepare for HTML template
             global $voynotif_notification;
@@ -355,7 +355,7 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
             //Get all info
             $object = $this->object;
             $headers = $this->get_headers();
-            $html = $this->_get_html();           
+            $html = $this->get_html();           
             
             //send
             foreach( $this->recipients as $recipient ) {           

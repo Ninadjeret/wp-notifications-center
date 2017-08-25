@@ -28,8 +28,8 @@ function voynotif_has_theme_email_template() {
 function voynotif_email_template_path() {
     
     //Check for Theme integration
-    if( get_option( VOYNOTIF_FIELD_PREFIXE . 'template_path' == 'theme' ) ) {
-        
+    if( get_option( VOYNOTIF_FIELD_PREFIXE . 'email_template_path' ) == 'theme' ) {
+
         //Check for template in child theme
         $current_theme_path = get_stylesheet_directory();
         if( is_dir( $current_theme_path . '/notifications-center/' ) && is_file( $current_theme_path . '/notifications-center/email.php' ) ) {
@@ -43,7 +43,7 @@ function voynotif_email_template_path() {
         } 
 
     }
-    
+
     //Default return    
     return VOYNOTIF_DIR . '/templates/';
     
@@ -192,7 +192,11 @@ function voynotif_email_button_color() {
  */
 function voynotif_email_title() {
     global $voynotif_notification;
-    return apply_filters( 'voynotif/template/title' , $voynotif_notification->title );
+    $title = false;
+    if( $voynotif_notification && $voynotif_notification->title ) {
+        $title = $voynotif_notification->title;
+    }
+    return apply_filters( 'voynotif/template/title' , $title );
 }
 
 /**
@@ -202,7 +206,11 @@ function voynotif_email_title() {
  */
 function voynotif_email_content() {
     global $voynotif_notification;
-    return apply_filters( 'voynotif/template/content' , $voynotif_notification->content );
+    $content = false;
+    if( $voynotif_notification && $voynotif_notification->content ) {
+        $content = $voynotif_notification->content;
+    }
+    return apply_filters( 'voynotif/template/content' , $content );
 }
 
 /**
@@ -212,10 +220,11 @@ function voynotif_email_content() {
  */
 function voynotif_email_button_text() {
     global $voynotif_notification;
-    if( !isset( $voynotif_notification->cta['label'] ) ) {
-        $voynotif_notification->cta['label'] = null;
-    }
-    return apply_filters( 'voynotif/template/button_text' , $voynotif_notification->cta['label'] );
+    $button_text = false;
+    if( $voynotif_notification && $voynotif_notification->cta['label'] ) {
+        $button_text = $voynotif_notification->cta['label'];
+    }  
+    return apply_filters( 'voynotif/template/button_text' , $button_text );
 }
 
 /**
@@ -225,10 +234,11 @@ function voynotif_email_button_text() {
  */
 function voynotif_email_button_url() {
     global $voynotif_notification;
-    if( !isset( $voynotif_notification->cta['url'] ) ) {
-        $voynotif_notification->cta['url'] = null;
+    $button_url = false;
+    if( $voynotif_notification && $voynotif_notification->cta['url'] ) {
+        $button_url = $voynotif_notification->cta['url'];
     }    
-    return apply_filters( 'voynotif/template/button_url' , $voynotif_notification->cta['url'] );
+    return apply_filters( 'voynotif/template/button_url' , $button_url );
 }
 
 
