@@ -3,8 +3,8 @@ Contributors: ninadjeret
 Donate link: http://www.notificationscenter.com/en/donate
 Tags: email, emails, notification, notifications
 Requires at least: 4.4.0
-Tested up to: 4.7.2
-Stable tag: 1.1.2
+Tested up to: 4.8.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,7 +78,8 @@ System :
 == Changelog ==
 
 = 1.2.0 =
-* Theme Support for Email design : you can now override
+* Theme Support for Email design : you can now override default HTML email template
+* PHP warning messages fix
 * Minor bug fixes
 * Minor translate fixes
 
