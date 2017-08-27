@@ -77,6 +77,11 @@ System :
 
 == Changelog ==
 
+= 1.2.1 =
+* Documentation link updated (now opens in a new tab)
+* Minor fixes during tempalte customization
+* voynotif/loaded hook added after Notifications Center is loaded
+
 = 1.2.0 =
 * Theme Support for Email design : you can now override default HTML email template
 * PHP warning messages fix

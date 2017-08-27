@@ -80,7 +80,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
             $fields['email_template_path'] = array(
                 'id' => 'email_template_path',                
                 'label' => __( 'Template to use', 'notifications-center' ),
-                'description' => sprintf( __( 'Your Wordpress theme can now override Notifications Center Template. <a href="%1$s">Check documentation for more info</a>', 'notifications-center' ), 'https://www.google.fr' ),
+                'description' => sprintf( __( 'Your Wordpress theme can now override Notifications Center Template. <a target="_blank" href="%1$s">Check documentation for more info</a>', 'notifications-center' ), 'http://www.notificationscenter.com/en/documentation/email-template-system/' ),
                 'type' => 'select',
                 'choices' => $choices,
                 'screen' => 'general',
@@ -448,7 +448,9 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
 
             
             //Display needed screen regarding to query var
-            if(is_string( $current_screen['callback'] ) AND function_exists( $current_screen['callback'] ) ) {
+            if( !isset($current_screen['callback']) || empty($current_screen['callback']) ) {
+                //
+            } elseif(is_string( $current_screen['callback'] ) AND function_exists( $current_screen['callback'] ) ) {
                 call_user_func( $current_screen['callback'] );
                 return true;
             } elseif( is_array( $current_screen['callback'] ) AND method_exists( $current_screen['callback'][0], $current_screen['callback'][1] ) ) {

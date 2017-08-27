@@ -101,7 +101,7 @@ if( !class_exists( 'VOYNOTIF_email_template' ) ) {
             $voynotif_template = $this;
             
             ob_start();
-            include( voynotif_email_template( $this->id ) );
+            include( voynotif_email_template() ); //Fix since 1.2.1
             return ob_get_clean();
                     
         }

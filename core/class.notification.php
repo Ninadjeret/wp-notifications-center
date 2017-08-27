@@ -99,7 +99,11 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
          */
         function _get_notification_type_tags() {
             $types = voynotif_get_notifications_types();
-            $type = $types[$this->type];
+            
+            //Prevent PHP warning message. Since 1.2.1
+            if( isset( $types[$this->type] ) && !empty( $types[$this->type] ) ) {
+                $type = $types[$this->type];
+            }
             
             if( !empty( $type ) ) {
                 return $type['tags'];
@@ -353,7 +357,7 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
             if( $auth == false ) return false;
 
             //Get all info
-            $object = $this->object;
+            $object = $this->title;
             $headers = $this->get_headers();
             $html = $this->get_html();           
             

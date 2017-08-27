@@ -3,13 +3,12 @@
 Plugin Name: Notifications Center
 Plugin URI: http://www.notificationscenter.com/
 Description: Personnalized notifications for your Wordpress website with beautiful, responsive and personnalised emails.
-Version: 1.2.0
+Version: 1.2.1
 Author: Florian Chaillou
 Author URI: https://www.twitter.com/FlorianChaillou 
 Text Domain: notifications-center
 Domain Path: /languages
 */
-
 if( !class_exists( 'VOYNOTIF_plugin' ) ) {
     class VOYNOTIF_plugin {
 
@@ -33,7 +32,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             //------------------------------------------------------------// 
             define('VOYNOTIF_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) );
             define('VOYNOTIF_URL', plugins_url() . '/' . basename( dirname( __FILE__ ) ) );
-            define('VOYNOTIF_VERSION', '1.2.0');
+            define('VOYNOTIF_VERSION', '1.2.1');
             define('VOYNOTIF_FIELD_PREFIXE', 'voynotif_');
             define('VOYNOTIF_PREMIUM_URL', 'http://www.notificationscenter.com');
 
@@ -79,12 +78,15 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('core/class.masks.php');
             include_once('core/template.php');
             
+            //include_once('addons/class.addon_plugin.php');
+            
             //------------------------------------------------------------//
             // 5. CLASS Init
             //------------------------------------------------------------//
             $this->updater = new VOYNOTIF_updater();
 
         }
+        
 
         /**
          * Install plugin with dummy data (current template, colors, etc)
@@ -273,6 +275,16 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             if( $this->updater->current_version !== $this->updater->new_version ) {
                 $this->updater->update();
             }
+            
+            /**
+             * ACTION voynotif/loaded
+             * Triggered when Notifications Center is fully loaded (both function & notifications)
+             * 
+             * @author Floflo
+             * @since 1.2.1
+             * @update 2017-08-26
+             */
+            do_action('voynotif/loaded');
 
         }
 
