@@ -844,16 +844,29 @@ if( !class_exists( 'VOYNOTIF_admin_notification' ) ) {
             <!-- Global wrapper -->
             <div class="">
                 <?php
+
                     //Add Object field
                     $field = new VOYNOTIF_field( array(
                         'id' => 'object',
-                        'label' => __( 'Object', 'notifications-center' ),
+                        'label' => __( 'Subject', 'notifications-center' ),
                         'type' => 'text',
                         'screen' => 'post',
                         'post_id' => $post->ID
                     ) );
                     echo $field->display();
-
+                    
+                    //Add Object field
+                    if( voynotif_get_option( 'activate_email_title' ) ) {
+                        $field = new VOYNOTIF_field( array(
+                            'id' => 'title',
+                            'label' => __( 'Title', 'notifications-center' ),
+                            'type' => 'text',
+                            'screen' => 'post',
+                            'post_id' => $post->ID
+                        ) );
+                        echo $field->display();
+                    }
+                    
                     //Add WYSIWYG field
                     $field = new VOYNOTIF_field( array(
                         'id' => 'content',

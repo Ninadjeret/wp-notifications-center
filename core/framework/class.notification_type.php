@@ -208,6 +208,23 @@ if( !class_exists( 'VOYNOTIF_notification_type' ) ) {
 
             return $array_roles;               
         }
+        
+        /**
+         * 
+         * @since 1.3.0
+         * @update 2017-08-31
+         * 
+         * @return type
+         */
+        function _get_posts_status() {
+            return array(
+                'publish' => __('Publish', 'notifications-center'),
+                'pending' => __('Pending', 'notifications-center'),
+                'draft' => __('Draft', 'notifications-center'),
+                'future' => __('Future', 'notifications-center'),
+                'trash' => __('Trash', 'notifications-center'),
+            );
+        }
 
     }
 }

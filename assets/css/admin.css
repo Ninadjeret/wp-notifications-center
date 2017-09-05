@@ -14,6 +14,48 @@ and open the template in the editor.
     ------------------------------------------------------------------
 */
 .voy-hidden { display: none !important; }
+.voy-container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.voy-row {
+  margin-right: -15px;
+  margin-left: -15px;    
+}
+.voy-row:before,
+.voy-row:after {
+    display: table;
+    content: " ";
+}
+.voy-row:after {
+    clear: both;
+}
+.voy-col-1,
+.voy-col-2, 
+.voy-col-3, 
+.voy-col-4, 
+.voy-col-5,
+.voy-col-6,
+.voy-col-7,
+.voy-col-8,
+.voy-col-9,
+.voy-col-10,
+.voy-col-11,
+.voy-col-12 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  float:left;
+}
+.voy-col-6 {
+    width: calc(50% - 30px);
+}
+.voy-col-12 {
+    width: calc(100% - 30px);
+}
 
 /*
     ------------------------------------------------------------------

@@ -3,9 +3,9 @@
 Plugin Name: Notifications Center
 Plugin URI: http://www.notificationscenter.com/
 Description: Personnalized notifications for your Wordpress website with beautiful, responsive and personnalised emails.
-Version: 1.2.0
+Version: 1.3.0
 Author: Florian Chaillou
-Author URI: https://www.twitter.com/FlorianChaillou 
+Author URI: http://www.notificationscenter.com 
 Text Domain: notifications-center
 Domain Path: /languages
 */
@@ -33,9 +33,10 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             //------------------------------------------------------------// 
             define('VOYNOTIF_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) );
             define('VOYNOTIF_URL', plugins_url() . '/' . basename( dirname( __FILE__ ) ) );
-            define('VOYNOTIF_VERSION', '1.2.0');
+            define('VOYNOTIF_VERSION', '1.3.0');
             define('VOYNOTIF_FIELD_PREFIXE', 'voynotif_');
             define('VOYNOTIF_PREMIUM_URL', 'http://www.notificationscenter.com');
+            define('VOYNOTIF_EXPORT_VERSION', '1.0.0');
 
             //------------------------------------------------------------//
             // 2. Plugin activation hook
@@ -50,6 +51,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             add_action( 'plugins_loaded', array( $this, 'load_text_domain' ) );
             add_action( 'plugins_loaded', array( $this, 'init' ), 20 );
             add_action( 'template_redirect', array( $this, 'template_preview' ) );
+            add_action( 'admin_notices', array( $this, 'admin_notices' ) );
             
             
             /**
@@ -65,26 +67,36 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             //------------------------------------------------------------//
             include_once('updater.php');
             
+            include_once('core/framework/class.notification_type.php');
+            include_once('core/framework/class.compat.php');
+            include_once('core/framework/class.addon.php');
+            include_once('core/framework/class.settings_screen.php');
+            
             include_once('admin/notifications.php');
             include_once('admin/notification.php');   
             include_once('admin/template-customizer.php');
             include_once('admin/settings.php');
+            include_once('admin/settings-import.php');
             //include_once('admin/help.php');
 
             include_once('core/class.notification.php');
-            include_once('core/class.email_template.php');
-            include_once('core/class.notification_type.php');
+            include_once('core/class.email_template.php');           
             include_once('core/class.field.php');
             include_once('core/functions.php');
             include_once('core/class.masks.php');
             include_once('core/template.php');
+           
+            include_once('core/compat/duplicate-post.php');           
+            
             
             //------------------------------------------------------------//
             // 5. CLASS Init
             //------------------------------------------------------------//
             $this->updater = new VOYNOTIF_updater();
+            $this->admin_notices = array();
 
         }
+        
 
         /**
          * Install plugin with dummy data (current template, colors, etc)
@@ -273,6 +285,16 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             if( $this->updater->current_version !== $this->updater->new_version ) {
                 $this->updater->update();
             }
+            
+            /**
+             * ACTION voynotif/loaded
+             * Triggered when Notifications Center is fully loaded (both function & notifications)
+             * 
+             * @author Floflo
+             * @since 1.3.0
+             * @update 2017-08-26
+             */
+            do_action('voynotif/loaded');
 
         }
 
@@ -340,6 +362,25 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             
             return $email;
             
+        }
+        
+        /**
+         * 
+         * @return type
+         */
+        function admin_notices() {
+            
+            if( empty( $this->admin_notices ) ) {
+                return;
+            }
+            
+            foreach ($this->admin_notices as $notice) {
+            ?>
+            <div class="notice notice-<?php echo $notice['class']; ?> is-dismissible">
+                <p><?php echo $notice['message']; ?></p>
+            </div>
+            <?php
+            }
         }
         
     }

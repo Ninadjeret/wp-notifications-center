@@ -19,7 +19,7 @@ voynotif_email_template_part( 'header' );
                     </td>
                 </tr>
                 <tr>
-                    <td align="center" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">
+                    <td align="left" style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #666666;" class="padding-copy">
                         <?php echo voynotif_email_content(); ?>
                     </td>
                 </tr>

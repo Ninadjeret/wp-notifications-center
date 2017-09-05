@@ -77,6 +77,15 @@ System :
 
 == Changelog ==
 
+= 1.3.0 =
+* New notification : Send notifications when a post is duplicated (requires Duplicate Post plugin)
+* New : Import/export notifications & settings
+* New : Add a title to your notifications, different from the email subject (set up in settings)
+* Fixed : Recipients now appear correctly in Notifications list
+* Fixed : Warning message won't appear in sent emails
+* Fixed : Documentation link updated (now opens in a new tab)
+* Fixed : Minor warning messages during template customization won't appear
+
 = 1.2.0 =
 * Theme Support for Email design : you can now override default HTML email template
 * PHP warning messages fix

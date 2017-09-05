@@ -69,6 +69,17 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                 'screen' => 'general',
                 'fieldgroup' => 'sender'
             );
+            $fields['activate_email_title'] = array(
+                'id' => 'activate_email_title',
+                'label' => __( 'Activate email title', 'notifications-center' ),
+                'description' => __( 'Otherwise, the same field will be used both as Email subject & Email Title', 'notifications-center' ),
+                'type' => 'boolean',
+                'params'    => array(
+                    'title' => __( 'Activate email title (different from the email subject)', 'notifications-center' ),
+                ),
+                'screen' => 'general',
+                'fieldgroup' => 'general'
+            );
             
             //Choices
             $choices = array(
@@ -80,7 +91,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
             $fields['email_template_path'] = array(
                 'id' => 'email_template_path',                
                 'label' => __( 'Template to use', 'notifications-center' ),
-                'description' => sprintf( __( 'Your Wordpress theme can now override Notifications Center Template. <a href="%1$s">Check documentation for more info</a>', 'notifications-center' ), 'https://www.google.fr' ),
+                'description' => sprintf( __( 'Your Wordpress theme can now override Notifications Center Template. <a target="_blank" href="%1$s">Check documentation for more info</a>', 'notifications-center' ), 'http://www.notificationscenter.com/en/documentation/email-template-system/' ),
                 'type' => 'select',
                 'choices' => $choices,
                 'screen' => 'general',
@@ -140,6 +151,8 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                     
                     if( $field_data['type'] == 'select' ) {
                         $js .= ', '.$field_data['id'].':jQuery(\'#'.VOYNOTIF_FIELD_PREFIXE.$field_data['id'].'\').find(":selected").val()';
+                    } elseif( $field_data['type'] == 'boolean' ) {
+                        $js .= ', '.$field_data['id'].':jQuery(\'#'.VOYNOTIF_FIELD_PREFIXE.$field_data['id'].':checked\').val()';
                     } else {
                         $js .= ', '.$field_data['id'].':jQuery(\'#'.VOYNOTIF_FIELD_PREFIXE.$field_data['id'].'\').val()';
                     }
@@ -448,7 +461,9 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
 
             
             //Display needed screen regarding to query var
-            if(is_string( $current_screen['callback'] ) AND function_exists( $current_screen['callback'] ) ) {
+            if( !isset($current_screen['callback']) || empty($current_screen['callback']) ) {
+                //
+            } elseif(is_string( $current_screen['callback'] ) AND function_exists( $current_screen['callback'] ) ) {
                 call_user_func( $current_screen['callback'] );
                 return true;
             } elseif( is_array( $current_screen['callback'] ) AND method_exists( $current_screen['callback'][0], $current_screen['callback'][1] ) ) {
@@ -497,6 +512,14 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
         function settings_general_screen() {
             ?>
             <div id="voy-settings-main">
+                <div class="voy-box">
+                    <div class="header">
+                        <h2><?php _e( 'General', 'voy_notifications_center' ); ?></h2>
+                    </div>
+                    <div class="main">
+                        <?php $this->display_settings_fields( 'general', 'general' ); ?>
+                    </div>
+                </div> 
                 <div class="voy-box">
                     <div class="header">
                         <h2><?php _e( 'Sender', 'voy_notifications_center' ); ?></h2>

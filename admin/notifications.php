@@ -94,7 +94,16 @@ if( !class_exists( 'VOYNOTIF_admin_notifications' ) ) {
                 $notification = new VOYNOTIF_notification($post->ID);
                 
                 if( $notification->recipient_type == 'emails' ) {
-                    echo  implode( ', ', $notification->recipients );
+                    echo  implode( ', ', $notification->_get_recipients() );
+                 
+                } elseif($notification->recipient_type == 'users' ) {    
+                    $users_to_display = array();
+                    $users = $notification->get_field('recipient_users');
+                    foreach( $users as $user_id ) {
+                        $user_data = get_userdata($user_id);
+                        $users_to_display[] = $user_data->user_login;
+                    }
+                    echo implode(', ', $users_to_display);
                     
                 } elseif( $notification->recipient_type == 'roles' ) {
                     $roles = $notification->get_field('recipient_roles');
@@ -106,6 +115,9 @@ if( !class_exists( 'VOYNOTIF_admin_notifications' ) ) {
                         }
                     }       
                     echo sprintf( __('All %s users'), implode( ' & ', $roles_names ) ); 
+                    
+                } else {
+                    _e('Specific user(s)', 'notifications-center');
                 }
             } 
 

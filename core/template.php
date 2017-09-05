@@ -221,7 +221,7 @@ function voynotif_email_content() {
 function voynotif_email_button_text() {
     global $voynotif_notification;
     $button_text = false;
-    if( $voynotif_notification && $voynotif_notification->cta['label'] ) {
+    if( $voynotif_notification && isset($voynotif_notification->cta['label']) ) {
         $button_text = $voynotif_notification->cta['label'];
     }  
     return apply_filters( 'voynotif/template/button_text' , $button_text );
@@ -235,7 +235,7 @@ function voynotif_email_button_text() {
 function voynotif_email_button_url() {
     global $voynotif_notification;
     $button_url = false;
-    if( $voynotif_notification && $voynotif_notification->cta['url'] ) {
+    if( $voynotif_notification && isset($voynotif_notification->cta['url']) ) {
         $button_url = $voynotif_notification->cta['url'];
     }    
     return apply_filters( 'voynotif/template/button_url' , $button_url );

@@ -39,12 +39,22 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
 
             //Construction des variables
             $this->id = $notification_id;
-            $this->title = get_post_meta( $this->id, 'voynotif_object', true );
+            $this->subject = get_post_meta( $this->id, 'voynotif_object', true );
+            $this->title = $this->subject;
+            
+            /**
+             * Add difference between Title & subject
+             * Since 1.3.0
+             */
+            if( voynotif_get_option( 'activate_email_title' ) && get_post_meta( $this->id, 'voynotif_title', true ) ) {
+                $this->title = get_post_meta( $this->id, 'voynotif_title', true );
+            }  
+            
             $this->content = $this->_get_the_content();
             $this->type = get_post_meta( $this->id, 'voynotif_type', true );
             $this->tags = $this->_get_notification_type_tags();
             $this->recipient_type = get_post_meta( $this->id, 'voynotif_recipient_type', true );
-            $this->recipients = $this->_get_recipients();
+            $this->recipients = array();
             $this->template = new VOYNOTIF_email_template();
 
         }
@@ -99,7 +109,11 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
          */
         function _get_notification_type_tags() {
             $types = voynotif_get_notifications_types();
-            $type = $types[$this->type];
+            
+            //Prevent PHP warning message. Since 1.3.0
+            if( isset( $types[$this->type] ) && !empty( $types[$this->type] ) ) {
+                $type = $types[$this->type];
+            }
             
             if( !empty( $type ) ) {
                 return $type['tags'];
@@ -123,7 +137,7 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
          * @param type $title
          */
         function set_object( $title ) {
-            $this->set_title( $title );
+            $this->subject = $title;
         }
         
         
@@ -268,8 +282,12 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
          */
         function _get_recipients() {
 
-            //Set up recipients array 
-            $destinataires = array();
+            //Set up recipients array
+            $destinataires = $this->recipients;
+            if( !is_array($destinataires) ) {
+                $destinataires = array();
+            }
+            
 
             //Get values from current notification
             $recipient_emails = get_post_meta( $this->id, 'voynotif_recipient_emails', true );
@@ -278,7 +296,12 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
 
             //Si ce sont des adresses mails spécifiques
             if( $this->recipient_type == 'emails' AND ! empty( $recipient_emails ) ) {
-                $destinataires = explode( ',', $recipient_emails );      
+                $destinataires2 = explode( ',', $recipient_emails );
+                if( $destinataires2 ) {
+                    foreach( $destinataires2 as $destinataire2 ) {
+                        $destinataires[] = trim($destinataire2);
+                    }
+                }
             } 
 
             //Si c'est une sélection par roles
@@ -297,9 +320,19 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
                     $user_obj = get_user_by( 'id', $user );
                     $destinataires[] = $user_obj->user_email;
                 }
-            }    
-
-            return $destinataires;
+            }  
+            
+            /**
+             * FILTER voynotif/notification/recipients
+             * 
+             * @author Floflo
+             * @since 1.3.0
+             * @update 2017-08-28
+             * 
+             * @param array $destinataires Araay of recipients
+             * @param object $notification Current notifcation Object
+             */
+            return apply_filters( 'voynotif/notification/recipients', $destinataires, $this);
         }
         
         
@@ -353,12 +386,12 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
             if( $auth == false ) return false;
 
             //Get all info
-            $object = $this->object;
+            $object = $this->subject;
             $headers = $this->get_headers();
             $html = $this->get_html();           
             
             //send
-            foreach( $this->recipients as $recipient ) {           
+            foreach( $this->_get_recipients() as $recipient ) {           
                 wp_mail($recipient, $object, $html, $headers);
             }
             

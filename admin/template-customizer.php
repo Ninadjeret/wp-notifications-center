@@ -244,7 +244,7 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
                     'voynotif_email_template_path_control',
                     array(
                         'label'          => __( 'Theme to use', 'notifications-center' ),
-                        'description' => sprintf( __( 'Your Wordpress theme can now override Notifications Center Template. <a href="%1$s">Check documentation for more info</a>', 'notifications-center' ), 'https://www.google.fr' ),
+                        'description' => sprintf( __( 'Your Wordpress theme can now override Notifications Center Template. <a target="_blank" href="%1$s">Check documentation for more info</a>', 'notifications-center' ), 'http://www.notificationscenter.com/en/documentation/email-template-system/' ),
                         'section'        => 'voynotif_settings',
                         'settings'       => 'voynotif_email_template_path',
                         'type'           => 'radio',

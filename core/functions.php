@@ -154,24 +154,28 @@ if( !function_exists('voynotif_get_notifications_tags') ) {
  * 
  * @author Floflo
  * @since 0.9
- * @update 2016-07-28
+ * @update 2017-09-02
  * 
  * @param string $notification_type Slug of the notification type
  * @return array Array of notifications as objects like array ( 0 => NOTIF_notification, etc). Return empty array if no matching notifications
  */
 if( !function_exists('voynotif_get_notifications') ) {
-    function voynotif_get_notifications( $notification_type ) {
+    function voynotif_get_notifications( $notification_type = null ) {
 
         $matching_notifications = array();
 
         //Build and send query to get notifications
-        $notifications = get_posts( array(
-            'post_type' => 'voy_notification', 
-            'meta_key' => VOYNOTIF_FIELD_PREFIXE . 'type', 
-            'meta_value' => $notification_type, 
+        $args = array(
+            'post_type' => 'voy_notification',  
             'posts_per_page' => -1
-        ) );
+        );
+        if( !empty($notification_type) ) {
+            $args['meta_key'] = VOYNOTIF_FIELD_PREFIXE . 'type';
+            $args['meta_value'] = $notification_type;
+        }
 
+        $notifications = get_posts( $args );
+        
         //if there is no matching notification
         if( empty( $notifications ) ) {
             return $matching_notifications;  
@@ -194,6 +198,80 @@ if( !function_exists('voynotif_get_notifications') ) {
  * SETTINGS API
  * ------------------------------------------------------------------------- 
  */
+
+/**
+ * Wrapper of get_option wp function, with automatically add the VOYNOTIF_FIELD_PREFIX
+ * 
+ * @author Floflo
+ * @since 1.3.0
+ * @update 2017-08-31
+ * 
+ * @param string $settings The option name, without "voynotif_" prefix
+ */
+if( !function_exists('voynotif_get_option') ) {
+    function voynotif_get_option( $setting ) {
+        $setting = get_option( VOYNOTIF_FIELD_PREFIXE . $setting );
+        if( empty( $setting ) ) {
+            return false;
+        }
+        return $setting;
+    }
+}
+
+/**
+ * Get all Notifications Center options in an associative array
+ * 
+ * @author Floflo
+ * @since 1.3.0
+ * @update 2017-09-02
+ */
+if( !function_exists('voynotif_get_options') ) {
+    function voynotif_get_options() {
+        $settings = array();
+        global $wpdb;
+        $results = $wpdb->get_results( 'SELECT * FROM wp_options WHERE option_name LIKE "voynotif_%"', OBJECT );
+        if( !empty( $results ) ) {
+            foreach( $results as $option ) {
+                if (@unserialize($option->option_value)) {
+                    $option->option_value = @unserialize($option->option_value);
+                }                
+                $settings[$option->option_name] = $option->option_value;
+            }
+        }
+        
+        if( empty( $settings ) ) {
+            return false;
+        }
+        
+        return $settings;
+    }
+}
+
+/**
+ * Check if a plugin is at leas at some version
+ * 
+ * @author Floflo
+ * @since 1.3.0
+ * @update 2017-09-01
+ * 
+ * @param string $plugin Plugin name, as plugin-directory/plugin-file.php
+ * @param string $version Plugin version, eg 1.1.2
+ */
+if( !function_exists('voynotif_is_plugin_version') ) {
+    function voynotif_is_plugin_version( $plugin, $version = '1.0.0' ) {
+        include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+        if( !is_plugin_active($plugin) ) {
+            return false;
+        }
+
+        $plugin_data = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin );
+        if( version_compare( $plugin_data['Version'], $version ) >= 0 ) {
+            return true;
+        }
+        
+        return false;
+    }
+}
 
 
 /**
@@ -225,6 +303,7 @@ if( !function_exists('voynotif_get_settings_fields') ) {
     }
 }
 
+
 /**
  * 
  */
@@ -236,5 +315,38 @@ if( !function_exists('voynotif_get_notification') ) {
         return null;
     }
 }
+
+
+/**
+ * 
+ * @global type $notifications_center
+ * @param type $message
+ * @param type $class
+ */
+function voynotif_add_admin_notice( $message, $class = '' ) {
+    global $notifications_center;
+    $notifications_center->admin_notices[] = array(
+        'message'   => $message,
+        'class'    => $class,
+    );
+}
+
+
+/**
+ * 
+ * @global type $wpdb
+ * @param type $value
+ * @param type $value_type
+ * @return boolean
+ */
+function voynotif_notification_exists( $value, $value_type = 'slug' ) {
+    global $wpdb;
+    if($wpdb->get_row("SELECT post_name FROM wp_posts WHERE post_name = '" . $value . "' AND post_type = 'voy_notification'", 'ARRAY_A')) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 ?>
