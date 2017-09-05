@@ -101,7 +101,11 @@ if( !class_exists( 'VOYNOTIF_email_template' ) ) {
             $voynotif_template = $this;
             
             ob_start();
+<<<<<<< HEAD
             include( voynotif_email_template() ); //Fix since 1.3.0
+=======
+            include( voynotif_email_template() ); //Fix since 1.2.1
+>>>>>>> d3f0d9c22e65ac49678b3bc0a641570db0826e7f
             return ob_get_clean();
                     
         }

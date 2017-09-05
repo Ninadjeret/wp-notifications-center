@@ -77,6 +77,7 @@ System :
 
 == Changelog ==
 
+<<<<<<< HEAD
 = 1.3.0 =
 * New notification : Send notifications when a post is duplicated (requires Duplicate Post plugin)
 * New : Import/export notifications & settings
@@ -85,6 +86,12 @@ System :
 * Fixed : Warning message won't appear in sent emails
 * Fixed : Documentation link updated (now opens in a new tab)
 * Fixed : Minor warning messages during template customization won't appear
+=======
+= 1.2.1 =
+* Documentation link updated (now opens in a new tab)
+* Minor fixes during tempalte customization
+* voynotif/loaded hook added after Notifications Center is loaded
+>>>>>>> d3f0d9c22e65ac49678b3bc0a641570db0826e7f
 
 = 1.2.0 =
 * Theme Support for Email design : you can now override default HTML email template

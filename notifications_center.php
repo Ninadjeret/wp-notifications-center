@@ -3,13 +3,16 @@
 Plugin Name: Notifications Center
 Plugin URI: http://www.notificationscenter.com/
 Description: Personnalized notifications for your Wordpress website with beautiful, responsive and personnalised emails.
+<<<<<<< HEAD:notifications_center.php
 Version: 1.3.0
+=======
+Version: 1.2.1
+>>>>>>> d3f0d9c22e65ac49678b3bc0a641570db0826e7f:notifications_center.php
 Author: Florian Chaillou
 Author URI: http://www.notificationscenter.com 
 Text Domain: notifications-center
 Domain Path: /languages
 */
-
 if( !class_exists( 'VOYNOTIF_plugin' ) ) {
     class VOYNOTIF_plugin {
 
@@ -33,7 +36,11 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             //------------------------------------------------------------// 
             define('VOYNOTIF_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) );
             define('VOYNOTIF_URL', plugins_url() . '/' . basename( dirname( __FILE__ ) ) );
+<<<<<<< HEAD:notifications_center.php
             define('VOYNOTIF_VERSION', '1.3.0');
+=======
+            define('VOYNOTIF_VERSION', '1.2.1');
+>>>>>>> d3f0d9c22e65ac49678b3bc0a641570db0826e7f:notifications_center.php
             define('VOYNOTIF_FIELD_PREFIXE', 'voynotif_');
             define('VOYNOTIF_PREMIUM_URL', 'http://www.notificationscenter.com');
             define('VOYNOTIF_EXPORT_VERSION', '1.0.0');
@@ -88,6 +95,8 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
            
             include_once('core/compat/duplicate-post.php');           
             
+            
+            //include_once('addons/class.addon_plugin.php');
             
             //------------------------------------------------------------//
             // 5. CLASS Init
@@ -291,7 +300,11 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
              * Triggered when Notifications Center is fully loaded (both function & notifications)
              * 
              * @author Floflo
+<<<<<<< HEAD:notifications_center.php
              * @since 1.3.0
+=======
+             * @since 1.2.1
+>>>>>>> d3f0d9c22e65ac49678b3bc0a641570db0826e7f:notifications_center.php
              * @update 2017-08-26
              */
             do_action('voynotif/loaded');
