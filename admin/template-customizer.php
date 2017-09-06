@@ -364,9 +364,9 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
          * 
          * @return boolean
          */
-        public function remove_panels( $active, $panel ) {       
+        public function remove_panels( $active, $panel = '' ) {       
            if( isset( $_GET[$this->_trigger] ) ) {
-               if( in_array( $panel->id, array('voynotif_logo', 'mailtpl') ) ) {
+               if( !empty($panel) && in_array( $panel->id, array('voynotif_logo', 'mailtpl') ) ) {
                    return true;
                }
                return false;
