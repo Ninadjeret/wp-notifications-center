@@ -79,7 +79,7 @@ System :
 
 = 1.3.0 =
 * New notification : Send notifications when a post is duplicated (requires Duplicate Post plugin)
-* New : Import/export notifications & settings
+* New : Import/export feature for notifications & settings
 * New : Add a title to your notifications, different from the email subject (set up in settings)
 * Fixed : Recipients now appear correctly in Notifications list
 * Fixed : Warning message won't appear in sent emails

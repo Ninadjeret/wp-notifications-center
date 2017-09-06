@@ -86,7 +86,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('core/class.masks.php');
             include_once('core/template.php');
            
-            include_once('core/compat/duplicate-post.php');           
+                     
             
             
             //------------------------------------------------------------//
@@ -266,6 +266,9 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
          */
         function init() {
 
+            //Add compat files with other plugins
+            include_once('core/compat/duplicate-post.php');  
+            
             //Load Notifications
             include_once('notifications/comment_new.php');
             include_once('notifications/comment_reply.php');
