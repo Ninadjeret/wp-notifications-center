@@ -88,6 +88,22 @@ class VOYNOTIF_notification_type_user_password_changed extends VOYNOTIF_notifica
     }*/
     
     
+    /**
+     * Display context info in logs screen (settings)
+     * 
+     * @author Floflo
+     * @since 1.4.0
+     * @update 2018-01-26
+     * 
+     * @param string $return HTML value displayed in the logs screen. default false
+     * @param array $context
+     * @return string HTML to display for context column of a log
+     */
+    function display_log_context( $return, $context ) {
+        $user_html = '<a href="'.get_edit_user_link($context['user_id']).'">'.get_user_by('id',$context['user_id'])->user_nicename.'</a>';
+        return sprintf( __('About user %s', 'notifications-center'), $user_html );
+    }  
+    
     /*
      * -------------------------------------------------------------------------
      * ADD ALL NEEDED CUSTOM METHODS UNDER THIS LINE

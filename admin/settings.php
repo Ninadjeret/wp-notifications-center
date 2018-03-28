@@ -80,6 +80,28 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                 'screen' => 'general',
                 'fieldgroup' => 'general'
             );
+            $fields['activate_logs'] = array(
+                'id' => 'activate_logs',
+                'label' => __( 'Activate logs', 'notifications-center' ),
+                'description' => __( 'Track any email sent threw Notifications Center', 'notifications-center' ),
+                'type' => 'boolean',
+                'params'    => array(
+                    'title' => __( 'Activate logs', 'notifications-center' ),
+                ),
+                'screen' => 'general',
+                'fieldgroup' => 'logs'
+            );
+            $fields['logs_activate_opentracking'] = array(
+                'id' => 'logs_activate_opentracking',
+                'label' => __( 'Activate open tracking', 'notifications-center' ),
+                'description' => __( 'Track when email are opened', 'notifications-center' ),
+                'type' => 'boolean',
+                'params'    => array(
+                    'title' => __( 'Activate open tracking', 'notifications-center' ),
+                ),
+                'screen' => 'general',
+                'fieldgroup' => 'logs'
+            );
             
             //Choices
             $choices = array(
@@ -429,7 +451,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
             ?>
             <h2 class="nav-tab-wrapper">
                 <?php foreach( $screens as $screen_id => $screen_data ) { ?>
-                    <a class="nav-tab <?php if( $screen_id == $current_screen ) { echo 'nav-tab-active'; } ?>" href="<?php echo add_query_arg( 'voynotif_settings_screen', $screen_id ); ?>">
+                    <a class="nav-tab <?php if( $screen_id == $current_screen ) { echo 'nav-tab-active'; } ?>" href="<?php echo add_query_arg( 'voynotif_settings_screen', $screen_id, admin_url() . 'edit.php?post_type=voy_notification&page=voynotif_settings' ); ?>">
                         <?php echo $screen_data['title']; ?>
                     </a>
                 <?php } ?>
@@ -522,7 +544,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                 </div> 
                 <div class="voy-box">
                     <div class="header">
-                        <h2><?php _e( 'Sender', 'voy_notifications_center' ); ?></h2>
+                        <h2><?php _e( 'Sender', 'notifications-center' ); ?></h2>
                     </div>
                     <div class="main">
                         <?php $this->display_settings_fields( 'general', 'sender' ); ?>
@@ -530,12 +552,20 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                 </div> 
                 <div class="voy-box">
                     <div class="header">
-                        <h2><?php _e( 'Template', 'voy_notifications_center' ); ?></h2>
+                        <h2><?php _e( 'Template', 'notifications-center' ); ?></h2>
                     </div>
                     <div class="main">
                         <?php $this->display_settings_fields( 'general', 'template' ); ?>
                     </div>
                 </div> 
+                <div class="voy-box">
+                    <div class="header">
+                        <h2><?php _e( 'Logs', 'notifications-center' ); ?></h2>
+                    </div>
+                    <div class="main">
+                        <?php $this->display_settings_fields( 'general', 'logs' ); ?>
+                    </div>
+                </div>
             </div>
             <div id="voy-settings-sidebar">
                 <div class="voy-box">

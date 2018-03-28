@@ -240,9 +240,11 @@ if( !class_exists( 'VOYNOTIF_field' ) ) {
         function save_value( $value ) {
             
             if( $this->screen == 'post' OR empty( $this->screen ) ) {
-                update_post_meta($this->post_id, $this->id, $value);
+                $result = update_post_meta($this->post_id, $this->id, $value);
+                do_action('voynotif/save_field', $this->id, $value, $result, 'post');
             } else {
-                update_option( $this->id, $value );
+                $result = update_option( $this->id, $value );
+                do_action('voynotif/save_field', $this->id, $value, $result, 'option');
             }
             
         }

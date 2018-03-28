@@ -58,7 +58,7 @@ if( !class_exists( 'VOYNOTIF_admin_notification' ) ) {
          * @return array array of available recipient types, like ([recipient_type_name] => [Recipient type label], etc)
          */
         function _get_recipient_types($notification_type) {
-            $types = apply_filters( 'voynotif/notification/recipients/type='.$notification_type, array(          
+            $types = apply_filters( 'voynotif/notification/field/recipient_type/choices/type='.$notification_type, array(          
                 'users' => __( 'Specific user(s)', 'notifications-center' ),
                 'roles' => __( 'Specific role(s)', 'notifications-center' ),
                 'emails' => __( 'Specific e-mail address(es)', 'notifications-center' ),

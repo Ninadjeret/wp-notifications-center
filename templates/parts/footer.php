@@ -36,6 +36,6 @@
                 </td>
             </tr>
         </table>
-
+        <?php echo voynotif_email_footer(); ?>
     </body>
 </html> 

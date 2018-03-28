@@ -77,6 +77,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('admin/template-customizer.php');
             include_once('admin/settings.php');
             include_once('admin/settings-import.php');
+            include_once('admin/settings-logs.php');
             //include_once('admin/help.php');
 
             include_once('core/class.notification.php');
@@ -84,6 +85,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('core/class.field.php');
             include_once('core/functions.php');
             include_once('core/class.masks.php');
+            include_once('core/class.logs.php');
             include_once('core/template.php');
            
                      
@@ -389,6 +391,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
     }
 }
 $notifications_center = new VOYNOTIF_plugin();
+
 
 
 

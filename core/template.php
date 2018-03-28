@@ -241,4 +241,11 @@ function voynotif_email_button_url() {
     return apply_filters( 'voynotif/template/button_url' , $button_url );
 }
 
+function voynotif_email_footer() {
+    ob_start();
+    do_action('voynotif/template/footer');
+    $return = ob_get_clean();
+    return $return;
+}
+
 

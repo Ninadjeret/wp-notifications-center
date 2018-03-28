@@ -24,10 +24,11 @@ if( !class_exists( 'VOYNOTIF_notification_type' ) ) {
         function __construct() {
 
             $this->add_filter( 'voynotif/notifications/types', array( $this, 'register_notification_type' ) );
-            $this->add_filter( 'voynotif/notification/recipients/type='.$this->name, array( $this, 'set_recipient_types' ) );
+            $this->add_filter( 'voynotif/notification/field/recipient_type/choices/type='.$this->name, array( $this, 'set_recipient_types' ) ); // name changes since 1.3.1, to avoid conflit with hook in _get_recipients()
 
             $this->add_filter( 'voynotif/notification/fields/settings/type='.$this->name, array( $this, 'setting_fields' ) );
             $this->add_filter( 'voynotif/notification/fields/content/type='.$this->name, array( $this, 'content_fields' ) );
+            $this->add_filter( 'voynotif/logs/context/type='.$this->name, array( $this, 'display_log_context' ), 20, 2 );
 
             $this->add_filter( 'voynotif/masks/context='.$this->name, array( $this, 'custom_masks' ) );
 
