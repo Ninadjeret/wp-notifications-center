@@ -17,6 +17,17 @@ class VOYNOTIF_logs {
         add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'add_gpdr_eraser' ), 1 );
     }
     
+    /**
+     * -------------------------------------------------------------------------
+     * GPDR FUNCTIONS
+     * -------------------------------------------------------------------------
+     */
+    
+    /**
+     * 
+     * @param type $exporters
+     * @return array
+     */
     public function add_gpdr_exporter( $exporters ) {
 	$exporters['notifications-center-logs'] = array(
 		'exporter_friendly_name' => __( 'Email tracking (Notifications Center)', 'notifications-center' ),
@@ -25,6 +36,12 @@ class VOYNOTIF_logs {
         return $exporters;
     }
     
+    
+    /**
+     * 
+     * @param type $erasers
+     * @return array
+     */
     public function add_gpdr_eraser( $erasers ) {
 	$erasers['notifications-center-logs'] = array(
 		'eraser_friendly_name' => __( 'Email tracking (Notifications Center)', 'notifications-center' ),
@@ -33,6 +50,13 @@ class VOYNOTIF_logs {
         return $erasers;
     }
     
+    
+    /**
+     * 
+     * @global type $wpdb
+     * @param type $email_address
+     * @return type
+     */
     public function export_user_logs( $email_address ) {
 	$email_address = trim( $email_address );
 	$data_to_export = array();
@@ -84,6 +108,14 @@ class VOYNOTIF_logs {
 	);        
     }
     
+    
+    /**
+     * 
+     * @global type $wpdb
+     * @param type $email_address
+     * @param type $page
+     * @return type
+     */
     public function erase_user_logs( $email_address, $page = 1 ) {
 	if ( empty( $email_address ) ) {
             return array(
@@ -128,6 +160,12 @@ class VOYNOTIF_logs {
 		'done'           => $items_removed,
 	);        
     }
+    
+    /**
+     * -------------------------------------------------------------------------
+     * STATUS FUNCTIONS
+     * -------------------------------------------------------------------------
+     */
     
     
     /**
@@ -196,6 +234,12 @@ class VOYNOTIF_logs {
 
         return $im;
     }
+    
+    /**
+     * -------------------------------------------------------------------------
+     * DB HELPERS
+     * -------------------------------------------------------------------------
+     */
 
     /**
      * 
@@ -293,7 +337,8 @@ class VOYNOTIF_logs {
             'date_begin'    => '',
             'date_end'      => '',
             'paged'         => 1,
-            'per_page'      => self::POSTS_PER_PAGE
+            'per_page'      => self::POSTS_PER_PAGE,
+            's'             => '',
         );
         $args = wp_parse_args($args, $defaults);
 
@@ -304,12 +349,18 @@ class VOYNOTIF_logs {
             $offset = ($args['paged'] - 1) * $per_page; 
         }
         
+        $where = '';
+        if( !empty( $args['s'] ) ) {
+            $where = "WHERE recipient like '%{$args['s']}%'";
+        }
+        
         global $wpdb;
         $table = self::get_table_name();
         $fivesdrafts = $wpdb->get_results( 
             "
             SELECT id, notification_id, type, recipient, subject, title, status, context, date, token, opens  
             FROM $table
+                $where
                 ORDER BY ".$args['orderby']." ".$args['order']."
                 LIMIT $per_page OFFSET $offset
             "

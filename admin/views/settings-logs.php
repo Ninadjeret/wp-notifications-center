@@ -5,7 +5,7 @@
 
 $args = array(
     'paged'     => 1,
-    'per_page'  => 50
+    'per_page'  => VOYNOTIF_logs::POSTS_PER_PAGE
 );
 
 if( isset( $_GET['orderby'] ) && !empty( $_GET['orderby'] ) ) {
@@ -19,6 +19,10 @@ if( isset( $_GET['order'] ) && !empty( $_GET['order'] ) ) {
 if( isset( $_GET['paged'] ) && !empty( $_GET['paged'] ) ) {
     $args['paged'] = $_GET['paged'];
 }
+
+if( isset( $_GET['s'] ) && !empty( $_GET['s'] ) ) {
+    $args['s'] = $_GET['s'];
+}
 ?>
 <div class="voy-row">
     <div class="voy-col-6">
@@ -26,8 +30,16 @@ if( isset( $_GET['paged'] ) && !empty( $_GET['paged'] ) ) {
     </div>
     <div class="voy-col-6 voy-text-right">
         <form action="<?php echo remove_query_arg('s'); ?>" method="get">
-            <input type="search" id="post-search-input" name="s" value="">
-            <input type="submit" id="search-submit" class="button" value="Search Posts">             
+            <?php
+            if( !empty( $_GET ) ) {
+                foreach ($_GET as $key => $value) {
+                    if( $key == 's' ) continue;
+                    echo("<input type='hidden' name='$key' value='$value'/>");
+                }  
+            }
+            ?>
+            <input type="search" id="post-search-input" name="s" value="<?php if( isset( $_GET['s'] ) ) echo esc_html($_GET['s']); ?>">
+            <input type="submit" id="search-submit" class="button" value="<?php _e('Search user', 'notifications-center'); ?>">             
         </form>       
     </div>
 </div>
