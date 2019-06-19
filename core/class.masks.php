@@ -177,6 +177,12 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
                     'tag' => 'content',
                     'dummy_data' => 'John',
                 ); 
+                $masks['post_edit_link'] = array(
+                    'title' => __( 'Post edit link', 'notifications-center' ),
+                    'description' => '',
+                    'tag' => 'content',
+                    'dummy_data' => 'John',
+                ); 
 
             }
 
@@ -308,6 +314,7 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
                     $content = str_replace( '{post_excerpt}', $post->post_excerpt, $content ); 
                     $content = str_replace( '{post_date}', get_the_date( '', $post->ID ), $content );
                     $content = str_replace( '{post_link}', get_permalink( $post->ID ), $content ); 
+                    $content = str_replace( '{post_edit_link}', get_edit_post_link( $post->ID, false ), $content ); 
                     $author = get_user_by( 'id', $post->post_author );
                     if( ! empty( $author ) ) {
                         $content = str_replace( '{post_author_name}', $author->display_name, $content ); 

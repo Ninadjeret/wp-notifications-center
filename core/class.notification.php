@@ -392,7 +392,35 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
             
             //send
             foreach( $this->_get_recipients() as $recipient ) {           
-                wp_mail($recipient, $object, $html, $headers);
+
+                //Add Logs
+                if( get_option( VOYNOTIF_FIELD_PREFIXE . 'activate_logs' ) == true ) {
+
+                    $log = VOYNOTIF_logs::add_log( array(
+                        'notification_id'   => $this->id,
+                        'type'              => $this->type,
+                        'recipient'         => $recipient,
+                        'subject'           => $object,
+                        'title'             => $this->title,
+                        'status'            => null,
+                        'context'           => $this->context_info,
+                    ) );  
+                    
+                    global $voynotif_log;
+                    $voynotif_log = $log;
+                }
+                
+                //Send
+                $result = wp_mail($recipient, $object, $this->get_html(), $headers);
+
+                //Update log status
+                if( get_option( VOYNOTIF_FIELD_PREFIXE . 'activate_logs' ) == true ) {
+                    VOYNOTIF_logs::update_log(array(
+                        'id'        => $log->id,
+                        'status'    => $result,
+                    ));
+                }
+                
             }
             
             return true;

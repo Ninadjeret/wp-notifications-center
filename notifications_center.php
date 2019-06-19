@@ -33,7 +33,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             //------------------------------------------------------------// 
             define('VOYNOTIF_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) );
             define('VOYNOTIF_URL', plugins_url() . '/' . basename( dirname( __FILE__ ) ) );
-            define('VOYNOTIF_VERSION', '1.3.3');
+            define('VOYNOTIF_VERSION', '1.4.0');
             define('VOYNOTIF_FIELD_PREFIXE', 'voynotif_');
             define('VOYNOTIF_PREMIUM_URL', 'http://www.notificationscenter.com');
             define('VOYNOTIF_EXPORT_VERSION', '1.0.0');

@@ -514,7 +514,7 @@ if( !class_exists( 'VOYNOTIF_admin_notification' ) ) {
             }
 
 
-            if( is_array( $_POST['voynotif_recipient_roles'] ) AND ! empty( $_POST['voynotif_recipient_roles'] ) ) {
+            if( isset($_POST['voynotif_recipient_roles']) && is_array( $_POST['voynotif_recipient_roles'] ) AND ! empty( $_POST['voynotif_recipient_roles'] ) ) {
                 $array_roles = array();
                 foreach($_POST['voynotif_recipient_roles'] as $val_to_save) {
                     $array_roles[] = $val_to_save; 
@@ -522,7 +522,7 @@ if( !class_exists( 'VOYNOTIF_admin_notification' ) ) {
                 update_post_meta($post_id, 'voynotif_recipient_roles', $array_roles);
             }
 
-            if( is_array( $_POST['voynotif_recipient_users'] ) AND ! empty( $_POST['voynotif_recipient_users'] ) ) {
+            if( isset( $_POST['voynotif_recipient_users'] ) && is_array( $_POST['voynotif_recipient_users'] ) AND ! empty( $_POST['voynotif_recipient_users'] ) ) {
                 $array_users = array();
                 foreach($_POST['voynotif_recipient_users'] as $val_to_save) {
                     $array_users[] = $val_to_save; 
@@ -544,8 +544,10 @@ if( !class_exists( 'VOYNOTIF_admin_notification' ) ) {
             //Save custom settings fields
             $content_fields = apply_filters( 'voynotif/notification/fields/content/type='.$_POST['voynotif_type'], array() );
             foreach( $content_fields as $content_field ) {
-                $value = $_POST[$content_field['id']];
-                $this->save_field($post_id, $content_field, $value);        
+                if( isset($_POST[$content_field['id']]) ) {
+                    $value = $_POST[$content_field['id']];
+                    $this->save_field($post_id, $content_field, $value);                      
+                }      
             }
 
         }
