@@ -24,6 +24,7 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
         add_filter( 'customize_register', array( $this, 'add_customizer' ), 60 ); 
         add_filter( 'gform_pre_send_email', array( $this, 'add_html_template' ), 10, 4 );
         add_filter( 'voynotif/settings/fields', array($this, 'add_settings') );
+        add_filter( 'voynotif/preview/content', array($this, 'add_preview') );
     }
     
     public function add_settings( $fields ) {
@@ -38,6 +39,41 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
             'fieldgroup' => 'template'
         );
         return $fields;
+    }
+    
+    public function add_preview( $content ) {
+        $template = new VOYNOTIF_email_template();
+        ob_start(); ?>
+        <table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA"><tr><td>
+                    <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF">
+                        <tr style="color:<?php echo $template->gf_table_color; ?>" bgcolor="<?php echo $template->gf_table_bg; ?>">
+                            <td colspan="2">
+                                <font style="font-family: sans-serif; font-size:12px;"><strong>Label</strong></font>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f5f5f5">
+                            <td width="20">&nbsp;</td>
+                            <td>
+                                <font style="font-family: sans-serif; font-size:12px;">Value</font>
+                            </td>
+                        </tr>
+                        <tr style="color:<?php echo $template->gf_table_color; ?>" bgcolor="<?php echo $template->gf_table_bg; ?>">
+                            <td colspan="2">
+                                <font style="font-family: sans-serif; font-size:12px;"><strong>Label</strong></font>
+                            </td>
+                        </tr>
+                        <tr bgcolor="#f5f5f5">
+                            <td width="20">&nbsp;</td>
+                            <td>
+                                <font style="font-family: sans-serif; font-size:12px;">Value</font>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>        
+        <?php $table = ob_get_clean();
+        return $content.$table;
     }
     
     /**

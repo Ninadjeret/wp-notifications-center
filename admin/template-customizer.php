@@ -389,7 +389,9 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
             if ( get_query_var( $this->_trigger ) ) {
                 $template_obj = new VOYNOTIF_email_template();
                 $template_obj->set_title('Lorem ipsum dolor sit amet');
-                $template_obj->set_content('<p>Hello John Doe</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut vestibulum orci, ut feugiat sapien. Aliquam nunc lectus, lobortis ac pharetra quis, bibendum non neque.</p>');
+                $template_obj->set_content( apply_filters('voynotif/preview/content',
+                    '<p>Hello John Doe</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ut vestibulum orci, ut feugiat sapien. Aliquam nunc lectus, lobortis ac pharetra quis, bibendum non neque.</p>'
+                ));
                 $template_obj->set_button_info( array(
                     'url' => site_url(),
                     'label' => __('Button title', 'notifications-center'),

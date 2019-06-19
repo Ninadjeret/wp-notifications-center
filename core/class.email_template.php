@@ -47,24 +47,26 @@ if( !class_exists( 'VOYNOTIF_email_template' ) ) {
                     $args[$name] = $result->option_value;
                 }
             }
-         
+            error_log( print_r( $args, true ) );
             $args = wp_parse_args( $args, array(
-                'logo_url' => admin_url() . '/images/w-logo-blue.png',
+                'logo' => admin_url() . '/images/w-logo-blue.png',
                 'button_color' => '#0073aa',
                 'background_color' => '#fff',
                 'backgroundcontent_color' => '#f5f5f5',
                 'title_color' => '#0073aa',
-                'footer' => __( 'Proudly powered by Wordpress', 'notifications-center' ),
+                'footer_message' => __( 'Proudly powered by Wordpress', 'notifications-center' ),
                 'gf_table_bg' => '#0073aa',
                 'gf_table_color' => '#fff',
             ) );
+            error_log( print_r( $args, true ) );
             
-            $this->logo_url = $args['logo_url'];
+            
+            $this->logo_url = $args['logo'];
             $this->button_color = $args['button_color'];
             $this->background_color = $args['background_color'];
             $this->backgroundcontent_color = $args['backgroundcontent_color'];
             $this->title_color = $args['title_color'];
-            $this->footer = $args['footer'];
+            $this->footer = $args['footer_message'];
             $this->gf_table_bg = $args['gf_table_bg'];
             $this->gf_table_color = $args['gf_table_color'];
             
