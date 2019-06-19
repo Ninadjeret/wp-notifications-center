@@ -348,5 +348,20 @@ function voynotif_notification_exists( $value, $value_type = 'slug' ) {
     }
 }
 
+/**
+ * 
+ * @since 1.4.0
+ * 
+ * @param type $type_id
+ */
+function voynotif_get_notification_type_title($type_id) {
+    $types = voynotif_get_notifications_types();
+    if (!empty($types[$type_id]['label'])) {
+        return $types[$type_id]['label'];
+    } else {
+        return __('Unknown', 'notifications-center');
+    }
+}
+
 
 ?>

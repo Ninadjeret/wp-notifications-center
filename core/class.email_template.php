@@ -37,18 +37,36 @@ if( !class_exists( 'VOYNOTIF_email_template' ) ) {
             } else {
                 $this->type = 'plugin';
             }
-
-            //logo
-            $this->logo_url = get_option( VOYNOTIF_FIELD_PREFIXE . 'email_logo' );
-
-            //Couleurs
-            $this->button_color = get_option( VOYNOTIF_FIELD_PREFIXE . 'email_button_color' );
-            $this->background_color = get_option( VOYNOTIF_FIELD_PREFIXE . 'email_background_color' );
-            $this->backgroundcontent_color = get_option( VOYNOTIF_FIELD_PREFIXE . 'email_backgroundcontent_color' );
-            $this->title_color = get_option( VOYNOTIF_FIELD_PREFIXE . 'email_title_color' );
-
-            //Footer
-            $this->footer = get_option( VOYNOTIF_FIELD_PREFIXE . 'email_footer_message' );
+            
+            global $wpdb;           
+            $results = $wpdb->get_results( "SELECT option_name, option_value FROM {$wpdb->prefix}options WHERE option_name LIKE 'voynotif_email_%'", OBJECT );
+            $args = array();
+            if( !empty($results) ) {
+                foreach( $results as $result ) {
+                    $name = str_replace('voynotif_email_', '', $result->option_name);
+                    $args[$name] = $result->option_value;
+                }
+            }
+         
+            $args = wp_parse_args( $args, array(
+                'logo_url' => admin_url() . '/images/w-logo-blue.png',
+                'button_color' => '#0073aa',
+                'background_color' => '#fff',
+                'backgroundcontent_color' => '#f5f5f5',
+                'title_color' => '#0073aa',
+                'footer' => __( 'Proudly powered by Wordpress', 'notifications-center' ),
+                'gf_table_bg' => '#0073aa',
+                'gf_table_color' => '#fff',
+            ) );
+            
+            $this->logo_url = $args['logo_url'];
+            $this->button_color = $args['button_color'];
+            $this->background_color = $args['background_color'];
+            $this->backgroundcontent_color = $args['backgroundcontent_color'];
+            $this->title_color = $args['title_color'];
+            $this->footer = $args['footer'];
+            $this->gf_table_bg = $args['gf_table_bg'];
+            $this->gf_table_color = $args['gf_table_color'];
             
             $this->notification_content = (object) array(
                 'title'   => '',

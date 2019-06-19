@@ -3,7 +3,7 @@
 Plugin Name: Notifications Center
 Plugin URI: http://www.notificationscenter.com/
 Description: Personnalized notifications for your Wordpress website with beautiful, responsive and personnalised emails.
-Version: 1.3.0
+Version: 1.3.3
 Author: Florian Chaillou
 Author URI: http://www.notificationscenter.com 
 Text Domain: notifications-center
@@ -33,7 +33,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             //------------------------------------------------------------// 
             define('VOYNOTIF_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) );
             define('VOYNOTIF_URL', plugins_url() . '/' . basename( dirname( __FILE__ ) ) );
-            define('VOYNOTIF_VERSION', '1.3.0');
+            define('VOYNOTIF_VERSION', '1.3.3');
             define('VOYNOTIF_FIELD_PREFIXE', 'voynotif_');
             define('VOYNOTIF_PREMIUM_URL', 'http://www.notificationscenter.com');
             define('VOYNOTIF_EXPORT_VERSION', '1.0.0');
@@ -77,6 +77,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('admin/template-customizer.php');
             include_once('admin/settings.php');
             include_once('admin/settings-import.php');
+            include_once('admin/settings-logs.php');
             //include_once('admin/help.php');
 
             include_once('core/class.notification.php');
@@ -84,6 +85,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('core/class.field.php');
             include_once('core/functions.php');
             include_once('core/class.masks.php');
+            include_once('core/class.logs.php');
             include_once('core/template.php');
            
                      
@@ -113,71 +115,12 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
                 foreach ( $sites as $i => $site ) {
                     switch_to_blog( $site[ 'blog_id' ] );
                     $this->updater->init();
-                    do_action( 'voynotif/install/before_settings', 'multisite', $site[ 'blog_id' ] );
-                    $this->set_default_settings();
-                    do_action( 'voynotif/install/after_settings', 'multisite', $site[ 'blog_id' ] );
                     restore_current_blog();
                 }
 
             //Single site install    
             } else {
                 $this->updater->init();
-                do_action( 'voynotif/install/before_settings', 'singlesite' );
-                $this->set_default_settings();
-                do_action( 'voynotif/install/after_settings', 'singlesite' );
-            }
-
-        }
-
-
-
-        /**
-         * Set defaut data for a site
-         * 
-         * @author Floflo
-         * @since 0.9
-         * @update 2016-07-19
-         */
-        function set_default_settings() {
-
-            //Enregistrement du template par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'current_template') )
-                update_option(VOYNOTIF_FIELD_PREFIXE.'current_template', 'salted');
-
-            //Enregistrement du logo par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'email_logo') )
-                update_option(VOYNOTIF_FIELD_PREFIXE.'email_logo', admin_url() . '/images/w-logo-blue.png' );
-
-            //Enregistrement de la couleur du titre par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'email_title_color') )
-                update_option(VOYNOTIF_FIELD_PREFIXE.'email_title_color', '#0073aa');
-
-            //Enregistrement de la couleur du bouton par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'email_button_color') )
-                update_option(VOYNOTIF_FIELD_PREFIXE.'email_button_color', '#0073aa');
-
-            //Enregistrement de la couleur de fond du texte par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'email_backgroundcontent_color') )
-                update_option(VOYNOTIF_FIELD_PREFIXE.'email_backgroundcontent_color', '#f5f5f5');
-
-            //Enregistrement de la couleur de fond par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'email_background_color') )
-                update_option(VOYNOTIF_FIELD_PREFIXE.'email_background_color', '#ffffff');
-
-            //Enregistrement du message du footer par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'email_footer_message') )
-                update_option(VOYNOTIF_FIELD_PREFIXE.'email_footer_message', __( 'Proudly powered by Wordpress', 'notifications-center' ) );
-
-            //Enregistrement de la couleur du bouton par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'sender_name') ) {
-                $site_name = get_option('blogname');
-                update_option(VOYNOTIF_FIELD_PREFIXE.'sender_name', $site_name);           
-            }
-
-            //Enregistrement de la couleur du bouton par defaut
-            if( ! get_option(VOYNOTIF_FIELD_PREFIXE.'sender_email') ) {
-                $admin_email = get_option('admin_email');
-                update_option(VOYNOTIF_FIELD_PREFIXE.'sender_email', $admin_email);           
             }
 
         }
@@ -223,7 +166,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
                     'can_export'          => true,
                     'has_archive'         => false,
                     'exclude_from_search' => false,
-                    'publicly_queryable'  => true,
+                    'publicly_queryable'  => false,
                     'capability_type'     => 'post',
                 ) 
             );
@@ -267,7 +210,8 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
         function init() {
 
             //Add compat files with other plugins
-            include_once('core/compat/duplicate-post.php');  
+            include_once('core/compat/duplicate-post.php'); 
+            include_once('core/compat/gravityforms.php');  
             
             //Load Notifications
             include_once('notifications/comment_new.php');

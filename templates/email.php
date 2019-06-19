@@ -29,6 +29,8 @@ voynotif_email_template_part( 'header' );
     <?php 
     if( voynotif_email_button_url() ) { 
         voynotif_email_template_part( 'button' );
+    } else {
+        echo '<br><br><br>';
     }
     ?>
 </table>

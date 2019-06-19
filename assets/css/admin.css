@@ -56,6 +56,12 @@ and open the template in the editor.
 .voy-col-12 {
     width: calc(100% - 30px);
 }
+.voy-text-left {
+    text-align: left;
+}
+.voy-text-right {
+    text-align: right;
+}
 
 /*
     ------------------------------------------------------------------
@@ -643,6 +649,37 @@ tbody.voy-default-list td {
 .voynotif-default-item:hover .voynotif-default-content p{
     color: #444;
 }
+
+/*
+    ------------------------------------------------------------------
+    7. SETTINGS > LOGS
+    ------------------------------------------------------------------
+*/
+table.voynotif_list_logs {
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+    border-spacing: 0;
+    clear: both;
+    margin: 0;
+    background: #fff;
+    text-align: left;
+}
+
+table.voynotif_list_logs thead th {
+    border-bottom: 1px solid #e1e1e1;
+    font-size: 14px;
+    padding: 10px;
+    background: #fff;
+}
+table.voynotif_list_logs tr td {
+    font-size: 13px;
+    padding: 10px;
+}
+table.voynotif_list_logs tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
 /*
     ------------------------------------------------------------------
     7. Responsive

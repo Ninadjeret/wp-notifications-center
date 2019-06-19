@@ -196,6 +196,12 @@ function voynotif_email_title() {
     if( $voynotif_notification && $voynotif_notification->title ) {
         $title = $voynotif_notification->title;
     }
+    if( empty( $title ) ) {
+        global $voynotif_template;
+        if( $voynotif_template && $voynotif_template->notification_content->title ) {
+            $title = $voynotif_template->notification_content->title;
+        }        
+    }
     return apply_filters( 'voynotif/template/title' , $title );
 }
 
@@ -210,6 +216,12 @@ function voynotif_email_content() {
     if( $voynotif_notification && $voynotif_notification->content ) {
         $content = $voynotif_notification->content;
     }
+    if( empty( $content ) ) {
+        global $voynotif_template;
+        if( $voynotif_template && $voynotif_template->notification_content->content ) {
+            $content = $voynotif_template->notification_content->content;
+        }        
+    }
     return apply_filters( 'voynotif/template/content' , $content );
 }
 
@@ -221,9 +233,15 @@ function voynotif_email_content() {
 function voynotif_email_button_text() {
     global $voynotif_notification;
     $button_text = false;
-    if( $voynotif_notification && isset($voynotif_notification->cta['label']) ) {
-        $button_text = $voynotif_notification->cta['label'];
+    if( $voynotif_notification && isset($voynotif_notification->button_info['label']) ) {
+        $button_text = $voynotif_notification->button_info['label'];
     }  
+    if( empty( $button_text ) ) {
+        global $voynotif_template;
+        if( $voynotif_template && isset($voynotif_template->notification_content->button_info['label']) ) {
+            $button_text = $voynotif_template->notification_content->button_info['label'];
+        }        
+    }
     return apply_filters( 'voynotif/template/button_text' , $button_text );
 }
 
@@ -235,9 +253,15 @@ function voynotif_email_button_text() {
 function voynotif_email_button_url() {
     global $voynotif_notification;
     $button_url = false;
-    if( $voynotif_notification && isset($voynotif_notification->cta['url']) ) {
-        $button_url = $voynotif_notification->cta['url'];
+    if( $voynotif_notification && isset($voynotif_notification->button_info['url']) ) {
+        $button_url = $voynotif_notification->button_info['url'];
     }    
+    if( empty( $button_url ) ) {
+        global $voynotif_template;
+        if( $voynotif_template && isset($voynotif_template->notification_content->button_info['url']) ) {
+            $button_url = $voynotif_template->notification_content->button_info['url'];
+        }        
+    }
     return apply_filters( 'voynotif/template/button_url' , $button_url );
 }
 

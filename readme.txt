@@ -3,8 +3,8 @@ Contributors: ninadjeret
 Donate link: http://www.notificationscenter.com/en/donate
 Tags: email, emails, notification, notifications
 Requires at least: 4.4.0
-Tested up to: 4.8.1
-Stable tag: 1.2.0
+Tested up to: 4.9.8
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,9 @@ System :
 3. Personnalize your choosen template to match your brand, your colors, etc.
 
 == Changelog ==
+
+= 1.3.3 =
+* Fixed : Button in email template now appears correctly
 
 = 1.3.0 =
 * New notification : Send notifications when a post is duplicated (requires Duplicate Post plugin)
