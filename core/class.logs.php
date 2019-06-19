@@ -13,6 +13,120 @@ class VOYNOTIF_logs {
         //Nothing at the moment
         add_action('template_redirect', array('VOYNOTIF_logs', 'update_notification_status') );
         add_action('voynotif/template/footer', array('VOYNOTIF_logs', 'add_pixel') );
+        add_filter( 'wp_privacy_personal_data_exporters', array( $this, 'add_gpdr_exporter' ), 1 );
+        add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'add_gpdr_eraser' ), 1 );
+    }
+    
+    public function add_gpdr_exporter( $exporters ) {
+	$exporters['notifications-center-logs'] = array(
+		'exporter_friendly_name' => __( 'Email tracking (Notifications Center)', 'notifications-center' ),
+		'callback'               => array( $this, 'export_user_logs' ),
+	);        
+        return $exporters;
+    }
+    
+    public function add_gpdr_eraser( $erasers ) {
+	$erasers['notifications-center-logs'] = array(
+		'eraser_friendly_name' => __( 'Email tracking (Notifications Center)', 'notifications-center' ),
+		'callback'               => array( $this, 'erase_user_logs' ),
+	);        
+        return $erasers;
+    }
+    
+    public function export_user_logs( $email_address ) {
+	$email_address = trim( $email_address );
+	$data_to_export = array();
+        $logs_to_export = array();
+        
+        global $wpdb;
+        $table = self::get_table_name();
+        $logs = $wpdb->get_results( 
+            "
+            SELECT id, notification_id, type, recipient, subject, title, status, context, date, token, opens  
+            FROM $table
+                WHERE recipient LIKE '{$email_address}'
+                ORDER BY date ASC
+                LIMIT 99999999 OFFSET 0
+            "
+        );
+        
+        if( !empty( $logs ) ) {
+            foreach( $logs as $log ) {
+                $log_date = new DateTime($log->date);
+                $log_context = unserialize($log->context);
+                ob_start(); ?>
+                    <ul>
+                        <li><?php _e('Type: ', 'notifications-center'); ?><?php echo voynotif_get_notification_type_title($log->type) ?></li>
+                        <li><?php _e('Date: ', 'notifications-center'); ?><?php echo $log_date->format('d/m/Y à G:i'); ?></li>
+                        <li><?php _e('Subject: ', 'notifications-center'); ?><?php echo $log->subject; ?></li>
+                        <li><?php _e('Status: ', 'notifications-center'); ?><?php echo VOYNOTIF_logs::get_status_title( $log->status ); ?></li>
+                    </ul>
+                <?php $value = ob_get_clean();
+                $logs_to_export[] = array(
+                    'name'  => $log_date->format('d/m/Y à G:i'),
+                    'value' => __('Subject: ', 'notifications-center').$log->subject.' | '.VOYNOTIF_logs::get_status_title( $log->status ),
+                );                
+            }
+        }
+
+	$data_to_export[] = array(
+            'group_id'    => 'notifications-center-logs',
+            'group_label' => __( 'Email tracking (Notifications Center)', 'notifications-center' ),
+            'item_id'     => "notifications-center-logs",
+            'data'        => $logs_to_export,
+	);
+        
+        error_log( print_r($data_to_export, true) );
+
+	return array(
+            'data' => $data_to_export,
+            'done' => true,
+	);        
+    }
+    
+    public function erase_user_logs( $email_address, $page = 1 ) {
+	if ( empty( $email_address ) ) {
+            return array(
+                'items_removed'  => false,
+                'items_retained' => false,
+                'messages'       => array(),
+                'done'           => true,
+            );
+	}
+
+        global $wpdb;
+        $table = self::get_table_name();
+        $logs = $wpdb->get_results( 
+            "
+            SELECT id, notification_id, type, recipient, subject, title, status, context, date, token, opens  
+            FROM $table
+                WHERE recipient LIKE '{$email_address}'
+                ORDER BY date ASC
+                LIMIT 99999999 OFFSET 0
+            "
+        );
+                
+        if( empty( $logs ) ) {
+            return array(
+                'items_removed'  => false,
+                'items_retained' => false,
+                'messages'       => array(),
+                'done'           => true,
+            );            
+        }
+        
+        $items_removed = 0;
+        foreach( $logs as $log ) {
+            self::delete_log($log->id);
+            $items_removed++;
+        }
+
+	return array(
+		'items_removed'  => $items_removed,
+		'items_retained' => 0,
+		'messages'       => array( __('Email tracking succesfully deleted') ),
+		'done'           => $items_removed,
+	);        
     }
     
     
@@ -250,6 +364,17 @@ class VOYNOTIF_logs {
         }
         return false;        
     }
+    
+    
+    public static function delete_log( $log_id ) {
+        if( empty( $log_id ) ) {
+            return false;
+        }
+        global $wpdb; 
+        $table = self::get_table_name();
+        $wpdb->delete( $table, array( 'id' => $log_id ) );
+        return true;
+    } 
     
     
     /**

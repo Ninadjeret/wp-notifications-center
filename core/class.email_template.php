@@ -47,7 +47,7 @@ if( !class_exists( 'VOYNOTIF_email_template' ) ) {
                     $args[$name] = $result->option_value;
                 }
             }
-            error_log( print_r( $args, true ) );
+
             $args = wp_parse_args( $args, array(
                 'logo' => admin_url() . '/images/w-logo-blue.png',
                 'button_color' => '#0073aa',
@@ -58,7 +58,6 @@ if( !class_exists( 'VOYNOTIF_email_template' ) ) {
                 'gf_table_bg' => '#0073aa',
                 'gf_table_color' => '#fff',
             ) );
-            error_log( print_r( $args, true ) );
             
             
             $this->logo_url = $args['logo'];

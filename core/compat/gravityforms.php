@@ -45,27 +45,27 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
         $template = new VOYNOTIF_email_template();
         ob_start(); ?>
         <table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA"><tr><td>
-                    <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF">
+                    <table width="100%" border="0" cellpadding="8" cellspacing="0" bgcolor="#FFFFFF">
                         <tr style="color:<?php echo $template->gf_table_color; ?>" bgcolor="<?php echo $template->gf_table_bg; ?>">
                             <td colspan="2">
-                                <font style="font-family: sans-serif; font-size:12px;"><strong>Label</strong></font>
+                                <font style="font-family: sans-serif; font-size:16px;"><strong>Label</strong></font>
                             </td>
                         </tr>
                         <tr bgcolor="#f5f5f5">
                             <td width="20">&nbsp;</td>
                             <td>
-                                <font style="font-family: sans-serif; font-size:12px;">Value</font>
+                                <font style="font-family: sans-serif; font-size:16px; color: #666666;">Value</font>
                             </td>
                         </tr>
                         <tr style="color:<?php echo $template->gf_table_color; ?>" bgcolor="<?php echo $template->gf_table_bg; ?>">
                             <td colspan="2">
-                                <font style="font-family: sans-serif; font-size:12px;"><strong>Label</strong></font>
+                                <font style="font-family: sans-serif; font-size:16px;"><strong>Label</strong></font>
                             </td>
                         </tr>
                         <tr bgcolor="#f5f5f5">
                             <td width="20">&nbsp;</td>
                             <td>
-                                <font style="font-family: sans-serif; font-size:12px;">Value</font>
+                                <font style="font-family: sans-serif; font-size:16px; color: #666666;">Value</font>
                             </td>
                         </tr>
                     </table>
@@ -133,8 +133,9 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
         
         $template = new VOYNOTIF_email_template();
         
-        $content = str_replace('<tr bgcolor="#FFFFFF">', '<tr bgcolor="'.$template->backgroundcontent_color.'">', $email['message'] );
+        $content = str_replace('<tr bgcolor="#FFFFFF">', '<tr style="color:#666666" bgcolor="'.$template->backgroundcontent_color.'">', $email['message'] );
         $content = str_replace('<tr bgcolor="#EAF2FA">', '<tr style="color:'.$template->gf_table_color.'" bgcolor="'.$template->gf_table_bg.'">', $content );
+        $content = str_replace('font-size:12px', 'font-size:12px', $content );
         
         $template->set_title($email['subject']);
         $template->set_content($content);
