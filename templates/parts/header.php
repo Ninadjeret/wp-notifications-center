@@ -131,6 +131,12 @@
                     border: 0 !important;
                     font-size: 16px !important;
                 }
+                .td {
+                    border-left: 0;
+                    border-right: 0;
+                    border-top: 1px solid #666666;
+                    color: #666666;
+                }
 
             }
         </style>

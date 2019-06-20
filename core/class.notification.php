@@ -386,7 +386,7 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
             if( $auth == false ) return false;
 
             //Get all info
-            $object = $this->subject;
+            $object = $this->mask_engine->update_masks($this->subject);
             $headers = $this->get_headers();
             $html = $this->get_html();           
             

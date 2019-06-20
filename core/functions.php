@@ -141,7 +141,6 @@ if( !function_exists('voynotif_get_notifications_tags') ) {
             'content' => __( 'Content', 'notifications-center' ),
             'comment' => __( 'Comment', 'notifications-center' ),
             'user' => __( 'User', 'notifications-center' ),
-            'summary' => __( 'Summary', 'notifications-center' ),
             'multisite' => __( 'Multisite', 'notifications-center' ),
         ) );
         return $tags;

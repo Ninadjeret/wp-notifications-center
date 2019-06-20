@@ -25,13 +25,13 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
             $masks = apply_filters('voynotif/masks', array(), $this->context, $this->context_info );
             $masks = apply_filters('voynotif/masks/context='.$this->context, $masks );
             $this->masks = $masks;
-            $this->tags = array(
+            $this->tags = apply_filters('voynotif/masks/tags', array(
                 'basic' => __( 'Basic', 'notifications-center' ),
                 'comment' => __( 'Comment   ', 'notifications-center' ),
                 'content' => __( 'Post', 'notifications-center' ),
                 'system' => __( 'System', 'notifications-center' ),
                 'user' => __( 'User/author', 'notifications-center' ),
-            );
+            ));
             
         }
 
@@ -373,7 +373,7 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
             //----------------------------------------------------------------------
             // Return
             //----------------------------------------------------------------------          
-            return $content;
+            return apply_filters('voynotif/notification/content', $content, $this->context_info);
 
         }
 

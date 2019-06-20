@@ -214,7 +214,8 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
 
             //Add compat files with other plugins
             include_once('core/compat/duplicate-post.php'); 
-            include_once('core/compat/gravityforms.php');  
+            include_once('core/compat/gravityforms.php'); 
+            include_once('core/compat/woocommerce.php'); 
             
             //Load Notifications
             include_once('notifications/comment_new.php');
