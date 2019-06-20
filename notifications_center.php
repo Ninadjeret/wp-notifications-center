@@ -3,7 +3,7 @@
 Plugin Name: Notifications Center
 Plugin URI: http://www.notificationscenter.com/
 Description: Personnalized notifications for your Wordpress website with beautiful, responsive and personnalised emails.
-Version: 1.3.3
+Version: 1.4.0
 Author: Florian Chaillou
 Author URI: http://www.notificationscenter.com 
 Text Domain: notifications-center
