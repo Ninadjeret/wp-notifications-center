@@ -11,6 +11,7 @@ class VOYNOTIF_logs {
      */
     function __construct() {
         //Nothing at the moment
+        add_action ('notifications_center_logs_deletion', array( $this, 'delete_old_logs') );
         add_action('template_redirect', array('VOYNOTIF_logs', 'update_notification_status') );
         add_action('voynotif/template/footer', array('VOYNOTIF_logs', 'add_pixel') );
         add_filter( 'wp_privacy_personal_data_exporters', array( $this, 'add_gpdr_exporter' ), 1 );
@@ -497,6 +498,29 @@ class VOYNOTIF_logs {
         
         return false;
         
+    }
+    
+    public function delete_old_logs() {
+        
+        $days = get_option( VOYNOTIF_FIELD_PREFIXE . 'logs_duration' );
+        
+        if( empty( $days ) ) {
+            return false;
+        }
+        
+        $date = new \DateTime();
+        $date->modify('-'.$days.' days');
+        
+        global $wpdb;
+        $table = self::get_table_name();
+        $wpdb->query(
+            $wpdb->prepare(
+                "
+                DELETE FROM $table
+                 WHERE date < %s
+                ", $date->format('Y-m-d H:i:s')
+            )
+        );
     }
     
 }

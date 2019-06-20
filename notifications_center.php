@@ -51,8 +51,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             add_action( 'plugins_loaded', array( $this, 'load_text_domain' ) );
             add_action( 'plugins_loaded', array( $this, 'init' ), 20 );
             add_action( 'template_redirect', array( $this, 'template_preview' ) );
-            add_action( 'admin_notices', array( $this, 'admin_notices' ) );
-            
+            add_action( 'admin_notices', array( $this, 'admin_notices' ) );                
             
             /**
              * @since 1.1.0
@@ -97,6 +96,10 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             $this->updater = new VOYNOTIF_updater();
             $this->admin_notices = array();
 
+        }
+        
+        public function answer_expiration_event() {
+            error_log('answer_expiration_event');
         }
         
 
@@ -330,13 +333,29 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             }
         }
         
+        public function cron_activation() {
+            if( !wp_next_scheduled( 'notifications_center_logs_deletion' ) ) {
+                error_log('activation');
+                wp_schedule_event( time(), 'daily', 'notifications_center_logs_deletion' );
+            }          
+        }
+        
+        public function cron_deactivation() {
+            wp_clear_scheduled_hook('notifications_center_logs_deletion');
+        }
+        
+        
+        
     }
 }
 $notifications_center = new VOYNOTIF_plugin();
 
+register_activation_hook( __FILE__, array($notifications_center, 'cron_activation') );
+register_deactivation_hook(__FILE__, array($notifications_center, 'cron_deactivation') );
 
 
-     
+
+
 
 
 

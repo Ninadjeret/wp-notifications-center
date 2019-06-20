@@ -23,10 +23,11 @@ if( isset( $_GET['paged'] ) && !empty( $_GET['paged'] ) ) {
 if( isset( $_GET['s'] ) && !empty( $_GET['s'] ) ) {
     $args['s'] = $_GET['s'];
 }
+
 ?>
 <div class="voy-row">
     <div class="voy-col-6">
-        <h3><?php printf( __('%d Résultats', 'notifications-center'), VOYNOTIF_logs::get_logs_count($args) ); ?></h3>
+        <h3><?php printf( __('%d Results', 'notifications-center'), VOYNOTIF_logs::get_logs_count($args) ); ?></h3>
     </div>
     <div class="voy-col-6 voy-text-right">
         <form action="<?php echo remove_query_arg('s'); ?>" method="get">

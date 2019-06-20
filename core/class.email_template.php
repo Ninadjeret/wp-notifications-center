@@ -38,13 +38,22 @@ if( !class_exists( 'VOYNOTIF_email_template' ) ) {
                 $this->type = 'plugin';
             }
             
-            global $wpdb;           
-            $results = $wpdb->get_results( "SELECT option_name, option_value FROM {$wpdb->prefix}options WHERE option_name LIKE 'voynotif_email_%'", OBJECT );
             $args = array();
-            if( !empty($results) ) {
-                foreach( $results as $result ) {
-                    $name = str_replace('voynotif_email_', '', $result->option_name);
-                    $args[$name] = $result->option_value;
+            $variables = array(
+                'logo', 
+                'button_color', 
+                'background_color', 
+                'backgroundcontent_color', 
+                'title_color', 
+                'footer_message', 
+                'gf_table_bg', 
+                'gf_table_color'
+            );
+
+            foreach( $variables as $variable ) {
+                $option = get_option( VOYNOTIF_FIELD_PREFIXE . 'email_' . $variable);
+                if( !empty( $option ) ) {
+                    $args[$variable] = $option;
                 }
             }
 

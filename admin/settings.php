@@ -102,6 +102,14 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                 'screen' => 'general',
                 'fieldgroup' => 'logs'
             );
+            $fields['logs_duration'] = array(
+                'id' => 'logs_duration',
+                'label' => __( 'Number of days before deleting logs', 'notifications-center' ),
+                'description' => __( '(keep empty to not delete logs)', 'notifications-center' ),
+                'type' => 'number',
+                'screen' => 'general',
+                'fieldgroup' => 'logs'
+            );
             
             //Choices
             $choices = array(

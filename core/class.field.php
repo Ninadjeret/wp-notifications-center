@@ -109,6 +109,10 @@ if( !class_exists( 'VOYNOTIF_field' ) ) {
                 case 'text' :
                     $input = '<input type="text" name="'.$this->id.'" id="'.$this->id.'" value="'.esc_html($value).'">';
                     break;
+                
+                case 'number' :
+                    $input = '<input type="number" name="'.$this->id.'" id="'.$this->id.'" value="'.esc_html($value).'">';
+                    break;
 
                 //Select field
                 case 'select' :
@@ -197,6 +201,11 @@ if( !class_exists( 'VOYNOTIF_field' ) ) {
                 case 'text' :
                     $this->save_value( sanitize_text_field($value) );
                     break;
+                
+                //Text field
+                case 'number' :
+                    $this->save_value( intval($value) );
+                    break;
 
                 //Select field
                 case 'select' :
@@ -240,11 +249,13 @@ if( !class_exists( 'VOYNOTIF_field' ) ) {
         function save_value( $value ) {
             
             if( $this->screen == 'post' OR empty( $this->screen ) ) {
-                update_post_meta($this->post_id, $this->id, $value);
+                $result = update_post_meta($this->post_id, $this->id, $value);
+                do_action('voynotif/save_field', $this->id, $value, $result, 'post');
             } else {
-                update_option( $this->id, $value );
+                $result = update_option( $this->id, $value );
+                do_action('voynotif/save_field', $this->id, $value, $result, 'option');
             }
-            
+
         }
         
      
