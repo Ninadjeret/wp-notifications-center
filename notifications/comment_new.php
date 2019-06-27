@@ -183,6 +183,12 @@ class VOYNOTIF_notification_type_comment_new extends VOYNOTIF_notification_type 
                     'url'   => get_permalink( $post->ID ),
                 ) );
             }
+            
+            if( $notification->recipient_type == 'post_author' ) { 
+                $author_id = $post->post_author;
+                $author_email = get_the_author_meta( 'user_email', $author_id );
+                $notification->add_recipient($author_email);
+            }
 
             //Send notification
             $notification->send_notification();   

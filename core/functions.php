@@ -21,6 +21,10 @@ if( !function_exists('voynotif_get_excerpt_by_id') ) {
     }
 }
 
+function voynotif_option( $option ) {
+    return apply_filters('voynotif/load_field', get_option( VOYNOTIF_FIELD_PREFIXE . $option  ), $option );
+}
+
 
 /*
  * -------------------------------------------------------------------------

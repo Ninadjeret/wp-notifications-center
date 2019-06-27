@@ -15,12 +15,87 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
     }
     
     function init() {       
-        add_filter( 'voynotif/notifications/tags', array( $this, 'add_tag' ) ); 
+        add_filter( 'voynotif/notifications/tags', array( $this, 'add_tags' ) ); 
         add_filter( 'voynotif/masks/tags', array( $this, 'add_maks_tags' ) );  
         add_filter( 'voynotif/notification/content', array( $this, 'perform_masks' ), 20, 2 );
+        add_filter( 'voynotif/settings/defaults', array( $this, 'add_defaults') );
+        add_filter( 'voynotif/settings/fields', array($this, 'add_settings') );
+        
+        add_filter( 'voynotif/load_field', array( $this, 'get_wc_email_status'), 10, 2 );
+        add_action('voynotif/save_field', array( $this, 'update_wc_email_status' ), 10, 4);
         
         add_filter( 'voynotif/logs/context/type=wc_new_order', array( $this, 'log_context' ), 10, 2 );
         include_once( VOYNOTIF_DIR .  '/notifications/woocommerce/new-order.php');
+    }
+    
+    public function add_settings( $fields ) {
+        $fields['wc_active'] = array(
+            'id' => 'wc_active',                
+            'label' => __( 'Woocommerce', 'notifications-center' ),
+            'type' => 'boolean',
+                'params'    => array(
+                    'title' => __( 'Use Notifications Center template on Woocommerce emails', 'notifications-center' ),
+                ),
+            'screen' => 'general',
+            'fieldgroup' => 'template'
+        );
+        return $fields;
+    }
+    
+    public function get_wc_email_status( $value, $option ) {
+        $slug = str_replace('block_', '', str_replace('_status', '', $option) );
+        if( array_key_exists( $slug, $this->get_defaults() ) ) {
+            $base_slug = str_replace('wc_', '', $slug);
+            $option = get_option('woocommerce_'.$base_slug.'_settings');
+            if( is_array($option) && array_key_exists('enabled', $option) && $option['enabled'] == 'no' ) {
+                return 1;
+            } else {
+                return 0;
+            }           
+        }          
+        return $value;
+    }
+    
+    public function update_wc_email_status( $field_id, $value, $result, $context ) {
+        $slug = str_replace('block_', '', str_replace('_status', '', $field_id) );
+        if( array_key_exists( $slug, $this->get_defaults() ) ) {
+            $base_slug = str_replace('wc_', '', $slug);
+            $option = get_option('woocommerce_'.$base_slug.'_settings');
+            $enabled = ( $value == 1 ) ? 'no' : 'yes' ;
+            if( is_array( $option ) ) {
+                $option['enabled'] = $enabled;
+                update_option( 'woocommerce_'.$base_slug.'_settings', $option );
+            } else {
+                $option = array('enabled' => $enabled);
+                update_option( 'woocommerce_'.$base_slug.'_settings', $option );
+            }
+        }          
+        return true;
+    }
+    
+    public function get_defaults() {
+        return array(
+            'wc_new_order' => array(
+                'label' => __( 'New order', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent to admin after a new order', 'notifications-center' ),
+            ),
+            'wc_cancelled_order' => array(
+                'label' => __( 'Cancelled order', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when an order is cancelled', 'notifications-center' ),
+            ),
+            'wc_failed_order' => array(
+                'label' => __( 'Failed order', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when an order is failed', 'notifications-center' ),
+            ),
+        );
+    }
+    
+    public function add_defaults( $defaults ) {
+        $wc_defaults = $this->get_defaults();
+        return array_merge($wc_defaults, $defaults);         
     }
     
     public function log_context( $return, $context ) {
@@ -32,7 +107,7 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
         return $return;
     }
     
-    public function add_tag( $tags ) {
+    public function add_tags( $tags ) {
         $tags['woocommerce'] = __('Woocommerce', 'notifications-center');
         return $tags;
     }

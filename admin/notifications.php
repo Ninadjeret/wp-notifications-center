@@ -21,12 +21,25 @@ if( !class_exists( 'VOYNOTIF_admin_notifications' ) ) {
             $this->text_domain = 'text_domain';
 
             //Register hooks
+            add_action('admin_menu', array($this, 'create_submenu') ); //Hook for submenu creation
             add_filter( 'manage_edit-'.$this->name.'_columns',  array( $this, 'manage_columns' ) );
             add_action( 'manage_'.$this->name.'_posts_custom_column', array( $this, 'manage_custom_column' ) );
             add_action( 'restrict_manage_posts', array( $this, 'display_filter' ) );
             add_filter( 'parse_query', array( $this, 'filter_posts' ) );
             
         }
+        
+        function create_submenu() {
+            $link = admin_url().'edit.php?post_type=voy_notification';
+            add_submenu_page(
+                'options-general.php',
+                __( 'Templates', 'notifications-center' ),
+                __( 'Notifications', 'notifications-center' ),
+                'manage_options',
+                $link,
+                NULL
+            );    
+        } 
 
 
         /**

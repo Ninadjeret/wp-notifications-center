@@ -21,9 +21,18 @@ if( !class_exists( 'VOYNOTIF_admin_notification' ) ) {
             add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
             add_action( 'admin_footer', array( $this, 'footer_ajax' ) ); // Write our JS below here
             add_action( 'media_buttons', array( $this, 'add_mask_button' ), 50 );
+            add_action( 'admin_notices', array( $this, 'toto' ) );
 
             //Add ajax calls
             add_action('wp_ajax_voy_notification_ajax_update', array( $this, 'ajax_update' ) );
+        }
+        
+        public function toto() {
+            
+            $screen = get_current_screen();     
+            if( $screen->id != 'edit-voy_notification' && $screen->id != 'voy_notification' ) return; 
+            
+            VOYNOTIF_admin_settings::render_tabs();
         }
 
 

@@ -2,6 +2,7 @@
 if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
     class VOYNOTIF_admin_settings {
 
+        const SCREEN_VAR = 'tab';
 
         /**
          * Constructor
@@ -11,7 +12,6 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
          * @update 2016/05/19
          */
         function __construct() {
-            $this->screen_var = 'voynotif_settings_screen';
             add_filter( 'voynotif/settings/fields', array( $this, 'settings_fields' ), 10, 1 );
             add_filter( 'voynotif/settings/screens', array( $this, 'settings_screens' ), 10, 1 );
             add_action( 'admin_menu', array($this, 'create_submenu') ); //Hook for submenu creation   
@@ -132,7 +132,9 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
         
         
         function update_settings() {
-            $fields = voynotif_get_settings_fields( $this->get_current_screen_id( ));
+            
+            $fields = voynotif_get_settings_fields( $_POST['screen'] );
+            
             $js = '';
             foreach( $fields as $field_id => $field_data ) {
                 $field_obj = new VOYNOTIF_field( $field_data );
@@ -153,8 +155,8 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
         function render_page() {
             ?>
             <div class="wrap voy-wrap voy-settings">
-                <h1><?php _e( 'Settings', 'voy_notifications_center' ); ?></h1>
-                <?php $this->render_tabs(); ?>
+                <!--<h1><?php _e( 'Settings', 'voy_notifications_center' ); ?></h1>-->
+                <?php self::render_tabs(); ?>
                 <?php $this->render_settings_screen(); ?>
             </div>
             <?php
@@ -170,14 +172,14 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
          */
         function add_js() {
             
-            $screen = get_current_screen();            
-            if( $screen->id != 'voy_notification_page_voynotif_settings' ) return;            
+            $screen = get_current_screen();    
+            if( $screen->id != 'admin_page_voynotif_settings' ) return;            
             
             //Get fields for ajax call
             $fields = voynotif_get_settings_fields();
             $js = '';
             foreach( $fields as $field_id => $field_data ) {
-                if( $field_data['screen'] == $this->get_current_screen_id() ) {
+                if( $field_data['screen'] == self::get_current_screen_id() ) {
                     
                     if( $field_data['type'] == 'select' ) {
                         $js .= ', '.$field_data['id'].':jQuery(\'#'.VOYNOTIF_FIELD_PREFIXE.$field_data['id'].'\').find(":selected").val()';
@@ -217,7 +219,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                     submit.attr('disabled', 'disabled');
                     response_wrapper.html('');
                     jQuery.ajax({ 
-                        data: {action: 'voytnotif_ajax_update_settings', screen:'<?php echo $this->get_current_screen_id(); ?>'<?php echo $js; ?>},
+                        data: {action: 'voytnotif_ajax_update_settings', screen:'<?php echo self::get_current_screen_id(); ?>'<?php echo $js; ?>},
                         type: 'post',
                         url: ajaxurl,
                         success: function(data) {
@@ -251,13 +253,18 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
 
         
         public function settings_screens( $screens ) {
-            $screens['general'] = array(
-                'title' => __( 'General', 'notifications-center' ),
+            $screens['notifications'] = array(
+                'title' => __( 'Personnalized notifications', 'notifications-center' ),
+                'url'   => admin_url().'/edit.php?post_type=voy_notification',
                 'callback' => array( 'VOYNOTIF_admin_settings', 'settings_general_screen' )
-            );
+            ); 
             $screens['defaults'] = array(
                 'title' => __( 'Default Notifications', 'notifications-center' ),
                 'callback' => array( 'VOYNOTIF_admin_settings', 'settings_defaults_screen' )
+            );
+            $screens['general'] = array(
+                'title' => __( 'Settings', 'notifications-center' ),
+                'callback' => array( 'VOYNOTIF_admin_settings', 'settings_general_screen' )
             );
             /*$screens['about'] = array(
                 'title' => __( 'About', 'notifications-center' ),
@@ -453,13 +460,15 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
         /**
          * 
          */
-        private function render_tabs() {
+        public static function render_tabs() {
             $screens = voynotif_get_settings_screens();
-            $current_screen = $this->get_current_screen_id();
+            $current_screen = self::get_current_screen_id();
             ?>
             <h2 class="nav-tab-wrapper">
-                <?php foreach( $screens as $screen_id => $screen_data ) { ?>
-                    <a class="nav-tab <?php if( $screen_id == $current_screen ) { echo 'nav-tab-active'; } ?>" href="<?php echo add_query_arg( 'voynotif_settings_screen', $screen_id ); ?>">
+                <?php foreach( $screens as $screen_id => $screen_data ) {
+                    $url = ( array_key_exists('url', $screen_data) ) ? $screen_data['url'] : add_query_arg( 'tab', $screen_id, admin_url().'/edit.php?post_type=voy_notification&page=voynotif_settings' ) ;
+                    ?>
+                    <a class="nav-tab <?php if( $screen_id == $current_screen ) { echo 'nav-tab-active'; } ?>" href="<?php echo $url; ?>">
                         <?php echo $screen_data['title']; ?>
                     </a>
                 <?php } ?>
@@ -468,13 +477,13 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
         }
         
         
-        private function get_current_screen_id() {
+        private static function get_current_screen_id() {
             $screens = voynotif_get_settings_screens();
-            if( empty( $_GET[$this->screen_var] ) ) {
+            if( empty( $_GET[VOYNOTIF_admin_settings::SCREEN_VAR] ) ) {
                 $screen_ids = array_keys($screens);
                 $screen_id = $screen_ids[0];
             } else {
-                $screen_id = $_GET[$this->screen_var];
+                $screen_id = $_GET[self::SCREEN_VAR];
             }
             return $screen_id;            
         }
@@ -487,7 +496,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
             
             //Get setting screen to display
             $screens = voynotif_get_settings_screens();
-            $current_screen = $screens[$this->get_current_screen_id()];
+            $current_screen = $screens[self::get_current_screen_id()];
 
             
             //Display needed screen regarding to query var
@@ -607,6 +616,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
             }
             
             $result = update_option( VOYNOTIF_FIELD_PREFIXE . 'block_' . $notif_id . '_status', $notif_status );
+            do_action('voynotif/save_field', 'block_' . $notif_id . '_status', $notif_status, null, 'option');
             if( $result == true ) {
                 echo $notif_id.' updated to '.$notif_status;
                 die();                
@@ -718,7 +728,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                                 <div class="voynotif-default-item">
                                     <div class="voynotif-default-check">
                                         <?php
-                                            $status = get_option( VOYNOTIF_FIELD_PREFIXE . 'block_' . $id . '_status' );
+                                            $status = voynotif_option( 'block_' . $id . '_status' );
                                             if( $status == 1 ) {
                                                 $checked = ''; 
                                                 $title = __( 'Blocked', 'notifications-center' );

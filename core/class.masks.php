@@ -314,7 +314,7 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
                     $content = str_replace( '{post_excerpt}', $post->post_excerpt, $content ); 
                     $content = str_replace( '{post_date}', get_the_date( '', $post->ID ), $content );
                     $content = str_replace( '{post_link}', get_permalink( $post->ID ), $content ); 
-                    $content = str_replace( '{post_edit_link}', get_edit_post_link( $post->ID, false ), $content ); 
+                    $content = str_replace( '{post_edit_link}', admin_url( 'post.php?post=' . $post->ID ) . '&action=edit', $content ); 
                     $author = get_user_by( 'id', $post->post_author );
                     if( ! empty( $author ) ) {
                         $content = str_replace( '{post_author_name}', $author->display_name, $content ); 

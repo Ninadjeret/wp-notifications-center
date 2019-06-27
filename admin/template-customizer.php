@@ -51,7 +51,7 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
         function create_submenu() {
             $link = $this->_customizer_url('salted');
             add_submenu_page(
-                'edit.php?post_type=voy_notification',
+                'themes.php',
                 __( 'Templates', 'notifications-center' ),
                 __( 'Email template', 'notifications-center' ),
                 'manage_options',
