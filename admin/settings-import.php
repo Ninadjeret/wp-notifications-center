@@ -10,7 +10,8 @@ class VOYNOTIF_settings_import extends VOYNOTIF_settings_screen {
         $this->title = __('Import/Export', 'notifications-center');
         $this->order = 100;
         $this->callback = array($this, 'html');
-        add_action('load-voy_notification_page_voynotif_settings', array($this, 'do_actions'));
+        
+        add_action('load-admin_page_voynotif_settings', array($this, 'do_actions'));
         parent::__construct();
     }
 

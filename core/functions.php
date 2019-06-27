@@ -231,8 +231,9 @@ if( !function_exists('voynotif_get_option') ) {
 if( !function_exists('voynotif_get_options') ) {
     function voynotif_get_options() {
         $settings = array();
-        global $wpdb;
-        $results = $wpdb->get_results( 'SELECT * FROM wp_options WHERE option_name LIKE "voynotif_%"', OBJECT );
+        global $wpdb;       
+        $results = $wpdb->get_results( 'SELECT * FROM '.$wpdb->prefix.'options WHERE option_name LIKE "voynotif_%"', OBJECT );
+        error_log( print_r($results, true) );
         if( !empty( $results ) ) {
             foreach( $results as $option ) {
                 if (@unserialize($option->option_value)) {
