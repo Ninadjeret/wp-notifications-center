@@ -49,7 +49,7 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
          * @since 0.9
          */
         function create_submenu() {
-            $link = $this->_customizer_url('salted');
+            $link = self::customizer_url('salted');
             add_submenu_page(
                 'themes.php',
                 __( 'Templates', 'notifications-center' ),
@@ -68,12 +68,12 @@ if( !class_exists( 'VOYNOTIF_template_customizer' ) ) {
          * @since 0.9
          * @return string encoded Customizer URL
          */
-        function _customizer_url( $template_name ) {
-
+        public static function customizer_url( $template_name = 'salted' ) {
+            $current_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
             $link = add_query_arg(
                 array(
                     'url'             => urlencode( site_url( '?voynotif_template_preview_html='.$template_name ) ),
-                    'return'          => urlencode( admin_url('edit.php?post_type=voy_notification') ),
+                    'return'          => urlencode( $current_url ),
                     'voynotif_template_preview_html' => $template_name
                 ),
                 'customize.php'

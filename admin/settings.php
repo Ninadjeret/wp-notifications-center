@@ -12,6 +12,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
          * @update 2016/05/19
          */
         function __construct() {
+            
             add_filter( 'voynotif/settings/fields', array( $this, 'settings_fields' ), 10, 1 );
             add_filter( 'voynotif/settings/screens', array( $this, 'settings_screens' ), 10, 1 );
             add_action( 'admin_menu', array($this, 'create_submenu') ); //Hook for submenu creation   
@@ -254,9 +255,8 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
         
         public function settings_screens( $screens ) {
             $screens['notifications'] = array(
-                'title' => __( 'Personnalized notifications', 'notifications-center' ),
+                'title' => __( 'Custom notifications', 'notifications-center' ),
                 'url'   => admin_url().'/edit.php?post_type=voy_notification',
-                'callback' => array( 'VOYNOTIF_admin_settings', 'settings_general_screen' )
             ); 
             $screens['defaults'] = array(
                 'title' => __( 'Default Notifications', 'notifications-center' ),
@@ -266,10 +266,10 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                 'title' => __( 'Settings', 'notifications-center' ),
                 'callback' => array( 'VOYNOTIF_admin_settings', 'settings_general_screen' )
             );
-            /*$screens['about'] = array(
-                'title' => __( 'About', 'notifications-center' ),
-                'callback' => array( 'VOYNOTIF_admin_settings', 'settings_about_screen' )
-            );*/
+            $screens['template'] = array(
+                'title' => __( 'Template', 'notifications-center' ),
+                'url' => VOYNOTIF_template_customizer::customizer_url(),
+            );
             return $screens;
         }
         
@@ -460,13 +460,13 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
         /**
          * 
          */
-        public static function render_tabs() {
+        public static function render_tabs() {           
             $screens = voynotif_get_settings_screens();
             $current_screen = self::get_current_screen_id();
             ?>
             <h2 class="nav-tab-wrapper">
                 <?php foreach( $screens as $screen_id => $screen_data ) {
-                    $url = ( array_key_exists('url', $screen_data) ) ? $screen_data['url'] : add_query_arg( 'tab', $screen_id, admin_url().'/edit.php?post_type=voy_notification&page=voynotif_settings' ) ;
+                    $url = ( array_key_exists('url', $screen_data) ) ? $screen_data['url'] : add_query_arg( 'tab', $screen_id, admin_url().'edit.php?post_type=voy_notification&page=voynotif_settings' ) ;
                     ?>
                     <a class="nav-tab <?php if( $screen_id == $current_screen ) { echo 'nav-tab-active'; } ?>" href="<?php echo $url; ?>">
                         <?php echo $screen_data['title']; ?>
@@ -615,8 +615,8 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                 die();                
             }
             
-            $result = update_option( VOYNOTIF_FIELD_PREFIXE . 'block_' . $notif_id . '_status', $notif_status );
-            do_action('voynotif/save_field', 'block_' . $notif_id . '_status', $notif_status, null, 'option');
+            voynotif_update_option( 'block_' . $notif_id . '_status', $notif_status );
+
             if( $result == true ) {
                 echo $notif_id.' updated to '.$notif_status;
                 die();                

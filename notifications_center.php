@@ -36,7 +36,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             define('VOYNOTIF_VERSION', '1.4.0');
             define('VOYNOTIF_FIELD_PREFIXE', 'voynotif_');
             define('VOYNOTIF_PREMIUM_URL', 'http://www.notificationscenter.com');
-            define('VOYNOTIF_EXPORT_VERSION', '1.0.0');
+            define('VOYNOTIF_EXPORT_VERSION', '1.1.0');
 
             //------------------------------------------------------------//
             // 2. Plugin activation hook
@@ -163,7 +163,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
                     'show_ui'             => true,
                     'show_in_menu'        => false,
                     'show_in_nav_menus'   => false,
-                    'show_in_admin_bar'   => true,
+                    'show_in_admin_bar'   => false,
                     'menu_position'       => 39,
                     'menu_icon'           => 'dashicons-email',
                     'can_export'          => true,
@@ -353,7 +353,6 @@ $notifications_center = new VOYNOTIF_plugin();
 
 register_activation_hook( __FILE__, array($notifications_center, 'cron_activation') );
 register_deactivation_hook(__FILE__, array($notifications_center, 'cron_deactivation') );
-
 
 
 

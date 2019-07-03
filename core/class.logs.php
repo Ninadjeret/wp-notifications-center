@@ -12,8 +12,8 @@ class VOYNOTIF_logs {
     function __construct() {
         //Nothing at the moment
         add_action ('notifications_center_logs_deletion', array( $this, 'delete_old_logs') );
-        add_action('template_redirect', array('VOYNOTIF_logs', 'update_notification_status') );
-        add_action('voynotif/template/footer', array('VOYNOTIF_logs', 'add_pixel') );
+        add_action( 'template_redirect', array('VOYNOTIF_logs', 'update_notification_status') );
+        add_action( 'voynotif/template/footer', array('VOYNOTIF_logs', 'add_pixel') );
         add_filter( 'wp_privacy_personal_data_exporters', array( $this, 'add_gpdr_exporter' ), 1 );
         add_filter( 'wp_privacy_personal_data_erasers', array( $this, 'add_gpdr_eraser' ), 1 );
     }
@@ -177,7 +177,7 @@ class VOYNOTIF_logs {
     public static function add_pixel() {
         global $voynotif_log;
         if( !isset($voynotif_log) || !isset($voynotif_log->id) ) return;
-        echo '<img src="https://dev.floflo.fr/wp/?voynotif_log_id='.$voynotif_log->id.'&voynotif_log_token='.$voynotif_log->token.'" />';
+        echo '<img src="'.get_site_url().'?voynotif_log_id='.$voynotif_log->id.'&voynotif_log_token='.$voynotif_log->token.'" />';
     }
     
     
@@ -434,13 +434,21 @@ class VOYNOTIF_logs {
      * @param type $status_id
      * @return type
      */
-    public static function get_status_title( $status_id ) {
+    public static function get_status_title( $status_id, $log ) {
         
         $statuses = apply_filters( 'voynotif/logs/status', array(
             0 => __('Not sent', 'notifications-center'),
             1 => __('Sent', 'notifications-center'),
             2 => __('Opened', 'notifications-center'),
         ) );
+        
+        if( $status_id == 2 ) {
+            $opens = maybe_unserialize( $log->opens );
+            if( !empty( $opens ) ) {
+                $date = new DateTime($opens[0]);
+                return $statuses[$status_id].'&nbsp;<small>'.sprintf( __('on %1$s at %2$s', 'notifications-center'), $date->format( get_option('date_format') ), $date->format( get_option('time_format') ) ).'</small>'; 
+            }
+        }
         
         if( array_key_exists( $status_id, $statuses ) ) {
             return $statuses[$status_id];

@@ -104,6 +104,9 @@ and open the template in the editor.
     background: #f5f5f5;
     border-top: 1px solid #ddd;
 }
+body.post-type-voy_notification .nav-tab-wrapper {
+    margin: 10px 20px 0 2px;
+}
 
 /*
     ------------------------------------------------------------------

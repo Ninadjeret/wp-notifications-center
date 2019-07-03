@@ -25,6 +25,7 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
         add_action('voynotif/save_field', array( $this, 'update_wc_email_status' ), 10, 4);
         
         add_filter( 'voynotif/logs/context/type=wc_new_order', array( $this, 'log_context' ), 10, 2 );
+        
         include_once( VOYNOTIF_DIR .  '/notifications/woocommerce/new-order.php');
     }
     

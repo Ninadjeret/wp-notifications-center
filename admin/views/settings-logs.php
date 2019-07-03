@@ -75,7 +75,7 @@ if( isset( $_GET['s'] ) && !empty( $_GET['s'] ) ) {
             <?php foreach (VOYNOTIF_logs::get_logs( $args ) as $log) { ?>
                 <?php
                 $log_date = new DateTime($log->date);
-                $log_context = unserialize($log->context);
+                $log->context = unserialize($log->context);
                 ?>
                 <tr>
                     <td><?php echo $log->id; ?></td>
@@ -83,16 +83,19 @@ if( isset( $_GET['s'] ) && !empty( $_GET['s'] ) ) {
                     <td>
                         <?php if( get_post_type( $log->notification_id ) == 'voy_notification' ) { ?> 
                         <a href="<?php echo get_edit_post_link( $log->notification_id ); ?>"><?php echo get_the_title($log->notification_id); ?></a>
-                        <?php } ?>                       
+                        <?php } else {                           
+                            echo apply_filters('voynotif/logs/notification_title/type='.$log->type, false, $log);
+                        }
+                        ?>
                     </td>
                     <td><?php echo voynotif_get_notification_type_title($log->type); ?></td>
                     <td><?php echo $log->recipient; ?></td>
                     <td><?php echo $log->subject; ?></td>
                     <td>
-                        <?php echo VOYNOTIF_logs::get_context_html($log_context, $log->type); ?>
+                        <?php echo VOYNOTIF_logs::get_context_html($log->context, $log->type); ?>
                     </td>
                     <td>
-                        <?php echo VOYNOTIF_logs::get_status_title( $log->status ); ?>
+                        <?php echo VOYNOTIF_logs::get_status_title( $log->status, $log ); ?>
                     </td>
                 </tr>
             <?php } ?>  

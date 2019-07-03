@@ -22,7 +22,7 @@ if( !class_exists( 'VOYNOTIF_admin_templates' ) ) {
             //General settings
             add_action('admin_init', array($this, 'update_template') ); //Hook for template updating
             add_action('admin_notices', array($this, 'admin_notices') ); //Hook for displaying notices
-            add_action('admin_menu', array($this, 'create_submenu') ); //Hook for submenu creation
+            //add_action('admin_menu', array($this, 'create_submenu') ); //Hook for submenu creation
 
         } 
 

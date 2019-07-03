@@ -33,7 +33,7 @@ if( !class_exists( 'VOYNOTIF_admin_notifications' ) ) {
             $link = admin_url().'edit.php?post_type=voy_notification';
             add_submenu_page(
                 'options-general.php',
-                __( 'Templates', 'notifications-center' ),
+                __( 'Notifications', 'notifications-center' ),
                 __( 'Notifications', 'notifications-center' ),
                 'manage_options',
                 $link,

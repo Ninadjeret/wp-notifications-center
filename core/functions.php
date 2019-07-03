@@ -367,5 +367,10 @@ function voynotif_get_notification_type_title($type_id) {
     }
 }
 
+function voynotif_update_option( $name, $value ) {
+    $result = update_option( VOYNOTIF_FIELD_PREFIXE . $name, $value );
+    do_action('voynotif/save_field', $name, $value, null, 'option');    
+}
+
 
 ?>

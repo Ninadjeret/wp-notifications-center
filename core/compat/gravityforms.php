@@ -9,7 +9,7 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
      */
     function __construct() {
         $this->dependencies = array(
-            'Duplicate Post' => array(
+            'Gravity Forms' => array(
                 'file'      => 'gravityforms/gravityforms.php',
                 'version'   => '2.2.5'
             ),
@@ -25,6 +25,49 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
         add_filter( 'gform_pre_send_email', array( $this, 'add_html_template' ), 10, 4 );
         add_filter( 'voynotif/settings/fields', array($this, 'add_settings') );
         add_filter( 'voynotif/preview/content', array($this, 'add_preview') );
+        
+        add_filter( 'voynotif/notifications/types', array( $this, 'add_type' ) );
+        add_filter( 'voynotif/logs/notification_title/type=gravityforms', array( $this, 'log_title' ), 10, 2 );
+        add_filter( 'voynotif/logs/context/type=gravityforms', array( $this, 'log_context' ), 10, 2 );
+    }
+    
+    public function add_type( $types ) {
+        $types['gravityforms'] = array(
+            'label' => __('Gravity Forms', 'notifications-center'),
+            'tags' => 'custom',
+            'overrides_wp' => false,
+        );  
+        return $types;
+    }
+    
+    public function log_title( $return, $log ) {
+        $notification_id = $log->context['notification_id'];
+        $entry_id = $log->context['entry_id'];
+        $entry = GFAPI::get_entry( $entry_id );
+        $form_id = rgar( $entry, 'form_id' );
+        $form = GFAPI::get_form( $form_id );
+        $notifications = $form['notifications'];
+        if( array_key_exists( $notification_id, $notifications ) ) {
+            $url = admin_url().'admin.php?page=gf_edit_forms&view=settings&subview=notification&id='.$form_id.'&nid='.$notification_id;
+            return '['.__('Gravity Forms', 'notifications-center').'] <a href="'.$url.'">'.$notifications[$notification_id]['name'].'</a>';
+        }
+        return $return;
+    }
+    
+    public function log_context( $return, $context ) {
+        if( isset( $context['entry_id'] ) ) {
+            $entry_id = $context['entry_id'];
+            $entry = GFAPI::get_entry( $entry_id );
+            $form_id = rgar( $entry, 'form_id' );
+            $form = GFAPI::get_form( $form_id );
+            $entry_url = admin_url().'admin.php?page=gf_entries&view=entry&id='.$form_id.'&lid='.$entry_id.'&order=ASC&filter&paged=1&pos=0&field_id&operator';
+            $form_url = admin_url().'admin.php?page=gf_edit_forms&id='.$form_id;
+            
+            $entry_html = '<a href="'.$entry_url.'">'.$entry_id.'</a>';
+            $form_html = '<a href="'.$entry_url.'">'.$form['title'] .'</a>';
+            return sprintf( __('About %1$s Form (Entry n°%2$s)', 'notifications-center'), $form_html, $entry_html );            
+        }
+        return $return;
     }
     
     public function add_settings( $fields ) {
@@ -37,6 +80,16 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
                 ),
             'screen' => 'general',
             'fieldgroup' => 'template'
+        );
+        $fields['gf_active_logs'] = array(
+            'id' => 'gf_active_logs',                
+            'label' => __( 'Gravity Forms', 'notifications-center' ),
+            'type' => 'boolean',
+                'params'    => array(
+                    'title' => __( 'Activate logs on GravityForms emails', 'notifications-center' ),
+                ),
+            'screen' => 'general',
+            'fieldgroup' => 'logs'
         );
         return $fields;
     }
@@ -130,6 +183,25 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
         
         $auth = get_option( VOYNOTIF_FIELD_PREFIXE . 'gf_active' );
         if( empty( $auth ) ) return $email;
+
+        if (get_option(VOYNOTIF_FIELD_PREFIXE . 'activate_logs') == true && get_option(VOYNOTIF_FIELD_PREFIXE . 'gf_active_logs') && $email['abort_email'] == false ) {
+
+            $log = VOYNOTIF_logs::add_log(array(
+                'notification_id' => false,
+                'type' => 'gravityforms',
+                'recipient' => $email['to'],
+                'subject' => $email['subject'],
+                'title' => $email['subject'],
+                'status' => null,
+                'context' => array(
+                    'notification_id' => $notification['id'],
+                    'entry_id' => $entry['id']
+                ),
+            ));
+
+            global $voynotif_log;
+            $voynotif_log = $log;
+        }
         
         $template = new VOYNOTIF_email_template();
         
@@ -139,9 +211,11 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
         
         $template->set_title($email['subject']);
         $template->set_content($content);
-        $html = $template->get_html();
-        
+        $html = $template->get_html();        
         $email['message'] = $html;
+
+
+
         return $email;
     }
     

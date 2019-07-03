@@ -178,7 +178,7 @@ class VOYNOTIF_settings_import extends VOYNOTIF_settings_screen {
         $prepared_notification['slug'] = $post_notification->post_name;
 
         global $wpdb;
-        $results = $wpdb->get_results('SELECT * FROM wp_postmeta WHERE meta_key LIKE "voynotif_%" AND post_id = ' . $notification->id, OBJECT);
+        $results = $wpdb->get_results('SELECT * FROM '.$wpdb->prefix.'postmeta WHERE meta_key LIKE "voynotif_%" AND post_id = ' . $notification->id, OBJECT);
         if (!empty($results)) {
             foreach ($results as $meta) {
                 if (@unserialize($meta->meta_value)) {
@@ -263,7 +263,8 @@ class VOYNOTIF_settings_import extends VOYNOTIF_settings_screen {
      */
     function import_settings($settings) {
         foreach ($settings as $name => $value) {
-            update_option($name, $value);
+            $name = str_replace( VOYNOTIF_FIELD_PREFIXE, '', $name );
+            voynotif_update_option( $name, $value );
         }
         return true;
     }
