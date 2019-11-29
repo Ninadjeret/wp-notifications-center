@@ -159,139 +159,139 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
             
             //Billing
             'wc_order_num' => array(
-                'title' => __('Order number', 'notificaitons-center'),
+                'title' => __('Order number', 'notifications-center'),
                 'tag' => 'woocommerce_order'
             ),
             'wc_order_date' => array(
-                'title' => __('Order date', 'notificaitons-center'),
+                'title' => __('Order date', 'notifications-center'),
                 'tag' => 'woocommerce_order'
             ),
             'wc_order_num' => array(
-                'title' => __('Order number', 'notificaitons-center'),
+                'title' => __('Order number', 'notifications-center'),
                 'tag' => 'woocommerce_order'
             ),
             'wc_order_details' => array(
-                'title' => __('Order details', 'notificaitons-center'),
+                'title' => __('Order details', 'notifications-center'),
                 'tag' => 'woocommerce_order'
             ),
             
             //Billing
             'wc_billing_firstname' => array(
-                'title' => __('Billing - Firstname', 'notificaitons-center'),
+                'title' => __('Billing - Firstname', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_lastname' => array(
-                'title' => __('Billing - Lastname', 'notificaitons-center'),
+                'title' => __('Billing - Lastname', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_email' => array(
-                'title' => __('Billing - Phone', 'notificaitons-center'),
+                'title' => __('Billing - Phone', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_phone' => array(
-                'title' => __('Billing - Phone', 'notificaitons-center'),
+                'title' => __('Billing - Phone', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_company' => array(
-                'title' => __('Billing - Company', 'notificaitons-center'),
+                'title' => __('Billing - Company', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_address1' => array(
-                'title' => __('Billing - Address 1', 'notificaitons-center'),
+                'title' => __('Billing - Address 1', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_address2' => array(
-                'title' => __('Billing - Address 2', 'notificaitons-center'),
+                'title' => __('Billing - Address 2', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_state' => array(
-                'title' => __('Billing - State', 'notificaitons-center'),
+                'title' => __('Billing - State', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_postcode' => array(
-                'title' => __('Billing - Postcode', 'notificaitons-center'),
+                'title' => __('Billing - Postcode', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_country' => array(
-                'title' => __('Billing - Country', 'notificaitons-center'),
+                'title' => __('Billing - Country', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_address' => array(
-                'title' => __('Billing - Full address', 'notificaitons-center'),
+                'title' => __('Billing - Full address', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             
             //Shipping
             'wc_shipping_firstname' => array(
-                'title' => __('Shipping - Firstname', 'notificaitons-center'),
+                'title' => __('Shipping - Firstname', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_lastname' => array(
-                'title' => __('Shipping - Lastname', 'notificaitons-center'),
+                'title' => __('Shipping - Lastname', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_email' => array(
-                'title' => __('Shipping - Phone', 'notificaitons-center'),
+                'title' => __('Shipping - Phone', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_phone' => array(
-                'title' => __('Shipping - Phone', 'notificaitons-center'),
+                'title' => __('Shipping - Phone', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_company' => array(
-                'title' => __('Shipping - Company', 'notificaitons-center'),
+                'title' => __('Shipping - Company', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_address1' => array(
-                'title' => __('Shipping - Address 1', 'notificaitons-center'),
+                'title' => __('Shipping - Address 1', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_address2' => array(
-                'title' => __('Shipping - Address 2', 'notificaitons-center'),
+                'title' => __('Shipping - Address 2', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_state' => array(
-                'title' => __('Shipping - State', 'notificaitons-center'),
+                'title' => __('Shipping - State', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_postcode' => array(
-                'title' => __('Shipping - Postcode', 'notificaitons-center'),
+                'title' => __('Shipping - Postcode', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_country' => array(
-                'title' => __('Shipping - Country', 'notificaitons-center'),
+                'title' => __('Shipping - Country', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_address' => array(
-                'title' => __('Shipping - Full address', 'notificaitons-center'),
+                'title' => __('Shipping - Full address', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             
             //Shipping
             'wc_shipping_method' => array(
-                'title' => __('Shipping method', 'notificaitons-center'),
+                'title' => __('Shipping method', 'notifications-center'),
                 'tag' => 'woocommerce_order_shipping'
             ),
             'wc_shipping_methods' => array(
-                'title' => __('Shipping methods', 'notificaitons-center'),
+                'title' => __('Shipping methods', 'notifications-center'),
                 'tag' => 'woocommerce_order_shipping'
             ),
             'wc_shipping_method2' => array(
-                'title' => __('Shipping method display', 'notificaitons-center'),
+                'title' => __('Shipping method display', 'notifications-center'),
                 'tag' => 'woocommerce_order_shipping'
             ),
             
             //Paiment
             'wc_payment_method' => array(
-                'title' => __('Payment method', 'notificaitons-center'),
+                'title' => __('Payment method', 'notifications-center'),
                 'tag' => 'woocommerce_order_payment'
             ),
             'wc_payment_instructions' => array(
-                'title' => __('Payment instructions', 'notificaitons-center'),
+                'title' => __('Payment instructions', 'notifications-center'),
                 'tag' => 'woocommerce_order_payment'
             ),
             'wc_payment_date' => array(
-                'title' => __('Payment date', 'notificaitons-center'),
+                'title' => __('Payment date', 'notifications-center'),
                 'tag' => 'woocommerce_order_payment'
             ),
         );
@@ -299,5 +299,5 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
     
 }
 
-new VOYNOTIF_compat_woocommerce();
+//new VOYNOTIF_compat_woocommerce();
 

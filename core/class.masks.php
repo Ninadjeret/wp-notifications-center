@@ -291,7 +291,7 @@ if( !class_exists( 'VOYNOTIF_masks' ) ) {
             // Site masks
             //----------------------------------------------------------------------     
             $content = str_replace( '{site_name}', get_option('blogname'), $content ); 
-            $content = str_replace( '{site_url}', get_option('siteurl'), $content ); 
+            $content = str_replace( '{site_url}', site_url(), $content ); 
             $content = str_replace( '{site_admin_email}', get_option('admin_email'), $content );
             
             $timestamp_time = current_time( 'timestamp' );

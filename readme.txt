@@ -3,8 +3,8 @@ Contributors: ninadjeret
 Donate link: http://www.notificationscenter.com/en/donate
 Tags: email, emails, notification, notifications
 Requires at least: 4.4.0
-Tested up to: 4.9.8
-Stable tag: 1.3.2
+Tested up to: 5.2.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,13 @@ System :
 3. Personnalize your choosen template to match your brand, your colors, etc.
 
 == Changelog ==
+
+= 1.5.0 =
+* New : Log functionnality : You can now track emails sents threw NC & where emails are opened
+* New : GravityForms compatibility : Gravity forms emails can now use NC template & be logged
+* New : Masks are now applied also on Subject field 
+* Fixed : Password reset link is back
+* Fixed : minor bug fixes
 
 = 1.3.3 =
 * Fixed : Button in email template now appears correctly

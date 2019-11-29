@@ -138,11 +138,10 @@ class VOYNOTIF_notification_type_user_password_reset extends VOYNOTIF_notificati
             
             //For each notification
             foreach( $notifications as $notification ) {
-
-                $reset_link = site_url("wp-login.php?action=rp&key=$key&login=" . rawurlencode($user_login), 'login');           
+          
                 $notification->set_context_info( array(
                     'user_id' => $user_data->ID,
-                    'password_reset_link' => $reset_link,
+                    'password_reset_link' => wp_lostpassword_url(),
                 ) );
 
                 //Set recipient email address

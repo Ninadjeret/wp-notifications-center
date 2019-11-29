@@ -3,7 +3,7 @@
 Plugin Name: Notifications Center
 Plugin URI: http://www.notificationscenter.com/
 Description: Personnalized notifications for your Wordpress website with beautiful, responsive and personnalised emails.
-Version: 1.4.0
+Version: 1.5.0
 Author: Florian Chaillou
 Author URI: http://www.notificationscenter.com 
 Text Domain: notifications-center
@@ -33,7 +33,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             //------------------------------------------------------------// 
             define('VOYNOTIF_DIR', WP_PLUGIN_DIR . '/' . basename( dirname( __FILE__ ) ) );
             define('VOYNOTIF_URL', plugins_url() . '/' . basename( dirname( __FILE__ ) ) );
-            define('VOYNOTIF_VERSION', '1.4.0');
+            define('VOYNOTIF_VERSION', '1.5.0');
             define('VOYNOTIF_FIELD_PREFIXE', 'voynotif_');
             define('VOYNOTIF_PREMIUM_URL', 'http://www.notificationscenter.com');
             define('VOYNOTIF_EXPORT_VERSION', '1.1.0');
