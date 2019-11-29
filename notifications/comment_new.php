@@ -127,6 +127,7 @@ class VOYNOTIF_notification_type_comment_new extends VOYNOTIF_notification_type 
         
         //Add custom recipient types
         $types['post_author'] = __( 'Post author', 'notifications-center' );
+        $types['comment_author'] = __( 'Comment author', 'notifications-center' );
         
         //return types
         return $types;
@@ -188,6 +189,8 @@ class VOYNOTIF_notification_type_comment_new extends VOYNOTIF_notification_type 
                 $author_id = $post->post_author;
                 $author_email = get_the_author_meta( 'user_email', $author_id );
                 $notification->add_recipient($author_email);
+            } elseif( $notification->recipient_type == 'comment_author'  ) {
+                $notifications->add_recipient( $comment->comment_author_email );
             }
 
             //Send notification

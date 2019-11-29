@@ -299,5 +299,5 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
     
 }
 
-new VOYNOTIF_compat_woocommerce();
+//new VOYNOTIF_compat_woocommerce();
 
