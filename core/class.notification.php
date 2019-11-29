@@ -429,5 +429,3 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
     }
 }
 
-
-?>
