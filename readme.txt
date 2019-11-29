@@ -80,6 +80,8 @@ System :
 = 1.5.0 =
 * New : Log functionnality : You can now track emails sents threw NC & where emails are opened
 * New : GravityForms compatibility : Gravity forms emails can now use NC template & be logged
+* New : Masks are now applied also on Subject field 
+* Fixed : Password reset link is back
 * Fixed : minor bug fixes
 
 = 1.3.3 =
