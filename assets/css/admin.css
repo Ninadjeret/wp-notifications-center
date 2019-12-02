@@ -655,6 +655,46 @@ tbody.voy-default-list td {
 
 /*
     ------------------------------------------------------------------
+    PAGINATION
+    ------------------------------------------------------------------
+*/
+.voynotif_pagination {
+    text-align: right;
+    margin-top: 20px;
+}
+.voynotif_pagination span {
+    padding: 6px 8px;
+    line-height: normal;
+    font-size: 14px;    
+}
+.voynotif_pagination a {
+    color: #555;
+    border-color: #ccc;
+    background: #f7f7f7;
+    box-shadow: 0 1px 0 #ccc;
+    padding: 6px 14px;
+    line-height: normal;
+    font-size: 14px;
+    vertical-align: middle;
+    height: auto;
+    margin-bottom: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+.voynotif_pagination a:hover {
+    background: #fafafa;
+    border-color: #999;
+    color: #23282d;
+}
+
+/*
+    ------------------------------------------------------------------
     7. SETTINGS > LOGS
     ------------------------------------------------------------------
 */
@@ -682,6 +722,7 @@ table.voynotif_list_logs tr td {
 table.voynotif_list_logs tr:nth-child(odd) {
     background-color: #f9f9f9;
 }
+
 
 /*
     ------------------------------------------------------------------

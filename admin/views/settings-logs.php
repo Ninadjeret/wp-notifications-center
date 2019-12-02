@@ -30,7 +30,7 @@ if( isset( $_GET['s'] ) && !empty( $_GET['s'] ) ) {
         <h3><?php printf( __('%d Results', 'notifications-center'), VOYNOTIF_logs::get_logs_count($args) ); ?></h3>
     </div>
     <div class="voy-col-6 voy-text-right">
-        <form action="<?php echo remove_query_arg('s'); ?>" method="get">
+        <form style="margin-top: 10px;" action="<?php echo remove_query_arg('s'); ?>" method="get">
             <?php
             if( !empty( $_GET ) ) {
                 foreach ($_GET as $key => $value) {
@@ -102,15 +102,19 @@ if( isset( $_GET['s'] ) && !empty( $_GET['s'] ) ) {
         <?php } ?>
     </tbody>
 </table>
-<?php 
-$total_pages = ceil(VOYNOTIF_logs::get_logs_count($args) / $args['per_page']);
-echo paginate_links( array(
-	'base'               => '%_%',
-	'format'             => '?paged=%#%',
-	'total'              => $total_pages,
-	'current'            => $args['paged'],
-	'end_size'           => 3,
-	'mid_size'           => 3,
-	'prev_next'          => true,
-) );
-?>
+<div class="voynotif_pagination">
+    <?php 
+    $total_pages = ceil(VOYNOTIF_logs::get_logs_count($args) / $args['per_page']);
+    echo paginate_links( array(
+        'base'               => '%_%',
+        'format'             => '?paged=%#%',
+        'total'              => $total_pages,
+        'current'            => $args['paged'],
+        'prev_text'          => '‹',
+        'next_text'          => '›',
+        'end_size'           => 3,
+        'mid_size'           => 3,
+        'prev_next'          => true,
+    ) );
+    ?>
+</div>
