@@ -10,7 +10,6 @@ class VOYNOTIF_logs {
      * 
      */
     function __construct() {
-        //Nothing at the moment
         add_action ('notifications_center_logs_deletion', array( $this, 'delete_old_logs') );
         add_action( 'template_redirect', array('VOYNOTIF_logs', 'update_notification_status') );
         add_action( 'voynotif/template/footer', array('VOYNOTIF_logs', 'add_pixel') );

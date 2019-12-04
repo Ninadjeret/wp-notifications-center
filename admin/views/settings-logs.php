@@ -79,7 +79,8 @@ if( isset( $_GET['s'] ) && !empty( $_GET['s'] ) ) {
                 ?>
                 <tr>
                     <td><?php echo $log->id; ?></td>
-                    <td><?php echo $log_date->format('d/m/Y à G:i'); ?></td>
+                    <td>
+                        <?php echo VOYNOTIF_helpers::getDateTimeFormat($log_date); ?></td>
                     <td>
                         <?php if( get_post_type( $log->notification_id ) == 'voy_notification' ) { ?> 
                         <a href="<?php echo get_edit_post_link( $log->notification_id ); ?>"><?php echo get_the_title($log->notification_id); ?></a>

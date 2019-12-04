@@ -86,6 +86,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('core/class.masks.php');
             include_once('core/class.logs.php');
             include_once('core/template.php');
+            include_once('core/class.helpers.php');
            
                      
             
