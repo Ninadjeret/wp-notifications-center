@@ -64,7 +64,7 @@ class VOYNOTIF_compat_gravityforms extends VOYNOTIF_compat {
             $form_url = admin_url().'admin.php?page=gf_edit_forms&id='.$form_id;
             
             $entry_html = '<a href="'.$entry_url.'">'.$entry_id.'</a>';
-            $form_html = '<a href="'.$entry_url.'">'.$form['title'] .'</a>';
+            $form_html = '<a href="'.$form_url.'">'.$form['title'] .'</a>';
             return sprintf( __('About %1$s Form (Entry n°%2$s)', 'notifications-center'), $form_html, $entry_html );            
         }
         return $return;
