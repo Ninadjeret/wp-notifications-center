@@ -250,7 +250,7 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
             if( $specify_sender == true AND ! empty( $specific_sender_name ) ) {                              
                 $sender_name = $specific_sender_name;               
             } else {
-              $sender_name = get_option( VOYNOTIF_FIELD_PREFIXE . 'sender_name' );  
+                $sender_name = get_option( VOYNOTIF_FIELD_PREFIXE . 'sender_name', get_option( 'blogname' ) );
             }
 
             //Email de l'expéditeur (propre à la notification ou général)
@@ -258,7 +258,7 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
                 $sender_email = $specific_sender_email;
                 
             } else {
-              $sender_email = get_option( VOYNOTIF_FIELD_PREFIXE . 'sender_email' );  
+                $sender_email = get_option( VOYNOTIF_FIELD_PREFIXE . 'sender_email', get_option( 'admin_email' ) );
             }
 
             //Construction des headers et renvoi
