@@ -119,7 +119,7 @@ class VOYNOTIF_notification_type_user_register extends VOYNOTIF_notification_typ
     
                 $notification->set_context_info( array(
                     'user_id' => $user->ID,
-                    'password_reset_link' => 'testlink'
+                    'password_reset_link' => wp_lostpassword_url()
                 ) );
                 
                 //May Set user email as recipient

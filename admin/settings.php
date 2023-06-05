@@ -289,7 +289,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                         'content' => 
                             __('Someone has requested a password reset for the following account:').' {user_login}</p>'
                             . '<p>'.__('If this was a mistake, just ignore this email and nothing will happen.').'<br />'
-                            .__('To reset your password, visit the following address:').' <{password_reset_link}></p>',
+                            .__('To reset your password, visit the following address:').' {password_reset_link}</p>',
                     ),
                 ),
                 'user_password_changed' => array(
@@ -330,7 +330,7 @@ if( !class_exists( 'VOYNOTIF_admin_settings' ) ) {
                         'content' => 
                             sprintf(__('Username: %s'), '{user_login}' )
                             . '<p>' . __('To set your password, visit the following address:') . '<br />'
-                            . '<{password_reset_link}></p>'
+                            . '{password_reset_link}</p>'
                             . '<p>{site_url}/wp-login.php</p>',
                     ),
                 ),
