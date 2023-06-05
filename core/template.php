@@ -99,12 +99,19 @@ function voynotif_email_template( $notification_id = null ) {
  * 
  * @author Floflo
  * @since 1.2.0
- * @update 2017-03-27
+ * @update 2023-06-06
  * 
  * @param type $template
  * @return type
  */
 function voynotif_email_template_part( $template ) {
+    // Checks if a template part override exists in the theme or child theme first.
+    $template_path = get_theme_file_path('/templates/parts/notifications-center/parts/' . $template . '.php');
+    if (file_exists($template_path)) {
+        include $template_path;
+        return;
+    }
+    // If no theme override exists, load the template part from the plugin.
     $template_path = voynotif_email_template_path() . 'parts/' . $template . '.php';
     if( is_file( $template_path ) ) {
         include $template_path;
