@@ -235,13 +235,7 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
                 'user_register.php'
             ];
             foreach ($notifications as $notification) {
-                // Check if a template override exists in the theme
-                $path = get_theme_file_path('/templates/parts/notifications-center/' . $notification);
-                if (file_exists($path)) {
-                    include_once($path);
-                    continue;
-                }
-                include_once('notifications/' . $notification);
+                self::include_notification_template($notification);
             }
             
             /**
@@ -254,6 +248,23 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
              */
             do_action('voynotif/loaded');
 
+        }
+
+        /**
+         * Include a notification template. 
+         * Check if a template override exists in the theme's "templates/parts/notifications-center" folder.
+         *
+         * @author Elouan
+         * @param String $filename the filename of the notification to include (e.g. 'comment_reply.php')
+         * @return void
+         */
+        public static function include_notification_template( $filename ) {
+            // Check if a template override exists in the theme
+            $path = get_theme_file_path('/templates/parts/notifications-center/' . $filename);
+            if (file_exists($path)) {
+                include_once($path);
+            }
+            include_once('notifications/' . $filename);
         }
 
 

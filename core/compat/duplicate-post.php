@@ -15,7 +15,7 @@ class VOYNOTIF_compat_duplicate_post extends VOYNOTIF_compat {
     }
     
     function init() {
-        include_once( VOYNOTIF_DIR .  '/notifications/content_duplicate.php');
+        VOYNOTIF_plugin::include_notification_template( 'content_duplicate.php' );
     }
     
 }
