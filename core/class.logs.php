@@ -83,12 +83,12 @@ class VOYNOTIF_logs {
                         <li><?php _e('Type: ', 'notifications-center'); ?><?php echo voynotif_get_notification_type_title($log->type) ?></li>
                         <li><?php _e('Date: ', 'notifications-center'); ?><?php echo $log_date->format('d/m/Y à G:i'); ?></li>
                         <li><?php _e('Subject: ', 'notifications-center'); ?><?php echo $log->subject; ?></li>
-                        <li><?php _e('Status: ', 'notifications-center'); ?><?php echo VOYNOTIF_logs::get_status_title( $log->status ); ?></li>
+                        <li><?php _e('Status: ', 'notifications-center'); ?><?php echo VOYNOTIF_logs::get_status_title($log->status, $log); ?></li>
                     </ul>
                 <?php $value = ob_get_clean();
                 $logs_to_export[] = array(
                     'name'  => $log_date->format('d/m/Y à G:i'),
-                    'value' => __('Subject: ', 'notifications-center').$log->subject.' | '.VOYNOTIF_logs::get_status_title( $log->status ),
+                    'value' => __('Subject: ', 'notifications-center').$log->subject.' | '.VOYNOTIF_logs::get_status_title($log->status, $log),
                 );                
             }
         }
