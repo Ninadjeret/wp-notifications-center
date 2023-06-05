@@ -112,7 +112,11 @@ if( !class_exists( 'VOYNOTIF_admin_notifications' ) ) {
                 } elseif($notification->recipient_type == 'users' ) {    
                     $users_to_display = array();
                     $users = $notification->get_field('recipient_users');
-                    foreach( $users as $user_id ) {
+                    if(empty($users)) {
+                        echo __('No recipient', 'notifications-center');
+                        return;
+                    }
+                    foreach($users as $user_id) {
                         $user_data = get_userdata($user_id);
                         $users_to_display[] = $user_data->user_login;
                     }

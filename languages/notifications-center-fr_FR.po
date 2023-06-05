@@ -218,6 +218,11 @@ msgstr "Inactif"
 msgid "All %s users"
 msgstr ""
 
+#: admin/notifications.php:116
+#, php-format
+msgid "No recipient"
+msgstr "Aucun destinataire"
+
 #: admin/notifications.php:130
 msgid "All types"
 msgstr "Tous les types"
