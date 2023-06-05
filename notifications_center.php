@@ -219,23 +219,29 @@ if( !class_exists( 'VOYNOTIF_plugin' ) ) {
             include_once('core/compat/woocommerce.php'); 
             
             //Load Notifications
-            include_once('notifications/comment_new.php');
-            include_once('notifications/comment_reply.php');
-            include_once('notifications/comment_moderate.php');
-            include_once('notifications/content_draft.php');
-            include_once('notifications/content_future.php');
-            include_once('notifications/content_pending.php');
-            include_once('notifications/content_publish.php');
-            include_once('notifications/content_trash.php');
-            include_once('notifications/core_update.php');            
-            include_once('notifications/user_login.php');
-            include_once('notifications/user_password_changed.php');
-            include_once('notifications/user_password_reset.php');
-            include_once('notifications/user_register.php');
-            
-            //Check for udpate
-            if( $this->updater->current_version !== $this->updater->new_version ) {
-                $this->updater->update();
+            $notifications = [
+                'comment_reply.php',
+                'comment_moderate.php',
+                'comment_new.php',
+                'content_draft.php',
+                'content_future.php',
+                'content_pending.php',
+                'content_publish.php',
+                'content_trash.php',
+                'core_update.php',
+                'user_login.php',
+                'user_password_changed.php',
+                'user_password_reset.php',
+                'user_register.php'
+            ];
+            foreach ($notifications as $notification) {
+                // Check if a template override exists in the theme
+                $path = get_theme_file_path('/templates/parts/notifications-center/' . $notification);
+                if (file_exists($path)) {
+                    include_once($path);
+                    continue;
+                }
+                include_once('notifications/' . $notification);
             }
             
             /**
