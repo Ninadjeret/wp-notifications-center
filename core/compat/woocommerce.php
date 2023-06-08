@@ -24,9 +24,15 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
         add_filter( 'voynotif/load_field', array( $this, 'get_wc_email_status'), 10, 2 );
         add_action('voynotif/save_field', array( $this, 'update_wc_email_status' ), 10, 4);
         
-        add_filter( 'voynotif/logs/context/type=wc_new_order', array( $this, 'log_context' ), 10, 2 );
-        
-        include_once( VOYNOTIF_DIR .  '/notifications/woocommerce/new-order.php');
+        $notifications = [
+            'wc_new_order' => 'new-order.php', 
+            'wc_cancelled_order' => 'cancelled-order.php', 
+            'wc_failed_order' => 'failed-order.php'
+        ];
+        foreach( $notifications as $notification => $filename ) {
+            add_filter( 'voynotif/notification/content/type='.$notification, array( $this, 'include_template' ) );
+            VOYNOTIF_plugin::include_notification_template( 'woocommerce/' . $filename );
+        }
     }
     
     public function add_settings( $fields ) {
@@ -144,6 +150,8 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
         $content = str_replace( '{wc_payment_date}', $date_paid, $content );
         
         ob_start();
+        global $voynotif_template;
+        $voynotif_template = new VOYNOTIF_email_template(); // permet d'utiliser les variables de template dans les parts woocommerce
         include( voynotif_email_template_path() . 'parts/woocommerce/order-details.php' );
         $order_details = ob_get_clean();
         $content = str_replace( '{wc_order_details}', $order_details, $content );

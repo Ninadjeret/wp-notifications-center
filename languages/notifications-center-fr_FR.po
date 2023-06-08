@@ -1124,3 +1124,35 @@ msgstr "https://www.twitter.com/FlorianChaillou"
 
 #~ msgid "Replay author URL"
 #~ msgstr "URL de l'auteur de la réponse"
+
+#: core/compat/woocommerce.php:80
+msgid "New order"
+msgstr "Nouvelle commande"
+
+#: core/compat/woocommerce.php:82
+msgid "Email sent to admin after a new order"
+msgstr "Email envoyé à l'administrateur après une nouvelle commande"
+
+#: core/compat/woocommerce.php:85
+msgid "Cancelled order"
+msgstr "Commande annulée"
+
+#: core/compat/woocommerce.php:87
+msgid "Email sent when an order is cancelled"
+msgstr "Email envoyé lorsqu'une commande est annulée"
+
+#: core/compat/woocommerce.php:90
+msgid "Failed order"
+msgstr "Commande échouée"
+
+#: core/compat/woocommerce.php:92
+msgid "Email sent when an order is failed"
+msgstr "Email envoyé lorsqu'une commande échoue"
+
+#: notifications/new-order.php:61
+msgid "Order status"
+msgstr "Statut de la commande"
+
+#: notifications/new-order.php:90
+msgid "Customer"
+msgstr "Client"
