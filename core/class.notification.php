@@ -411,7 +411,7 @@ if( !class_exists( 'VOYNOTIF_notification' ) ) {
                 }
                 
                 //Send
-                $result = wp_mail($recipient, $object, $this->get_html(), $headers);
+                $result = wp_mail($recipient, $object, $html, $headers);
 
                 //Update log status
                 if( get_option( VOYNOTIF_FIELD_PREFIXE . 'activate_logs' ) == true ) {

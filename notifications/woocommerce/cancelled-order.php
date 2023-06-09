@@ -8,7 +8,7 @@
  * 3. Change Tags
  * 
  */
-class VOYNOTIF_notification_type_wc_new_order extends VOYNOTIF_notification_type {
+class VOYNOTIF_notification_type_wc_cancelled_order extends VOYNOTIF_notification_type {
     
     
     /**
@@ -20,8 +20,8 @@ class VOYNOTIF_notification_type_wc_new_order extends VOYNOTIF_notification_type
      */
     function __construct() {
         
-        $this->name = 'wc_new_order';
-        $this->label = __( 'New order', 'notifications-center' );
+        $this->name = 'wc_cancelled_order';
+        $this->label = __( 'Cancelled order', 'notifications-center' );
         $this->tags = array(
             'woocommerce'
         );
@@ -39,15 +39,8 @@ class VOYNOTIF_notification_type_wc_new_order extends VOYNOTIF_notification_type
      * @update 2016-06-02
      */
     function init() {
-        add_action( 'woocommerce_order_status_pending_to_processing_notification', array( $this, 'send' ), 1000, 3 );
-        add_action( 'woocommerce_order_status_pending_to_completed_notification', array( $this, 'send' ), 1000, 3 );
-        add_action( 'woocommerce_order_status_pending_to_on-hold_notification', array( $this, 'send' ), 1000, 3 );
-        add_action( 'woocommerce_order_status_failed_to_processing_notification', array( $this, 'send' ), 1000, 3 );
-        add_action( 'woocommerce_order_status_failed_to_completed_notification', array( $this, 'send' ), 1000, 3 );
-        add_action( 'woocommerce_order_status_failed_to_on-hold_notification', array( $this, 'send' ), 1000, 3 );
-        add_action( 'woocommerce_order_status_cancelled_to_processing_notification', array( $this, 'send' ), 1000, 3 );
-        add_action( 'woocommerce_order_status_cancelled_to_completed_notification', array( $this, 'send' ), 1000, 3 );
-        add_action( 'woocommerce_order_status_cancelled_to_on-hold_notification', array( $this, 'send' ), 1000, 3 );    
+        add_action( 'woocommerce_order_status_processing_to_cancelled_notification', array( $this, 'send' ), 1000, 3 );
+        add_action( 'woocommerce_order_status_on-hold_to_cancelled_notification', array( $this, 'send' ), 1000, 3 );
     }
     
     
@@ -170,5 +163,5 @@ class VOYNOTIF_notification_type_wc_new_order extends VOYNOTIF_notification_type
     }
         
 }
-new VOYNOTIF_notification_type_wc_new_order();
+new VOYNOTIF_notification_type_wc_cancelled_order();
 
