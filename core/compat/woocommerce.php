@@ -27,7 +27,15 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
         $notifications = [
             'wc_new_order' => 'new-order.php', 
             'wc_cancelled_order' => 'cancelled-order.php', 
-            'wc_failed_order' => 'failed-order.php'
+            'wc_failed_order' => 'failed-order.php',
+            'wc_processing_order' => 'processing-order.php',
+            'wc_completed_order' => 'completed-order.php',
+            'wc_refunding_order' => 'refunded-order.php',
+            'wc_on_hold_order' => 'on-hold-order.php',
+            'wc_invoice' => 'invoice.php',
+            'wc_note' => 'note.php',
+            'wc_reset_password' => 'reset-password.php',
+            'wc_new_account' => 'new-account.php',
         ];
         foreach( $notifications as $notification => $filename ) {
             add_filter( 'voynotif/notification/content/type='.$notification, array( $this, 'include_template' ) );
@@ -96,6 +104,46 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
                 'label' => __( 'Failed order', 'notifications-center' ),
                 'tag' => 'woocommerce',
                 'description' => __( 'Email sent when an order is failed', 'notifications-center' ),
+            ),
+            'wc_processing_order' => array(
+                'label' => __( 'Processing order', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when an order is processing', 'notifications-center' ),
+            ),
+            'wc_completed_order' => array(
+                'label' => __( 'Completed order', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when an order is completed', 'notifications-center' ),
+            ),
+            'wc_refunding_order' => array(
+                'label' => __( 'Refunding order', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when an order is refunded', 'notifications-center' ),
+            ),
+            'wc_on_hold_order' => array(
+                'label' => __( 'On hold order', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when an order is on hold', 'notifications-center' ),
+            ),
+            'wc_invoice' => array(
+                'label' => __( 'Invoice', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when an invoice is available', 'notifications-center' ),
+            ),
+            'wc_note' => array(
+                'label' => __( 'Note', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when an order note is available', 'notifications-center' ),
+            ),
+            'wc_reset_password' => array(
+                'label' => __( 'Reset password', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when a user reset his password', 'notifications-center' ),
+            ),
+            'wc_new_account' => array(
+                'label' => __( 'New account', 'notifications-center' ),
+                'tag' => 'woocommerce',
+                'description' => __( 'Email sent when a user create an account', 'notifications-center' ),
             ),
         );
     }
