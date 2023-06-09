@@ -188,8 +188,29 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
         $content = str_replace( '{wc_order_date}', $order->get_date_created()->format( get_option('date_format') ), $content );
         
         $content = str_replace( '{wc_billing_firstname}', $order->get_billing_first_name(), $content );
+        $content = str_replace( '{wc_billing_lastname}', $order->get_billing_last_name(), $content );
+        $content = str_replace( '{wc_billing_email}', $order->get_billing_email(), $content );
+        $content = str_replace( '{wc_billing_phone}', $order->get_billing_phone(), $content );
+        $content = str_replace( '{wc_billing_company}', $order->get_billing_company(), $content );
+        $content = str_replace( '{wc_billing_address1}', $order->get_billing_address_1(), $content );
+        $content = str_replace( '{wc_billing_address2}', $order->get_billing_address_2(), $content );
+        $content = str_replace( '{wc_billing_state}', $order->get_billing_state(), $content );
+        $content = str_replace( '{wc_billing_postcode}', $order->get_billing_postcode(), $content );
+        $content = str_replace( '{wc_billing_country}', $order->get_billing_country(), $content );
         $content = str_replace( '{wc_billing_address}', $order->get_formatted_billing_address(), $content );
         
+        $content = str_replace( '{wc_shipping_firstname}', $order->get_shipping_first_name(), $content );
+        $content = str_replace( '{wc_shipping_lastname}', $order->get_shipping_last_name(), $content );
+        $content = str_replace( '{wc_shipping_email}', get_post_meta($order->get_id(), '_shipping_email', true), $content );
+        $content = str_replace( '{wc_shipping_phone}', get_post_meta($order->get_id(), '_shipping_phone', true), $content );
+        $content = str_replace( '{wc_shipping_company}', $order->get_shipping_company(), $content );
+        $content = str_replace( '{wc_shipping_address1}', $order->get_shipping_address_1(), $content );
+        $content = str_replace( '{wc_shipping_address2}', $order->get_shipping_address_2(), $content );
+        $content = str_replace( '{wc_shipping_state}', $order->get_shipping_state(), $content );
+        $content = str_replace( '{wc_shipping_postcode}', $order->get_shipping_postcode(), $content );
+        $content = str_replace( '{wc_shipping_country}', $order->get_shipping_country(), $content );
+        $content = str_replace( '{wc_shipping_address}', $order->get_formatted_shipping_address(), $content );
+
         $content = str_replace( '{wc_shipping_method}', $order->get_shipping_method(), $content );
         $content = str_replace( '{wc_shipping_method2}', $order->get_shipping_to_display(), $content );  
    
@@ -213,7 +234,7 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
     public static function get_masks() {
         return array(
             
-            //Billing
+            //Order
             'wc_order_num' => array(
                 'title' => __('Order number', 'notifications-center'),
                 'tag' => 'woocommerce_order'
@@ -241,7 +262,7 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_email' => array(
-                'title' => __('Billing - Phone', 'notifications-center'),
+                'title' => __('Billing - Email', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_billing_phone' => array(
@@ -287,7 +308,7 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_email' => array(
-                'title' => __('Shipping - Phone', 'notifications-center'),
+                'title' => __('Shipping - Email', 'notifications-center'),
                 'tag' => 'woocommerce_order_customer'
             ),
             'wc_shipping_phone' => array(
@@ -323,21 +344,21 @@ class VOYNOTIF_compat_woocommerce extends VOYNOTIF_compat {
                 'tag' => 'woocommerce_order_customer'
             ),
             
-            //Shipping
+            //Shipping methods
             'wc_shipping_method' => array(
                 'title' => __('Shipping method', 'notifications-center'),
                 'tag' => 'woocommerce_order_shipping'
             ),
-            'wc_shipping_methods' => array(
-                'title' => __('Shipping methods', 'notifications-center'),
-                'tag' => 'woocommerce_order_shipping'
-            ),
+            // 'wc_shipping_methods' => array(
+            //     'title' => __('Shipping methods', 'notifications-center'),
+            //     'tag' => 'woocommerce_order_shipping'
+            // ),
             'wc_shipping_method2' => array(
                 'title' => __('Shipping method display', 'notifications-center'),
                 'tag' => 'woocommerce_order_shipping'
             ),
             
-            //Paiment
+            //Payment
             'wc_payment_method' => array(
                 'title' => __('Payment method', 'notifications-center'),
                 'tag' => 'woocommerce_order_payment'

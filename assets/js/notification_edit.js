@@ -60,6 +60,7 @@
         if( jQuery(":selected", this).val() != "" ) {
             //send_to_editor("{" + jQuery(":selected", this).val() + "}");
             var content_to_send = "{" + jQuery(":selected", this).val() + "}";
+            if(!tinyMCE.activeEditor) jQuery('.wp-editor-wrap .switch-tmce').trigger('click');
             tinymce.activeEditor.execCommand('mceInsertContent', false, content_to_send); 
         }       
         jQuery(this).val("");
