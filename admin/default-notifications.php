@@ -83,7 +83,7 @@ if( !class_exists( 'VOYNOTIF_admin_default_notifications' ) ) {
                 'comment_pending' => array(
                     'label' => __( 'Comment to approve', 'notifications-center' ),
                     'tag' => 'comment',
-                    'description' => __( 'Email sent when a visite submitted a comment on your website and if "A comment is held for moderation" is checked in Wordpress settings', 'notifications-center' ),
+                    'description' => __( 'Email sent when a visitor submitted a comment on your website and if "A comment is held for moderation" is checked in Wordpress settings', 'notifications-center' ),
                 ),
                 'new_pingback' => array(
                     'label' => __( 'New Pingback', 'notifications-center' ),

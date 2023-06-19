@@ -22,6 +22,7 @@ if( !class_exists( 'VOYNOTIF_admin_notification' ) ) {
             add_action( 'admin_footer', array( $this, 'footer_ajax' ) ); // Write our JS below here
             add_action( 'media_buttons', array( $this, 'add_mask_button' ), 50 );
             add_action( 'admin_notices', array( $this, 'toto' ) );
+            add_action( 'voynotif/settings/default/after_duplicate', array( $this, 'deactivate_default' ), 10, 2 );
 
             //Add ajax calls
             add_action('wp_ajax_voy_notification_ajax_update', array( $this, 'ajax_update' ) );
@@ -915,6 +916,23 @@ if( !class_exists( 'VOYNOTIF_admin_notification' ) ) {
             ?>
             <div class="voy-type_masks_wrapper"></div>     
             <?php        
+        }
+
+        /**
+         * Deactivate a default notification
+         *
+         * @author Elouan
+         * @param array $notification Notification data
+         * @param string $notification_id Notification ID
+         */
+        function deactivate_default($notification, $notification_id) {
+            $settings = new VOYNOTIF_admin_settings();
+            if( !array_key_exists( $notification_id, $settings->get_default_notifications() ) ) {
+                echo 'Unable to save data (Notification ID not valid)';
+                return;
+            }
+
+            voynotif_update_option( 'block_' . $notification_id . '_status', 1 );
         }
     }
 }
